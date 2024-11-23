@@ -1,101 +1,87 @@
+// native  modules
 import Image from "next/image";
+
+// custom components
+import Banner from "./components/banner/Banner";
+import Cook from "./components/cook/Cook";
+import SaveMoney from "./components/saveMoney/SaveMoney";
+import DiscoverBenifits from "./components/discoverBenifits/DiscoverBenifits";
+import Save from "./components/save/Save";
+import Faq from "./components/faq/Faq";
+
+// assets
+import srcimg from "../public/Resource/couple-teamwork-kitchen.jpg";
+import bgimg from "../public/Resource/aa890aa8e363918f0c0a94e60eee432c.jpg";
+import workinglady from "../public/Resource/workinglady.jpg";
+import Navbar from "./components/navbar/Navbar";
+import WeeklyOverlap from "./components/weeklyOverlap/WeeklyOverlap";
+import bgfront from "../public/Resource/bgfront.jpg";
+import ndlady from "../public/Resource/2ndlady.jpg";
+import Cta from "./components/cta/Cta";
+import Footer from "./components/footer/Footer";
+import CopyRight from "./components/copyRight/copyRight";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <>
+      <>
+        <Navbar />
+        <Banner />
+        <Cook
+          subtitle="Healthy Meal"
+          description="Our meal planning service takes the stress out of deciding what to cook and ensures you eat nutritious meals every day. With our carefully curated meal plans, you can enjoy the benefits of a healthy diet without the hassle of planning and shopping."
+          srcimg={srcimg}
+          // shadowcolor="#738065"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <SaveMoney
+          left="-6.6vw"
+          subtitle="Discover"
+          bspecialtext="Cook Fresh, "
+          specialtext="Eat Well,"
+          aspecialtext=" Live Better"
+          display="block"
+          description="Experience the benefits of cooking at home with fresh ingredients.
+      Our meal planner makes it easy to create delicious and healthy
+      meals."
+          bgimg={workinglady.src}
+          leftfancy="Save Time"
+          descleft=" Plan your meals in advance and spend less time figuring out what
+        to cook."
+          rightfancy="Eat Healthier"
+          righdesc="Enjoy nutritious meals made with fresh ingredients that support
+        your well-being."
+        />
+        <WeeklyOverlap
+          bgimg={bgimg.src}
+          bgfront={bgfront.src}
+          inputdisplay="none"
+          displayfvicon="none"
+          subtitle="Healthy"
+          title="Discover the Health Benefits of Mediterranean and Centenarian Diets"
+          description="The Mediterranean and Centenarian diets are renowned for their health benefits. Packed with fresh fruits, vegetables, whole grains, and lean proteins, these diets promote heart health, weight management and longevity.Our balanced diet is based on the mediterranean and centenarian diet."
+        />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <DiscoverBenifits />
+        <Save srcimg={ndlady.src} />
+
+        <Faq
+          description="Frequently asked questions ordered by popularity. Remember that if the visitor has not committed to the call to action, they may still have questions (doubts) that can be answered."
+          question1="How does it work?"
+          question2="What is included?"
+          question3="Is it suitable for me?"
+          question4="How can I sign up?"
+          question5="Can I cancel anytime?"
+          ans1="Our meal planning service provides you with a 6-day meal planner and shopping list based on the Mediterranean and centenarian diets. You will receive the meal plan every Friday for the following week via email in a PDF file. It's a simple and convenient way to enjoy the benefits of cooking at home, improve your health, reduce food waste, and save money."
+          ans2=""
+          ans3=""
+          ans4=""
+          ans5=""
+        />
+
+        <Cta title="Still Have Questions?" description="Feel free to reach out to us." />
+        <Footer/>
+        <CopyRight/>
+      </>
+    </>
   );
 }

@@ -1,0 +1,92 @@
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
+import User from '../models/UserModel';
+import { connectMongoDB } from '@/app/lib/dbConnection';
+import { sendStripeEmail } from '@/app/lib/sendStripeEmail';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: '2023-08-16',
+});
+
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
+export async function POST(req: NextRequest) {
+  const sig = req.headers.get('stripe-signature');
+  let event;
+
+  try {
+    const body = await req.text();
+
+    if (!sig) {
+      return NextResponse.json({ error: 'Missing Stripe signature header' }, { status: 400 });
+    }
+
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+  } catch (err) {
+    console.error('Error verifying webhook signature:', err);
+    return NextResponse.json({ error: 'Webhook signature verification failed' }, { status: 400 });
+  }
+
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const subscriptionId = session.subscription as string;
+        const customerId = session.customer as string;
+        const email = session.customer_details?.email;
+
+        // Fetch subscription details to get product information
+        const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
+          expand: ['items.data.price.product']
+        });
+
+        // Get the product name/plan type
+        const planType = (subscription.items.data[0].price.product as Stripe.Product).name;
+        await connectMongoDB();
+        // Find and update user
+        const user = await User.findOneAndUpdate(
+          { email },
+          {
+            stripeCustomerId: customerId,
+            stripeSubscriptionId: subscriptionId,
+            planType,
+            status: subscription.status,
+            currentPeriodEnd: new Date(subscription.current_period_end * 1000)
+          },
+          { new: true }
+        );
+       // await sendStripeEmail(planType ,email )
+      
+        break;
+      }
+
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object as Stripe.Invoice;
+        
+        if (invoice.subscription) {
+          const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string);
+          
+          await User.findOneAndUpdate(
+            { stripeCustomerId: invoice.customer },
+            {
+              status: subscription.status,
+              currentPeriodEnd: new Date(subscription.current_period_end * 1000)
+            }
+          );
+        }
+        break;
+      }
+
+      default:
+        console.log(`Unhandled event type: ${event.type}`);
+    }
+
+    return NextResponse.json({ received: true }, { status: 200 });
+  } catch (error:any) {
+    console.error('Error processing webhook:', error);
+    return NextResponse.json(
+      { error: `Webhook processing failed: ${error.message}` },
+      { status: 400 }
+    );
+  }
+}
