@@ -5,17 +5,16 @@ const transporter = nodemailer.createTransport({
   host: 'smtp.mailtrap.io', 
   port: 587,  
   auth: {
-    user: process.env.MAIL_USERNAME,  // Mailtrap username
-    pass: process.env.MAIL_PASSWORD,  // Mailtrap password
+    user: process.env.MAIL_USERNAME, 
+    pass: process.env.MAIL_PASSWORD,  
   },
 });
 
 export const sendWelcomeEmail = async (email: string, name: string) => {
   const mailOptions = {
-    from: process.env.MAIL_FROM_ADDRESS,  // Sender address (from Mailtrap)
+    from: process.env.MAIL_FROM_ADDRESS,  
     to:email,
     subject: "Welcome to Our Service!",
-    // text: `Hello ${name},\n\nWelcome to our service! We're excited to have you onboard.\n\nBest regards,\nThe Team`,
     html :`
     <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="und">
 

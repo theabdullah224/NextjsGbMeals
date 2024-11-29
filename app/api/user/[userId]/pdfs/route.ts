@@ -1,0 +1,41 @@
+import { NextRequest, NextResponse } from "next/server";
+import PDFRecord from "@/app/api/models/PDFRecord";
+import { connectMongoDB } from "@/app/lib/dbConnection";
+
+export async function GET(request: NextRequest, context: { params: { userId: string } }) {
+  // Validate userId
+  const userId = context.params.userId;
+
+  if (!userId) {
+    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+  }
+
+  try {
+    await connectMongoDB();
+    const pdfRecords = await PDFRecord.find({ userId }).sort({ createdAt: -1 });
+    const pdfList = pdfRecords.map((pdf) => ({
+      id: pdf._id.toString(),
+      userId: pdf.userId,
+      mealPlanUrl: pdf.mealPlanUrl,
+      shoppingListUrl: pdf.shoppingListUrl,
+      createdAt: pdf.createdAt.toISOString(),
+    }));
+
+    return NextResponse.json(
+      {
+        message: "PDFs retrieved successfully",
+        pdfs: pdfList,
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error("Error fetching PDFs:", error);
+    return NextResponse.json(
+      {
+        error: "Failed to fetch PDFs",
+        message: error.message,
+      },
+      { status: 500 }
+    );
+  }
+}

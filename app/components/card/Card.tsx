@@ -420,10 +420,18 @@ const CardNavigator = ({ setLoading }) => {
   const { isLoggedIn, setIsLoggedIn } = useStore();
   const [hasGeneratedPDF, setHasGeneratedPDF] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-
   const [dietrypopup, setdietrypopup] = useState(false);
   const [ispopupOpen3, setIspopupOpen3] = useState(false);
   const popupRef = useRef(null);
+  const [card7Values, setCard7Values] = useState({});
+  const [card6Values, setCard6Values] = useState({
+    Phone: "",
+    Address: "",
+    "Your Name": "",
+    "Email Address": "",
+    Password: "",
+  });
+  const router = useRouter();
 
   const handleInputChange = (e: any) => {
     const value = e.target.value;
@@ -431,7 +439,6 @@ const CardNavigator = ({ setLoading }) => {
       setSelectedPreferredMeal(value);
     }
   };
-  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -439,40 +446,23 @@ const CardNavigator = ({ setLoading }) => {
         setdietrypopup("");
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popupRef]);
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-      setIsSubscribed(user.isSubscribed || false);
-    }
-    if (user) {
-      setIsLoggedIn(true);
-    }
 
-    if (user) {
-      setIsLoggedIn(true);
-      // Check if the user has already generated a PDF or is subscribed
-      const userData = JSON.parse(user);
-      // setHasGeneratedPDF(userData.hasGeneratedPDF || false);
-      setIsSubscribed(userData.isSubscribed || false);
-    }
-  }, []);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (!selectedAllergies.includes(newItemName.trim())) {
       setSelectedAllergies((prevItems) => [...prevItems, newItemName.trim()]);
       setNewItemName("");
     }
   };
-  const handleSubmitdislike = (e) => {
+
+
+  const handleSubmitdislike = (e: any) => {
     e.preventDefault();
     if (!dislike.includes(newItemNamedislike.trim())) {
       setdislike((prevItems) => [...prevItems, newItemNamedislike.trim()]);
@@ -480,10 +470,11 @@ const CardNavigator = ({ setLoading }) => {
     }
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = (index: any) => {
     setSelectedAllergies((prevItems) => prevItems.filter((_, i) => i !== index));
   };
-  const handleDeletedislike = (index) => {
+
+  const handleDeletedislike = (index: any) => {
     setdislike((prevItems) => prevItems.filter((_, i) => i !== index));
   };
 
@@ -492,20 +483,11 @@ const CardNavigator = ({ setLoading }) => {
     setIsOpen(false);
   };
 
-  const openPopup = (cat) => {
+  const openPopup = (cat: any) => {
     setCategory(cat);
     setIsOpen(true);
   };
-  const [card6Values, setCard6Values] = useState({
-    Phone: "",
-    Address: "",
-    "Your Name": "",
-    "Email Address": "",
-    Password: "",
-  });
 
-  // State variables for card 7
-  const [card7Values, setCard7Values] = useState({});
 
   // Handle input changes for card 6
   const handleCard6Change = (e: any) => {
@@ -535,9 +517,9 @@ const CardNavigator = ({ setLoading }) => {
     }));
   };
 
+
   const handleSignUp = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     // Validate the email
     if (!emailRegex.test(card6Values["Email Address"])) {
       seteror("Please enter a valid email address");
@@ -549,15 +531,10 @@ const CardNavigator = ({ setLoading }) => {
     }
 
     try {
-      // Start the loader
       setLoader(true);
-      //......................................
       const { "Your Name": name, "Email Address": email, Password: password } = card6Values;
-      //......................................
 
-      // Prepare the form data
       const formData = {
-        // Include only relevant fields for signup
         name,
         email,
         password,
@@ -566,6 +543,7 @@ const CardNavigator = ({ setLoading }) => {
         foodAllergies: selectedFoodAllergies,
         persons: selectedServings,
         dislikes: selecteddislike + dislike,
+       // prefMeal: `${familyMembers} members`,
         prefMeal: `${familyMembers} members`,
         mealPerDay: "3 meals",
         days: "7",
@@ -581,7 +559,7 @@ const CardNavigator = ({ setLoading }) => {
         body: JSON.stringify(formData),
       });
 
-     
+
       // Check if the response is not ok
       if (!response.ok) {
         const errorData = await response.json();
@@ -590,618 +568,35 @@ const CardNavigator = ({ setLoading }) => {
 
       const data = await response.json();
 
-
-      // If there's an error in the response
       if (data.error) {
         throw new Error(data.error);
       }
+
       if (response.ok) {
         // Automatically log the user in
-        await signIn('credentials', {
+        await signIn("credentials", {
           redirect: false,
           email,
           password,
         });
       } else {
-        console.error('Sign-up failed');
+        console.error("Sign-up failed");
       }
-
-      // Successful signup
-      // setIsLoggedIn(true);
-      // localStorage.setItem(
-      //   "user",
-      //   JSON.stringify({
-      //     email: formData["Email Address"],
-      //     user_id: data.id,
-      //   })
-      // );
-
-      // const email = formData["Email Address"];
-      // await generateAndSendPDF(email);
-
-      // alert('Signup and PDF generation successful!');
       router.push("/payment");
-      } catch (error: any) {
+
+    } catch (error: any) {
       if (error.message.includes("psycopg2.OperationalError") && error.message.includes("SSL connection has been closed unexpectedly")) {
         seteror("Use Strong Password!");
       } else {
         seteror(error.message);
       }
-      // Handle errors
-      // console.error("Error during signup or PDF generation:", error);
-      // alert(error.message);
+     
     } finally {
-      // Stop the loader
       setLoader(false);
     }
   };
-  const allergy = selectedAllergies + selectedFoodAllergies;
-  localStorage.setItem("servings", selectedServings);
-  localStorage.setItem("allergy", allergy);
-  localStorage.setItem("dislike", selecteddislike);
-  localStorage.setItem("dietaryRestrictions", selecteddietaryRestrictions);
-  localStorage.setItem("preferredmeal", selectedPreferredMeal);
 
   const servings = selectedServings;
-
-  const generateAndSendPDF = async (email) => {
-    setLoader(true);
-    const allergy = selectedAllergies + selectedFoodAllergies;
-
-    try {
-      const generateResponse = await fetch(`${API_BASE_URL}/generate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          preferredMeal: selectedPreferredMeal,
-          servings: servings,
-          allergies: allergy,
-          dislikes: selecteddislike,
-          dietaryRestrictions: selecteddietaryRestrictions,
-        }),
-      });
-
-      const generateData = await generateResponse.json();
-      //   const { pdf } = generateData;
-      //   // Convert base64 PDF string to Blob
-      //   const pdfBlob = base64ToBlob(pdf, "application/pdf");
-
-      // // Create a URL for the Blob
-      // const pdfUrl = URL.createObjectURL(pdfBlob);
-
-      // // Create a link element
-      // const link = document.createElement("a");
-      // link.href = pdfUrl;
-      // link.download = "meal_plan.pdf"; // Specify the filename
-
-      // // Append to the document, click and remove
-      // document.body.appendChild(link);
-      // link.click();
-      // document.body.removeChild(link);
-
-      // // Optionally, revoke the object URL after the download
-      // URL.revokeObjectURL(pdfUrl);
-      const mealPlanBlob = base64ToBlob(generateData.meal_plan_pdf, "application/pdf");
-      const mealPlanUrl = URL.createObjectURL(mealPlanBlob);
-      const mealPlanLink = document.createElement("a");
-      mealPlanLink.href = mealPlanUrl;
-      mealPlanLink.download = "meal_plan.pdf";
-      document.body.appendChild(mealPlanLink);
-      mealPlanLink.click();
-      document.body.removeChild(mealPlanLink);
-      URL.revokeObjectURL(mealPlanUrl);
-
-      // Handle shopping list PDF
-      const shoppingListBlob = base64ToBlob(generateData.shopping_list_pdf, "application/pdf");
-      const shoppingListUrl = URL.createObjectURL(shoppingListBlob);
-      const shoppingListLink = document.createElement("a");
-      shoppingListLink.href = shoppingListUrl;
-      shoppingListLink.download = "shopping_list.pdf";
-      document.body.appendChild(shoppingListLink);
-      shoppingListLink.click();
-      document.body.removeChild(shoppingListLink);
-      URL.revokeObjectURL(shoppingListUrl);
-      // const cleaneddata = generateData.meal_plan.replace(/\\n|\\\"|```html|```/g, '');
-      // console.log(cleaneddata)
-      if (!generateResponse.ok || generateData.error) {
-        throw new Error(generateData.error || "Failed to generate PDF.");
-      }
-
-      // Proceed if PDF generation is successful
-      // const pdfData = generatePDF(cleaneddata,Logo);
-      // const ShoppingList = generateShoppingList(generateData);
-
-      const sendResponse = await fetch(`https://meeel.xyz/send-pdf`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          meal_plan_pdf: generateData.meal_plan_pdf,
-          shopping_list_pdf: generateData.shopping_list_pdf,
-        }),
-      });
-
-      const sendData = await sendResponse.json();
-
-      if (!sendResponse.ok || sendData.error) {
-        throw new Error(sendData.error || "Failed to send PDF.");
-      }
-
-      alert("PDF generated and sent successfully!");
-      setSelectedFoodAllergies([]);
-      setSelecteddislike([]);
-      setSelecteddietaryRestrictions([]);
-      setSelectedServings("");
-      setSelectedPreferredMeal("");
-
-      setLoader(false);
-    } catch (error) {}
-  };
-  function base64ToBlob(base64, type) {
-    const byteCharacters = atob(base64);
-    const byteNumbers = new Uint8Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    return new Blob([byteNumbers], { type });
-  }
-  const handleLogin = async () => {
-    setLoader(true);
-    setLoginError("");
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-      const data = await response.json();
-      if (data.error) throw new Error(data.error);
-
-      setIsLoggedIn(true);
-
-      // Store the access token in localStorage
-      localStorage.setItem("access_token", data.access_token);
-
-      // Decode the token to get user information
-      const decodedToken = jwtDecode(data.access_token);
-
-      // Store user information
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          user_id: decodedToken.user_id,
-          name: data.name,
-          email: data.email,
-          is_admin: decodedToken.is_admin,
-        })
-      );
-
-      setCurrentCardIndex(4);
-      setIsSubscribed(data.isSubscribed || false);
-
-      setTimeout(() => {
-        // navigate('/subscribe');
-      }, 1000);
-    } catch (error) {
-      setLoginError(`An error occurred: ${error.message}`);
-    } finally {
-      setLoader(false);
-    }
-  };
-
-  // Add this function to check if the user is logged in
-  const checkLoginStatus = () => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      const currentTime = Date.now() / 1000;
-      if (decodedToken.exp > currentTime) {
-        setIsLoggedIn(true);
-        // You might want to refresh the token here if it's close to expiring
-      } else {
-        // Token has expired, log the user out
-        handleLogout();
-      }
-    }
-  };
-
-  // Call checkLoginStatus when your app initializes
-  useEffect(() => {
-    checkLoginStatus();
-  }, []);
-
-  // Add this function to handle logout
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
-    // Redirect to login page or home page
-  };
-
-  // Use this function to make authenticated requests
-  const makeAuthenticatedRequest = async (url, options = {}) => {
-    const token = localStorage.getItem("access_token");
-    if (!token) {
-      throw new Error("No access token found");
-    }
-
-    const headers = {
-      ...options.headers,
-      Authorization: `Bearer ${token}`,
-    };
-
-    const response = await fetch(url, { ...options, headers });
-    if (response.status === 401) {
-      // Token has expired or is invalid
-      handleLogout();
-      throw new Error("Authentication failed");
-    }
-    return response;
-  };
-
-  // Button for generate pdf
-  // const handleGeneratePDF = async () => {
-
-  //   setLoader(true);
-
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   if (!user || !user.email) {
-  //     console.error("User email not found in localStorage");
-  //     alert("User email not found. Please log in again.");
-  //     setLoader(false);
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch(`${API_BASE_URL}/check-subscription`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ email: user.email }),
-  //     });
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(
-  //         errorData.error || "Failed to check subscription status"
-  //       );
-  //     }
-
-  //     const result = await response.json();
-
-  //     if (result.isSubscribed && result.canGeneratePDF) {
-  //       setIsSubscribed(true);
-  //       await generateAndSendPDF(user.email);
-  //     } else if (result.isSubscribed && !result.canGeneratePDF) {
-  //       alert("You have already generated a PDF for this subscription period.");
-  //     } else {
-  //       navigate("/payment");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error checking subscription status:", error);
-  //     alert(
-  //       "An error occurred while checking subscription status. Please try again."
-  //     );
-  //   } finally {
-  //     setLoader(false);
-  //   }
-  // };
-
-  const handleGeneratePDF = async () => {
-    setLoader(true);
-
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user || !user.email) {
-      // console.error("User email not found in localStorage");
-      alert("Please log in again.");
-      setLoader(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/check-subscription`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: user.email }),
-      });
-      let attempt = 0;
-      if (response.status === 500 && attempt < 3) {
-        // Retry logic
-        console.warn(`Attempt ${attempt} failed. Retrying...`);
-        return await handleGeneratePDF(attempt + 1); // Call itself with an incremented attempt
-      }
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to check subscription status");
-      }
-
-      const result = await response.json();
-
-      if (result.isSubscribed && result.canGeneratePDF) {
-        setIsSubscribed(true);
-        await generateAndSendPDF(user.email);
-        setCurrentCardIndex(0);
-      } else if (result.isSubscribed && !result.canGeneratePDF) {
-        alert("You have already generated a PDF for this subscription period.");
-      } else {
-        navigate("/payment");
-      }
-    } catch (error) {
-      if (error)
-        // console.error("Error checking subscription status:", error);
-        alert("An error occurred while checking subscription status. Please try again.");
-    } finally {
-      setLoader(false);
-    }
-  };
-  // Generate PDf and send to mail
-
-  // Save PDf to local Storage
-  const savePDFToLocalStorage = (pdfData) => {
-    try {
-      const pdfList = JSON.parse(localStorage.getItem("pdfList")) || [];
-      const currentDate = new Date();
-      const newPDF = {
-        id: Date.now(),
-        name: `MealPlan_${currentDate.toISOString()}.pdf`,
-        data: pdfData,
-        generatedDate: currentDate.toISOString(),
-      };
-
-      // Limit to storing only the last 5 PDFs
-      if (pdfList.length >= 5) {
-        pdfList.shift(); // Remove the oldest PDF
-      }
-
-      pdfList.push(newPDF);
-      localStorage.setItem("pdfList", JSON.stringify(pdfList));
-    } catch (error) {
-      // console.error("Error saving PDF to localStorage:", error);
-      // Handle the error (e.g., show a message to the user)
-    }
-  };
-
-  const generateShoppingList = (mealPlanData) => {
-    const doc = new jsPDF();
-
-    // Parse the meal plan data and extract ingredients for both Main Dish and Side Dish
-    const ingredientsData = parseMealPlanData(mealPlanData.meal_plan);
-
-    const categorizedIngredients = ingredientsData.flatMap((dayRow) =>
-      dayRow.slice(1).flatMap((meal) => {
-        const ingredientsSection = meal.match(/Ingredients:\n([\s\S]*?)(?=\n\nInstructions:|$)/);
-        const ingredients = ingredientsSection ? ingredientsSection[1].trim().split("\n") : [];
-
-        let currentCategory = "mainDish";
-        const mainDishIngredients = [];
-        const sideDishIngredients = [];
-
-        // Categorize ingredients as Main Dish or Side Dish
-        ingredients.forEach((ingredient) => {
-          if (ingredient.toLowerCase().includes("main dish:")) {
-            currentCategory = "mainDish";
-          } else if (ingredient.toLowerCase().includes("side dish:")) {
-            currentCategory = "sideDish";
-          } else if (ingredient.trim() !== "") {
-            if (currentCategory === "mainDish") {
-              mainDishIngredients.push(ingredient.trim());
-            } else {
-              sideDishIngredients.push(ingredient.trim());
-            }
-          }
-        });
-
-        return {
-          mainDish: mainDishIngredients,
-          sideDish: sideDishIngredients,
-        };
-      })
-    );
-
-    // Function to clean up and format ingredients
-    const formatIngredients = (ingredients) => {
-      return ingredients
-        .map((item) => {
-          // Remove any existing numbering at the start
-          const cleanItem = item.replace(/^\d+\.\s*/, "").trim();
-          return cleanItem;
-        })
-        .filter((item, index, self) => self.indexOf(item) === index) // Remove duplicates
-        .map((item, index) => `${index + 1}. ${item}`) // Add clean numbering
-        .join("\n");
-    };
-
-    // Combine all main dish and side dish ingredients
-    const allMainDishIngredients = categorizedIngredients.flatMap((cat) => cat.mainDish);
-    const allSideDishIngredients = categorizedIngredients.flatMap((cat) => cat.sideDish);
-
-    // Format the ingredients
-    const formattedMainDish = formatIngredients(allMainDishIngredients);
-    const formattedSideDish = formatIngredients(allSideDishIngredients);
-
-    // Structure the table body (now just one row with two cells)
-    const tableBody = [[formattedMainDish, formattedSideDish]];
-
-    doc.setFontSize(20);
-    doc.text("Shopping List", 105, 18, null, null, "center");
-    doc.addImage(Logo, "PNG", 160, 8, 40, 10);
-
-    // Define the column headers for the table
-    const headers = [["Main Dish", "Side Dish"]];
-
-    // Create the table with two columns (Main Dish and Side Dish)
-    doc.autoTable({
-      head: headers,
-      body: tableBody,
-      startY: 25,
-      theme: "grid",
-      headStyles: {
-        fillColor: [115, 128, 101],
-        textColor: [255, 255, 255],
-        fontSize: 12,
-        fontStyle: "bold",
-        valign: "middle",
-        halign: "center",
-      },
-      columnStyles: {
-        0: { cellWidth: (doc.internal.pageSize.width - 40) / 2 }, // Main Dish column
-        1: { cellWidth: (doc.internal.pageSize.width - 40) / 2 }, // Side Dish column
-      },
-      styles: {
-        fontSize: 10,
-        cellPadding: 5,
-      },
-      didParseCell: function (data) {
-        if (data.section === "body") {
-          data.cell.styles.cellPadding = 2;
-          data.cell.styles.valign = "top";
-        }
-      },
-    });
-
-    // Save and return the PDF
-    doc.setFontSize(10);
-    doc.text(``, 14, doc.lastAutoTable.finalY + 10);
-
-    const pdfData = doc.output("datauristring");
-    savePDFToLocalStorage(pdfData);
-    doc.save("ShoppingList.pdf");
-    return pdfData;
-  };
-
-  const generatePDF = (mealPlanData) => {
-    const doc = new jsPDF();
-
-    const tableData = parseMealPlanData(mealPlanData.meal_plan);
-
-    // Determine the number of meals (columns) from the first row of data
-    const numberOfMeals = tableData[0] ? tableData[0].length - 1 : 0;
-
-    doc.setFontSize(20);
-    doc.text("Meal Plan", 105, 18, null, null, "center");
-    doc.addImage(Logo, "PNG", 160, 8, 40, 10);
-
-    // Create headers dynamically based on the number of meals
-    const headers = [
-      "Day",
-      ...Array(numberOfMeals)
-        .fill(0)
-        .map((_, i) => `Meal ${i + 1}`),
-    ];
-
-    // Calculate column widths
-    const pageWidth = doc.internal.pageSize.width;
-    const margins = 20; // Left and right margins
-    const dayColumnWidth = 20;
-    const mealColumnWidth = (pageWidth - margins - dayColumnWidth) / numberOfMeals;
-
-    doc.autoTable({
-      head: [headers],
-      body: tableData,
-      startY: 25,
-      theme: "grid",
-      headStyles: {
-        fillColor: [115, 128, 101],
-        textColor: [255, 255, 255],
-        fontSize: 12,
-        fontStyle: "bold",
-        valign: "middle",
-        halign: "center",
-      },
-      columnStyles: {
-        0: { cellWidth: dayColumnWidth },
-        ...Object.fromEntries(
-          Array(numberOfMeals)
-            .fill(0)
-            .map((_, i) => [i + 1, { cellWidth: mealColumnWidth }])
-        ),
-      },
-      styles: {
-        fontSize: 10,
-        cellPadding: 5,
-      },
-      didParseCell: function (data) {
-        if (data.section === "body" && data.column.index === 0) {
-          data.cell.styles.fontStyle = "bold";
-        }
-      },
-    });
-
-    doc.setFontSize(10);
-    doc.text(``, 14, doc.lastAutoTable.finalY + 10);
-
-    const pdfData = doc.output("datauristring");
-    savePDFToLocalStorage(pdfData);
-    doc.save("MealPlan.pdf");
-    return pdfData;
-  };
-
-  // const generatePDF = (mealPlanData) => {
-  //   const doc = new jsPDF();
-
-  //   const tableData = parseMealPlanData(mealPlanData.meal_plan);
-
-  //   doc.setFontSize(20);
-  //   doc.text("Meal Plan", 105, 15, null, null, "center");
-  //   doc.addImage(Logo, "PNG", 160, 8, 40, 10);
-
-  //   doc.autoTable({
-  //     head: [["Day","Meals", "Ingredients", "Instructions"]],
-  //     body: tableData,
-  //     startY: 25,
-  //     theme: "grid",
-  //     headStyles: {
-  //       fillColor: [115, 128, 101],
-  //       textColor: [255, 255, 255],
-  //       fontSize: 12,
-  //       fontStyle: "bold",
-  //       valign: "middle",
-  //       halign: "center",
-  //     },
-  //     columnStyles: {
-  //       0: { cellWidth: 22 },
-  //       1: { cellWidth: 56 },
-  //       2: { cellWidth: 57 },
-  //       3: { cellWidth: 57 },
-  //     },
-  //     styles: {
-  //       fontSize: 10,
-  //       cellPadding: 5,
-  //     },
-  //     didParseCell: function (data) {
-  //       if (data.section === "body" && data.column.index === 0) {
-  //         data.cell.styles.fontStyle = "bold";
-  //       }
-  //       if (data.section === "body" && data.column.index === 1) {
-  //         const mealText = data.cell.raw;
-  //         const formattedText = mealText.split('\n').map(line => {
-  //           if (line.match(/^(Meal \d+|Main Dish:|Side Dish:|Prep:|Cook:|Total:|Nutritional Information)/) ||
-  //               line.match(/^\$([\d,.]+)/)) {
-  //             return { text: line, styles: { fontStyle: 'bold' } }; // Use uppercase as a substitute for bold
-  //           }
-  //           return line;
-  //         }).join('\n');
-  //         data.cell.text = formattedText;
-  //       }
-  //     },
-  //   });
-
-  //   doc.setFontSize(10);
-  //   doc.text(
-  //     `Total Servings: ${mealPlanData.servings} per meal.`,
-  //     14,
-  //     doc.lastAutoTable.finalY + 10
-  //   );
-
-  //   const pdfData = doc.output("datauristring");
-  //   savePDFToLocalStorage(pdfData);
-  //   doc.save("MealPlan.pdf");
-  //   return pdfData;
-  // };
-
-  // click to next
 
   const handleNext = () => {
     // Check if a selection has been made
@@ -1216,38 +611,18 @@ const CardNavigator = ({ setLoading }) => {
           return true; // For cards that don't require selection
       }
     };
-
-    if (!isSelectionMade()) {
-      // Alert the user or handle the case where no selection is made
-      // alert("Please make a selection before proceeding.");
+    if (!isSelectionMade()) {    
       return;
-    }
-
-    // Existing logic for moving to the next card
-    // if (currentCardIndex === 2) {
-    //   setCurrentCardIndex(4); // Redirect from index 2 to index 4
-    // } else if (currentCardIndex < cards.length - 1) {
-    // }
+    }   
     setCurrentCardIndex(currentCardIndex + 1);
   };
 
   // click to back
   const handleBack = () => {
-    // if (currentCardIndex === 4) {
-    //   setCurrentCardIndex(2); // Redirect from index 4 to index 2
-    // } else if (currentCardIndex > 0) {
-    // }
-    setCurrentCardIndex(currentCardIndex - 1);
-  };
+       setCurrentCardIndex(currentCardIndex - 1);
+  }; 
 
-  // const handleDivClick = (name, value) => {
-  //   setSelectedOption((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
-  const handleRadioChange = (event) => {
+  const handleRadioChange = (event:any) => {
     let { name, value } = event.target;
     if (name === "preferredMeal") {
       setSelectedPreferredMeal((prevSelected) => {
@@ -1317,25 +692,14 @@ const CardNavigator = ({ setLoading }) => {
               <div className="border-[1px]  w-3 sm:h-7 h-3 sm:w-7 flex items-center justify-center rounded-full backdrop-blur-lg absolute -top-1 -right-1  sm:-top-2 sm:-right-2">
                 <div className="w-[14px] rounded-full h-[1px] bg-white"></div>
               </div>
-              {/* <img
-                src={arrow}
-                className="mb-2 text-white absolute top-2 select-none hidden group-hover:block"
-                alt=""
-              /> */}
-              {element.image && <img className=" mb-2 w-5 sm:w-10 select-none" src={element.image} alt={element.label} />}
+                           {element.image && <img className=" mb-2 w-5 sm:w-10 select-none" src={element.image} alt={element.label} />}
               <span className="text-white text-xs sm:text-md select-none text-center px-2 ">{element.label}</span>
               {isChecked && (
                 <div className="absolute w-3 sm:h-7 h-3 sm:w-7 flex z-40 items-center justify-center select-none  bg-[#32B200] rounded-full -top-1 -right-1  sm:-top-2 sm:-right-2">
                   <img src={tickIcon.src} alt="Selected" className="tick-icon select-none " />
                 </div>
               )}
-              {/* <div className="hidden group-active:block sm:group-hover:block z-50 absolute top-0 left-0 sm:top-[50%] sm:left-[70%] backdrop-blur-xl rounded-md select-none max-w-[14rem]">
-                <p
-                  className="select-none"
-                  dangerouslySetInnerHTML={{ __html: element.info }}
-                />
-              </div> */}
-            </div>
+                         </div>
           </div>
         );
 
@@ -1367,7 +731,7 @@ const CardNavigator = ({ setLoading }) => {
 
   const currentCard = cards[currentCardIndex];
 
-  // card code...
+  // card code............
 
   return (
     <div
@@ -1493,16 +857,7 @@ const CardNavigator = ({ setLoading }) => {
             {currentCard.elements && (
               <div className="flex flex-wrap gap-3 sm:gap-7 ">
                 {currentCard.elements.map((element, index) => renderElement(element, index))}
-
-                {/* {currentCardIndex === 4 && (
-                  <>
-                    <div className=" relative select-none flex rounded-md  group items-center cursor-pointer border-[1px] border-S-Orange text-white flex-col justify-center w-20 h-20 sm:h-36 sm:w-36 ">
-                      <img src={plus} alt="" />
-                      <p className="select-none">Add</p>
-                      
-                    </div>
-                  </>
-                )} */}
+               
                 {currentCardIndex === 3 && (
                   <div className="relative">
                     <div onClick={() => setIspopupOpen3(true)} className="relative select-none flex rounded-md group items-center cursor-pointer border-[1px] border-S-Orange text-white flex-col justify-center w-20 h-20 sm:h-36 sm:w-36">
@@ -1800,44 +1155,7 @@ const CardNavigator = ({ setLoading }) => {
                 </div>
               </>
             )}
-            {/*         
-            {currentCardIndex === 4 &&
-              (isLoggedIn ? (
-                <>
-                  <div className="flex gap-2 flex-wrap  w-fit items-center mt-4">
-                    <button
-                      className="py-2 select-none  px-10 w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
-                      onClick={handleGeneratePDF}
-                    >
-                      Generate PDF
-                    </button>
-                    <button
-                      className="py-1 sm:py-2 px-4 sm:px-12 w-[100px] sm:w-[200px] select-none box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white  hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
-                      onClick={handleBack}
-                    >
-                      Back
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    <button
-                      className="py-2 px-4 sm:px-12 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
-                      onClick={handleBack}
-                    >
-                      Back
-                    </button>
-                    <button
-                      className="py-2 px-10 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
-                      onClick={handleNext}
-                    >
-                      Next
-                    </button>
-                  </div>
-                </>
-              ))} */}
-            {/* //..........................................................sdfghjk...... */}
+           
             {currentCardIndex === 4 && (
               <>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -1855,9 +1173,7 @@ const CardNavigator = ({ setLoading }) => {
                   </button>
                 </div>
               </>
-            )}
-
-            {/* //..........................................................dfghjk...... */}
+            )}       
 
             {currentCardIndex === 5 && (
               <>
@@ -1896,7 +1212,7 @@ const CardNavigator = ({ setLoading }) => {
                 </a>
                 <button
                   className="py-2 order-1 px-12 w-[100px] sm:w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white  hover:cursor-pointer text-white font-roboto font-medium text-base"
-                  onClick={() => handleLogin()}
+                  // onClick={() => handleLogin()}
                 >
                   Login
                 </button>

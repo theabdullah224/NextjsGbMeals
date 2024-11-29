@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import cardbgimg from "../../public/Resource/bgcardimg.png";
 import Loader from '../../public/Resource/spinner.svg';
-import { useRouter } from 'next/navigation';
 import Navbar from '../components/navbar/Navbar';
+import Image from 'next/image';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 
 export default function page() {
@@ -12,18 +14,19 @@ export default function page() {
   const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('delAccToken')
 
   const handleVerifyCode = async () => {
     setLoading(true);
     setError("");
     try {
-      await axios.post('https://meeel.xyz/confirm-delete-account', { verification_code: verificationCode }, {
+      await axios.post('/api/confirm-delete-account', { verification_code: verificationCode }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      localStorage.removeItem('user')
-      alert("Account Deleted Successfuly")
-      router.push('/'); // Redirect to home page after successful deletion
+      localStorage.removeItem('delAccToken')
+      alert("Account Deleted Successfuly");
+      signOut()
+      router.push("/"); 
     } catch (err:any) {
       setError(err.response?.data?.error || "An error occurred");
     } finally {
@@ -43,7 +46,7 @@ export default function page() {
         }}
       >
         {loading ? (
-          <img src={Loader} alt="Loading..." className="" />
+          <Image src={Loader} alt="Loading..." className="" />
         ) : (
           <>
             <div className='flex flex-wrap mt-4 gap-2 flex-col items-start'>

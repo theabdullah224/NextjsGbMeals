@@ -7,8 +7,7 @@ import "jspdf-autotable"; // Ensure you have this package installed
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-
-
+import axios from "axios";
 
 // const savePDFToLocalStorage = (pdfData) => {
 //   try {
@@ -157,38 +156,38 @@ import { useSession } from "next-auth/react";
 //     })
 //   );
 
-  // Function to clean up and format ingredients
-  // const formatIngredients = (ingredients) => {
-  //   return ingredients
-  //     .map((item) => {
-  //       // Remove any existing numbering at the start
-  //       const cleanItem = item.replace(/^\d+\.\s*/, "").trim();
-  //       return cleanItem;
-  //     })
-  //     .filter((item, index, self) => self.indexOf(item) === index) // Remove duplicates
-  //     .map((item, index) => `${index + 1}. ${item}`) // Add clean numbering
-  //     .join("\n");
-  // };
+// Function to clean up and format ingredients
+// const formatIngredients = (ingredients) => {
+//   return ingredients
+//     .map((item) => {
+//       // Remove any existing numbering at the start
+//       const cleanItem = item.replace(/^\d+\.\s*/, "").trim();
+//       return cleanItem;
+//     })
+//     .filter((item, index, self) => self.indexOf(item) === index) // Remove duplicates
+//     .map((item, index) => `${index + 1}. ${item}`) // Add clean numbering
+//     .join("\n");
+// };
 
-  // Combine all main dish and side dish ingredients
-  // const allMainDishIngredients = categorizedIngredients.flatMap((cat) => cat.mainDish);
-  // const allSideDishIngredients = categorizedIngredients.flatMap((cat) => cat.sideDish);
+// Combine all main dish and side dish ingredients
+// const allMainDishIngredients = categorizedIngredients.flatMap((cat) => cat.mainDish);
+// const allSideDishIngredients = categorizedIngredients.flatMap((cat) => cat.sideDish);
 
-  // Format the ingredients
-  // const formattedMainDish = formatIngredients(allMainDishIngredients);
-  // const formattedSideDish = formatIngredients(allSideDishIngredients);
+// Format the ingredients
+// const formattedMainDish = formatIngredients(allMainDishIngredients);
+// const formattedSideDish = formatIngredients(allSideDishIngredients);
 
-  // Structure the table body (now just one row with two cells)
-  // const tableBody = [[formattedMainDish, formattedSideDish]];
+// Structure the table body (now just one row with two cells)
+// const tableBody = [[formattedMainDish, formattedSideDish]];
 
-  // doc.setFontSize(20);
-  // doc.text("Shopping List", 105, 18, null, null, "center");
-  // doc.addImage(Logo, "PNG", 160, 8, 40, 10);
+// doc.setFontSize(20);
+// doc.text("Shopping List", 105, 18, null, null, "center");
+// doc.addImage(Logo, "PNG", 160, 8, 40, 10);
 
-  // Define the column headers for the table
-  // const headers = [["Main Dish", "Side Dish"]];
+// Define the column headers for the table
+// const headers = [["Main Dish", "Side Dish"]];
 
-  // Create the table with two columns (Main Dish and Side Dish)
+// Create the table with two columns (Main Dish and Side Dish)
 //   doc.autoTable({
 //     head: headers,
 //     body: tableBody,
@@ -299,139 +298,127 @@ import { useSession } from "next-auth/react";
 // const dislike = localStorage.getItem("dislike");
 // const dietaryRestrictions = localStorage.getItem("dietaryRestrictions");
 
-// const generateAndSendPDF = async (email) => {
-//   const user = await localStorage.getItem("user");
-//   const parsedUser = JSON.parse(user); // Convert string to object
-//   const userId = parsedUser.user_id;
-
-//   try {
-//     const generateResponse = await fetch(`https://meeel.xyz/generate`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         preferredMeal: "nothing",
-//         servings: servings,
-//         allergies: allergys,
-//         dislikes: dislike,
-//         dietaryRestrictions: dietaryRestrictions,
-//         id: userId,
-//       }),
-//     });
-
-//     const generateData = await generateResponse.json();
-
-//     const mealPlanBlob = base64ToBlob(generateData.meal_plan_pdf, "application/pdf");
-//     const mealPlanUrl = URL.createObjectURL(mealPlanBlob);
-//     const mealPlanLink = document.createElement("a");
-//     mealPlanLink.href = mealPlanUrl;
-//     mealPlanLink.download = "meal_plan.pdf";
-//     document.body.appendChild(mealPlanLink);
-//     mealPlanLink.click();
-//     document.body.removeChild(mealPlanLink);
-//     URL.revokeObjectURL(mealPlanUrl);
-
-//     const shoppingListBlob = base64ToBlob(generateData.shopping_list_pdf, "application/pdf");
-//     const shoppingListUrl = URL.createObjectURL(shoppingListBlob);
-//     const shoppingListLink = document.createElement("a");
-//     shoppingListLink.href = shoppingListUrl;
-//     shoppingListLink.download = "shopping_list.pdf";
-//     document.body.appendChild(shoppingListLink);
-//     shoppingListLink.click();
-//     document.body.removeChild(shoppingListLink);
-//     URL.revokeObjectURL(shoppingListUrl);
-
-//     if (!generateResponse.ok || generateData.error) {
-//       throw new Error(generateData.error || "Failed to generate PDF.");
-//     }
-
-//     const sendResponse = await fetch(`https://meeel.xyz/send-pdf`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         email,
-//         meal_plan_pdf: generateData.meal_plan_pdf,
-//         shopping_list_pdf: generateData.shopping_list_pdf,
-//       }),
-//     });
-
-//     const sendData = await sendResponse.json();
-
-//     if (!sendResponse.ok || sendData.error) {
-//       throw new Error(sendData.error || "Failed to send PDF.");
-//     }
-//     alert("PDF generated and sent successfully!");
-//     window.location.reload();
-//   } catch (error) {}
-// };
-
-// function base64ToBlob(base64, type) {
-//   const byteCharacters = atob(base64);
-//   const byteNumbers = new Uint8Array(byteCharacters.length);
-//   for (let i = 0; i < byteCharacters.length; i++) {
-//     byteNumbers[i] = byteCharacters.charCodeAt(i);
-//   }
-//   return new Blob([byteNumbers], { type });
-// }
-
 export default function page({ closePopup }) {
-  const { data: session } = useSession();
-  const [showAlert , setShowAlert] = useState(false)
+ 
+  const [showAlert, setShowAlert] = useState(false);
+  const [data, setData] = useState("");
   const router = useRouter();
+  const { data: session } = useSession();
+  const email = session?.user?.email;
+  const userId = session?.user?.id;
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.post("/api/getData", {
+          userId: userId,
+        });
+        console.log("data ......", res.data.user);
+        setData(res.data.user)
+        //@ts-ignore
+       
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  const generateAndSendPDF = async () => {
+    try {
+      const generateResponse = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          //@ts-ignore
+          prefMeal:data.prefMeal,
+          persons:data.persons,
+          totalCalories:data.totalCalories,
+          dislikes: data.dislikes,
+          foodAllergies: data.foodAllergies,
+          mealPerDay:data.mealPerDay,
+          days:data.days,        
+          id: data._id,
+        }),
+      });
+    
+
+      // const generateData = await generateResponse.json();
+
+      // const mealPlanBlob = base64ToBlob(generateData.meal_plan_pdf, "application/pdf");
+      // const mealPlanUrl = URL.createObjectURL(mealPlanBlob);
+      // const mealPlanLink = document.createElement("a");
+      // mealPlanLink.href = mealPlanUrl;
+      // mealPlanLink.download = "meal_plan.pdf";
+      // document.body.appendChild(mealPlanLink);
+      // mealPlanLink.click();
+      // document.body.removeChild(mealPlanLink);
+      // URL.revokeObjectURL(mealPlanUrl);
+
+      // const shoppingListBlob = base64ToBlob(generateData.shopping_list_pdf, "application/pdf");
+      // const shoppingListUrl = URL.createObjectURL(shoppingListBlob);
+      // const shoppingListLink = document.createElement("a");
+      // shoppingListLink.href = shoppingListUrl;
+      // shoppingListLink.download = "shopping_list.pdf";
+      // document.body.appendChild(shoppingListLink);
+      // shoppingListLink.click();
+      // document.body.removeChild(shoppingListLink);
+      // URL.revokeObjectURL(shoppingListUrl);
+
+      // if (!generateResponse.ok || generateData.error) {
+      //   throw new Error(generateData.error || "Failed to generate PDF.");
+      // }
+
+      // const sendResponse = await fetch(`https://meeel.xyz/send-pdf`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     email,
+      //     meal_plan_pdf: generateData.meal_plan_pdf,
+      //     shopping_list_pdf: generateData.shopping_list_pdf,
+      //   }),
+      // });
+
+      // const sendData = await sendResponse.json();
+      // await handleRedirect();
+
+      if (!sendResponse.ok || sendData.error) {
+        throw new Error(sendData.error || "Failed to send PDF.");
+      }
+      alert("PDF generated and sent successfully!");
+      window.location.reload();
+    } catch (error) {}
+  };
 
   const handleRedirect = async () => {
     if (session) {
-    //  window.alert("You will receive an email with the PDFs in few mins.");
-setShowAlert(true);
-setTimeout(()=>{
-  setShowAlert(false)
-  router.push("/myAccount");
-
-},3000)
-    
-      // await generateAndSendPDF(session?.user?.email);
+      //  window.alert("You will receive an email with the PDFs in few mins.");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+        router.push("/myAccount");
+        generateAndSendPDF();
+      }, 3000);
     }
   };
 
-  // const [showCookieConsent, setShowCookieConsent] = useState(false);
-  // useEffect(() => {
-  //   const hasConsented = localStorage.getItem("cookieConsent");
-  //   if (!hasConsented) {
-  //     setShowCookieConsent(true);
-  //   }
-  // }, []);
-
-  //................................................
-  //................................................
-
-  // const handleAcceptCookies = () => {
-  //   localStorage.setItem("cookieConsent", "accepted");
-  //   setShowCookieConsent(false);
-  // };
-
-  // const handleRejectCookies = () => {
-  //   localStorage.setItem("cookieConsent", "rejected");
-  //   setShowCookieConsent(false);
-  // };
   return (
     <>
-    {showAlert && (
+      {showAlert && (
         <div className="p-4 mb-4 text-center text-sm text-white rounded-lg bg-[#F5A228] dark:bg-gray-800 dark:text-green-200" role="alert">
-  <span className="font-medium">Success alert!</span> You will receive an email with the PDFs in few mins.
-</div>
-      )}
-    <div className=" img min-h-screen relative z-[1000] flex items-center justify-center bg-transparent text-[#313131] overflow-hidden">
-     
-      <div className="bg-white p-8 rounded-3xl shadow-lg max-w-md w-full">
-        <h1 className="text-4xl font-bold mb-6 text-center text-[#738065]">Welcome!</h1>
-        <p className="text-lg mb-8 text-[#606060] text-center">To gb meals, We're excited to have you here. Explore our site and discover amazing content tailored just for you.</p>
-        <div className="flex justify-center">
-          <button onClick={handleRedirect} className="bg-[#F5A228] text-white font-bold py-2 px-6 rounded-full hover:bg-[#738065] transition duration-300 ease-in-out transform hover:scale-105">
-            Get Started  
-          </button>
+          <span className="font-medium">Success alert!</span> You will receive an email with the PDFs in few mins.
         </div>
-     
-      </div>
-      {/* {showCookieConsent && (
+      )}
+      <div className=" img min-h-screen relative z-[1000] flex items-center justify-center bg-transparent text-[#313131] overflow-hidden">
+        <div className="bg-white p-8 rounded-3xl shadow-lg max-w-md w-full">
+          <h1 className="text-4xl font-bold mb-6 text-center text-[#738065]">Welcome!</h1>
+          <p className="text-lg mb-8 text-[#606060] text-center">To gb meals, We're excited to have you here. Explore our site and discover amazing content tailored just for you.</p>
+          <div className="flex justify-center">
+            <button onClick={()=>{    handleRedirect();}} className="bg-[#F5A228] text-white font-bold py-2 px-6 rounded-full hover:bg-[#738065] transition duration-300 ease-in-out transform hover:scale-105">
+              Get Started
+            </button>
+          </div>
+        </div>
+        {/* {showCookieConsent && (
         <div className="fixed bottom-4 left-4 right-4 z-50">
           <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-6 relative">
             <button onClick={() => setShowCookieConsent(false)} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
@@ -450,7 +437,7 @@ setTimeout(()=>{
           </div>
         </div>
       )} */}
-    </div>
+      </div>
     </>
   );
 }

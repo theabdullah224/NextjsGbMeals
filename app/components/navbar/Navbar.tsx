@@ -23,6 +23,12 @@ const Navbar: React.FC = () => {
   const toggleSidebar = (): void => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  const handleSignOut = async () => {
+    await signOut({ 
+      redirect: true,  // This will redirect after sign out
+      callbackUrl: ' https://2e9c-203-175-69-57.ngrok-free.app/'  // Redirect to home page
+    });
+  };
 
   return (
     <div className="relative">
@@ -61,8 +67,8 @@ const Navbar: React.FC = () => {
               Try Free For 30-Days
             </button>
           ) : (
-            <button className="py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base" onClick={() => signOut()}>
-              Logout
+            <button className="py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base" onClick={handleSignOut}>
+              Logout 
             </button>
           )}
         </div>
@@ -115,7 +121,7 @@ const Navbar: React.FC = () => {
             ) : (
               <button
                 className="mt-2 w-full py-2 px-4 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
-                onClick={() => signOut()}
+                onClick={handleSignOut}
               >
                 Logout
               </button>

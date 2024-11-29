@@ -15,20 +15,21 @@ interface User {
 const page: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  // const [email, setEmail] = useState<string>('');
   const {data:session} = useSession()
+  const email = session?.user?.email
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    setEmail(user?.email || '');
-  }, []);
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //   setEmail(user?.email || '');
+  // }, []);
 
   const handleCancelPlan = async (): Promise<void> => {
     setLoading(true);    
-    setEmail(session?.user?.email);
+    // setEmail(session?.user?.email);
 
     try {
-      const response = await axios.post('https://meeel.xyz/cancel-plan', { email: session?.user?.email });
+      const response = await axios.post('/api/cancel-plan', { email:email });
       setMessage(response.data.message);
 
       setTimeout(() => {
@@ -45,7 +46,7 @@ const page: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://meeel.xyz/delete-card', { email: session?.user?.email });
+      const response = await axios.post('/api/delete-card', { email: session?.user?.email });
       setMessage(response.data.message);
 
       setTimeout(() => {
@@ -63,7 +64,7 @@ const page: React.FC = () => {
 
 
     try {
-      const response = await fetch('https://meeel.xyz/update-card', {
+      const response = await fetch('/api/update-card', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +134,7 @@ const page: React.FC = () => {
                   onClick={handleCancelPlan}
                   className="py-2 mx-auto md:mx-0 px-8 box-border rounded-lg flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all font-roboto font-medium text-base"
                 >
-                  Cancel Plan
+                  Cancel Plan 
                 </button>
               </div>
               {message && <p className="text-white bg-black bg-opacity-50 p-2 rounded">{message}</p>}

@@ -11,12 +11,12 @@ const JWT_SECRET = process.env.JWT_SECRET!;
 const JWT_EXPIRY = "10m";
 
 function generateVerificationCode(): string {
-  return crypto.randomBytes(3).toString("hex").toUpperCase(); // Generates a 6-character string
+  return crypto.randomBytes(3).toString("hex").toUpperCase();
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json(); // Parse the JSON body
+    const body = await req.json();
     const { email } = body;
 
     if (!email) {
@@ -34,10 +34,8 @@ export async function POST(req: NextRequest) {
     const verificationCode = generateVerificationCode();
     const verificationCodeExpiry = new Date();
     verificationCodeExpiry.setMinutes(
-      verificationCodeExpiry.getMinutes() + 10 // Expires in 10 minutes
+      verificationCodeExpiry.getMinutes() + 10 
     );
-
-    // Update user with verification code and expiry
     user.verificationCode = verificationCode;
     user.verificationCodeExpiry = verificationCodeExpiry;
     await user.save();

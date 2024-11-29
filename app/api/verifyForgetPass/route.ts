@@ -7,15 +7,14 @@ const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json(); // Parse JSON body
-    const { verification_code } = body; // Only the code is received from the frontend
-
-    // Check if the code is provided
+    const body = await req.json();
+    const { verification_code } = body; 
+   
     if (!verification_code) {
       return NextResponse.json({ error: "Verification code is required" }, { status: 400 });
     }
 
-    // Extract the Authorization header
+
     const authHeader = req.headers.get("Authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
@@ -24,11 +23,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const token = authHeader.split(" ")[1]; // Extract the token
+    const token = authHeader.split(" ")[1]; 
     let decodedToken;
 
     try {
-      // Verify and decode the token
+    
       decodedToken = jwt.verify(token, JWT_SECRET);
     } catch (err) {
       return NextResponse.json(
@@ -37,17 +36,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract userId from the decoded token
+
     const { userId } = decodedToken as { userId: string };
 
-    // Connect to MongoDB and find the user by userId
+ 
     await connectMongoDB();
     const user = await User.findById(userId);
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // Verify the code and expiry
+
     if (user.verificationCode !== verification_code) {
       return NextResponse.json(
         { error: "Invalid verification code" },
@@ -62,12 +61,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Clear the verification code and expiry (optional)
+    
     user.verificationCode = undefined;
     user.verificationCodeExpiry = undefined;
     await user.save();
 
-    // Respond with success
+   
     return NextResponse.json({
       message: "Verification code verified successfully",
     });

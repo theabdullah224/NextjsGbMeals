@@ -1,0 +1,58 @@
+import { NextRequest, NextResponse } from 'next/server';
+import mongoose from 'mongoose';
+import { connectMongoDB } from '../../lib/dbConnection';
+import User from '../models/UserModel';
+
+export async function POST(request: NextRequest) {
+  await connectMongoDB();
+
+  try {
+    const data = await request.json();
+    const { name, email, password, planType } = data;
+
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: "Invalid input: Name, email, and password are required." }, 
+        { status: 400 }
+      );
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "User with this email already exists" }, 
+        { status: 400 }
+      );
+    }
+ 
+    const newUser = new User({
+      name,
+      email,
+      password,
+      planType: planType || 'inactive'
+    });    
+    await newUser.save();
+
+    return NextResponse.json(
+      { 
+        message: "User registered successfully", 
+        id: newUser._id 
+      }, 
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Error during add user:', error);
+    
+    if (error instanceof mongoose.Error.ValidationError) {
+      return NextResponse.json(
+        { error: "Validation failed", details: error.errors }, 
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: "Internal server error" }, 
+      { status: 500 }
+    );
+  }
+}

@@ -5,6 +5,7 @@ import Loader from '../../public/Resource/spinner.svg';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Navbar from '../components/navbar/Navbar';
+import Image from 'next/image';
 
 export default function page() {
   const router = useRouter();
@@ -20,12 +21,11 @@ export default function page() {
       setLoading(true);
       setError("");
       try {
-          const response = await axios.post('https://meeel.xyz/initiate-delete-account', loginData);
-          console.log(response); // Log the response
+          const response = await axios.post('/api/initiate-delete-account', loginData);
+    
 
           // Store token in local storage
-          localStorage.setItem('token', response.data.token);
-
+          localStorage.setItem('delAccToken', response.data.token);
           router.push('/DeleteConfirmation');
       } catch (err:any) {
           console.error(err); // Log the entire error
@@ -48,7 +48,7 @@ export default function page() {
         }}
       >
         {loading ? (
-          <img src={Loader} alt="Loading..." className="animate-spin" />
+          <Image src={Loader} alt="Loading..." className="animate-spin" />
         ) : (
           <>
             <div className='flex flex-wrap mt-4 gap-2 flex-col items-start'>

@@ -9,11 +9,11 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { new_password,  } = body; 
-    // Validate passwords
+  
     if (!new_password ) {
       return NextResponse.json({ error: "Password are required" }, { status: 400 });
-    }
-   
+    }   
+    
     if (new_password.length < 8) {
       return NextResponse.json(
         { error: "Password must be at least 8 characters long" },
@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Extract the Authorization header
     const authHeader = req.headers.get("Authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const token = authHeader.split(" ")[1]; // Extract the token
+    const token = authHeader.split(" ")[1];   
     let decodedToken;
 
     try {

@@ -9,15 +9,22 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import axios from "axios";
 import Cta from "../components/cta/Cta";
 import Footer from "../components/footer/Footer";
+import ShowPdf from "../components/showPdf/ShowPdf";
+import ContactUsPage from "../components/contactPageUser/ContactUsPage";
+import Pref from "../pref/Pref";
+import Temp from "../components/temp/Temp";
+import { LocaleRouteNormalizer } from "next/dist/server/normalizers/locale-route-normalizer";
+import CopyRight from "../components/copyRight/copyRight";
 
 export default function page() {
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("pdf");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [isEmailEditable, setIsEmailEditable] = useState(false);
-  const [name, setName] = useState("John Doe");
-  const [email, setemail] = useState("example@gmail.com");
+  const [name, setName] = useState("");
+  const [email, setemail] = useState("");
   const inputRef = useRef(null);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,57 +37,12 @@ export default function page() {
   const [dislike, setdislike] = useState("");
   const [diatryrestriction, setdiatryrestriction] = useState("");
   const [pdfs, setPdfs] = useState([]);
-
   const [pdfList, setPdfList] = useState([]);
   const router = useRouter();
-  const { data: session, status } = useSession();
-  const userId = session?.user?.id;
-  const userName = session?.user?.name;
-  const userEmail = session?.user?.email;
-  
 
-  // .............................................................................................. functions ................................................
+ 
 
-  useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // const userId = user._id
-    // if(userId){
 
-    const fetchPDFs = async () => {
-      try {
-        const response = await fetch(`https://meeel.xyz/api/user/${userId}/pdfs`);
-        const data = await response.json();
-
-        if (!response.ok) throw new Error(data.message);
-
-        setPdfs(data.pdfs);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-      // };
-
-      fetchPDFs();
-    };
-  }, []);
-
-  useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem('userdata'));
-    // if (isLoggedIn) {
-    //
-    setName(userName);
-    // }
-    const storedPdfList = JSON.parse(localStorage.getItem("pdfList")) || [];
-    setPdfList(storedPdfList);
-  }, [isLoggedIn]);
-
-  // const handlePdfClick = (pdfData) => {
-  //   const pdfWindow = window.open();
-  //   pdfWindow.document.write(
-  //     `<iframe width='100%' height='100%' src='${pdfData}'></iframe>`
-  //   );
-  // };
 
   const handleDelete = (id) => {
     const updatedList = pdfList.filter((pdf) => pdf.id !== id);
@@ -108,40 +70,16 @@ export default function page() {
     }, 0);
   };
 
-  // useEffect(() => {
-  
-  //   if (session) {
-  //     const parsedata = JSON.parse(userdata);
-  //     // setUserData(response.data);
-  //     setName(parsedata.name || "Not available");
-  //     setemail(parsedata.email || "Not available");
-  //   }
-
-  //   if (user) {
-  //     setIsLoggedIn(true); // Set logged-in state to true if a user is found
-  //   } else {
-  //     setIsLoggedIn(false); // Set logged-in state to false if no user is found
-  //   }
-  // }, []);
-
   useEffect(() => {
-    // Scroll to the top of the page when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {}, [isLoggedIn]);
+  
+    if (session) {
+      
+      setName(session?.user?.name || "Not available");
+      setemail(session?.user?.email || "Not available");
+    }
 
-  const handleLearnMoreClick = () => {
-    router.push("/tryfreefor30-days#faqs");
-  };
-
-  const handleSignUpClick = () => {
-    router.push("/login");
-  };
-  // const handleLogout = () => {
-  //   localStorage.removeItem("user");
-  //   router.push("/");
-  //   window.location.reload(true);
-  // };
+  }, []); 
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -149,56 +87,47 @@ export default function page() {
     address: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
-    // Logic to send `formData` to the database goes here
+  
   };
 
-  // useEffect(() => {
-  // const user = JSON.parse(localStorage.getItem("user"));
-  // if (user && user.user_id) {
-  // fetchUserData(user.user_id);
-  //   } else {
-  //     setError("No user data found. Please sign in.");
+  
+  // const fetchUserData = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(`https://meeel.xyz/show`, {
+  //       headers: { Authorization: userId.toString() },
+  //     });
+
+  //     if (response.data && typeof response.data === "object") {
+  //       setUserData(response.data);
+
+  //       setName(response.data.name || "Not available");
+  //       setemail(response.data.email || "Not available");
+  //       setServings(response.data.servings || "Not available");
+  //       setallergy(response.data.food_allergy || "Not available");
+  //       setdiatryrestriction(response.data.dietary_restriction || "Not available");
+  //       setdislike(response.data.dislikes || "Not available");
+  //       setfamilymember(response.data.preferred_meal || "Not available");
+
+  //       setcolories(response.data.total_calories || "Not available");
+  //       localStorage.setItem("userdata", JSON.stringify(response.data));
+
+  //       // Log the response data (or the saved data)
+  //     } else {
+  //       throw new Error("Unexpected response format");
+  //     }
+  //   } catch (error) {
+  //     setError("Failed to fetch user data: " + error.message);
+  //   } finally {
   //     setLoading(false);
   //   }
-  // }, []);
-
-  const fetchUserData = async (userId) => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`https://meeel.xyz/show`, {
-        headers: { Authorization: userId.toString() },
-      });
-
-      if (response.data && typeof response.data === "object") {
-        setUserData(response.data);
-
-        setName(response.data.name || "Not available");
-        setemail(response.data.email || "Not available");
-        setServings(response.data.servings || "Not available");
-        setallergy(response.data.food_allergy || "Not available");
-        setdiatryrestriction(response.data.dietary_restriction || "Not available");
-        setdislike(response.data.dislikes || "Not available");
-        setfamilymember(response.data.preferred_meal || "Not available");
-
-        setcolories(response.data.total_calories || "Not available");
-        localStorage.setItem("userdata", JSON.stringify(response.data));
-
-        // Log the response data (or the saved data)
-      } else {
-        throw new Error("Unexpected response format");
-      }
-    } catch (error) {
-      setError("Failed to fetch user data: " + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // };
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -209,65 +138,97 @@ export default function page() {
     </div>
   );
   const handleSaveNameClick = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const userId = user.user_id;
-
-      // setsave("Saving...");
-
+    if (session?.user) {
+      const userId = session.user.id;
+      const userName = session.user.name;
+  
       setLoading(true);
       try {
         const response = await axios.put(
-          `https://meeel.xyz/update`,
-          { name },
+          `/api/update`,
+          { 
+            id: userId, 
+            name: name || userName 
+          },
           {
             headers: { Authorization: userId.toString() },
           }
         );
-
+  
         if (response.status === 200) {
+          // fetchUserData(); // Refetch user data to get the latest info
           setIsEditable(false);
-          fetchUserData(); // Refetch user data to get the latest info
         }
       } catch (error) {
-        setError("Failed to update user data: " + error.message);
+        setError(`Failed to update user data: ${error.message}`);
       } finally {
         setLoading(false);
-        // setsave("Save successful!");
-        setIsEditable(false);
       }
     }
   };
+  // const handleSaveEmailClick = async () => {
+  //   // eslint-disable-next-line no-restricted-globals
+  //   if (confirm("Are you sure you want to change your email? This action will cancel your current subscription plan.")) {
+      
 
+  //     if (session) {
+  //       const userId = session?.user?.id;
+  //       const email = session?.user?.email;
+
+  //       // setsave("Saving...");
+  //       setLoading(true);
+
+  //       try {
+  //         const response = await axios.put(
+  //           `/api/emailUpdate`,
+  //           { email },
+  //           {
+  //             headers: { Authorization: userId.toString() },
+  //           }
+  //         );
+
+  //         if (response.status === 200) {
+  //           setIsEditable(false);
+  //           // fetchUserData(); // Refetch user data to get the latest info
+  //         }
+  //       } catch (error) {
+  //         setError("Failed to update user data: " + error.message);
+  //       } finally {
+  //         setLoading(false);
+
+  //         setIsEmailEditable(false);
+  //       }
+  //     }
+  //   } else {
+  //     setIsEmailEditable(false);
+  //   }
+  // };
   const handleSaveEmailClick = async () => {
-    // eslint-disable-next-line no-restricted-globals
     if (confirm("Are you sure you want to change your email? This action will cancel your current subscription plan.")) {
-      const user = JSON.parse(localStorage.getItem("user"));
-
-      if (user) {
-        const userId = user.user_id;
-
-        // setsave("Saving...");
+      if (session) {
+        const userId = session?.user?.id;
+        const Useremail = session?.user?.email;
+  
         setLoading(true);
-
+  
         try {
           const response = await axios.put(
-            `https://meeel.xyz/update`,
-            { email },
+            '/api/emailUpdate',
+            { 
+              id: userId, 
+              email :email || Useremail },
             {
               headers: { Authorization: userId.toString() },
             }
           );
-
+  
           if (response.status === 200) {
             setIsEditable(false);
-            fetchUserData(); // Refetch user data to get the latest info
           }
         } catch (error) {
           setError("Failed to update user data: " + error.message);
         } finally {
           setLoading(false);
-
           setIsEmailEditable(false);
         }
       }
@@ -343,141 +304,146 @@ export default function page() {
       }
     }
   };
-  const handledislike = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const userId = user.user_id;
 
-      setsave("Saving...");
-      setLoading(true);
+  // const handledislike = async () => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     const userId = user.user_id;
 
-      try {
-        const response = await axios.put(
-          `https://meeel.xyz/update`,
-          { dislikes: dislike },
-          {
-            headers: { Authorization: userId.toString() },
-          }
-        );
+  //     setsave("Saving...");
+  //     setLoading(true);
 
-        if (response.status === 200) {
-          setIsEditable(false);
-          fetchUserData(); // Refetch user data to get the latest info
-        }
-      } catch (error) {
-        setError("Failed to update servings: " + error.message);
-      } finally {
-        setLoading(false);
-        setsave("Save successful!");
-        setTimeout(() => {
-          setsave("Save");
-          setIsEditable(false);
-        }, 2000);
-      }
-    }
-  };
-  const handlepreferredmeal = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const userId = user.user_id;
+  //     try {
+  //       const response = await axios.put(
+  //         `https://meeel.xyz/update`,
+  //         { dislikes: dislike },
+  //         {
+  //           headers: { Authorization: userId.toString() },
+  //         }
+  //       );
 
-      setsave("Saving...");
-      setLoading(true);
+  //       if (response.status === 200) {
+  //         setIsEditable(false);
+  //         fetchUserData(); // Refetch user data to get the latest info
+  //       }
+  //     } catch (error) {
+  //       setError("Failed to update servings: " + error.message);
+  //     } finally {
+  //       setLoading(false);
+  //       setsave("Save successful!");
+  //       setTimeout(() => {
+  //         setsave("Save");
+  //         setIsEditable(false);
+  //       }, 2000);
+  //     }
+  //   }
+  // };
+  // const handlepreferredmeal = async () => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     const userId = user.user_id;
 
-      try {
-        const response = await axios.put(
-          `https://meeel.xyz/update`,
-          { dietary_restriction: diatryrestriction },
-          {
-            headers: { Authorization: userId.toString() },
-          }
-        );
+  //     setsave("Saving...");
+  //     setLoading(true);
 
-        if (response.status === 200) {
-          setIsEditable(false);
-          fetchUserData(); // Refetch user data to get the latest info
-        }
-      } catch (error) {
-        setError("Failed to update servings: " + error.message);
-      } finally {
-        setLoading(false);
-        setsave("Save successful!");
-        setTimeout(() => {
-          setsave("Save");
-          setIsEditable(false);
-        }, 2000);
-      }
-    }
-  };
-  const handlefamily = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const userId = user.user_id;
+  //     try {
+  //       const response = await axios.put(
+  //         `https://meeel.xyz/update`,
+  //         { dietary_restriction: diatryrestriction },
+  //         {
+  //           headers: { Authorization: userId.toString() },
+  //         }
+  //       );
 
-      setsave("Saving...");
-      setLoading(true);
+  //       if (response.status === 200) {
+  //         setIsEditable(false);
+  //         fetchUserData(); // Refetch user data to get the latest info
+  //       }
+  //     } catch (error) {
+  //       setError("Failed to update servings: " + error.message);
+  //     } finally {
+  //       setLoading(false);
+  //       setsave("Save successful!");
+  //       setTimeout(() => {
+  //         setsave("Save");
+  //         setIsEditable(false);
+  //       }, 2000);
+  //     }
+  //   }
+  // };
+  // const handlefamily = async () => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     const userId = user.user_id;
 
-      try {
-        const response = await axios.put(
-          `https://meeel.xyz/update`,
-          { preferred_meal: familymember },
-          {
-            headers: { Authorization: userId.toString() },
-          }
-        );
+  //     setsave("Saving...");
+  //     setLoading(true);
 
-        if (response.status === 200) {
-          setIsEditable(false);
-          fetchUserData(); // Refetch user data to get the latest info
-        }
-      } catch (error) {
-        setError("Failed to update servings: " + error.message);
-      } finally {
-        setLoading(false);
-        setsave("Save successful!");
-        setTimeout(() => {
-          setsave("Save");
-          setIsEditable(false);
-        }, 2000);
-      }
-    }
-  };
-  const handlecolories = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      const userId = user.user_id;
+  //     try {
+  //       const response = await axios.put(
+  //         `https://meeel.xyz/update`,
+  //         { preferred_meal: familymember },
+  //         {
+  //           headers: { Authorization: userId.toString() },
+  //         }
+  //       );
 
-      setsave("Saving...");
-      setLoading(true);
+  //       if (response.status === 200) {
+  //         setIsEditable(false);
+  //         fetchUserData(); // Refetch user data to get the latest info
+  //       }
+  //     } catch (error) {
+  //       setError("Failed to update servings: " + error.message);
+  //     } finally {
+  //       setLoading(false);
+  //       setsave("Save successful!");
+  //       setTimeout(() => {
+  //         setsave("Save");
+  //         setIsEditable(false);
+  //       }, 2000);
+  //     }
+  //   }
+  // };
+  // const handlecolories = async () => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     const userId = user.user_id;
 
-      try {
-        const response = await axios.put(
-          `https://meeel.xyz/update`,
-          { total_calories: colories },
-          {
-            headers: { Authorization: userId.toString() },
-          }
-        );
+  //     setsave("Saving...");
+  //     setLoading(true);
 
-        if (response.status === 200) {
-          setIsEditable(false);
-          fetchUserData(); // Refetch user data to get the latest info
-        }
-      } catch (error) {
-        setError("Failed to update servings: " + error.message);
-      } finally {
-        setLoading(false);
-        setsave("Save successful!");
-        setTimeout(() => {
-          setsave("Save");
-          setIsEditable(false);
-        }, 2000);
-      }
-    }
-  };
+  //     try {
+  //       const response = await axios.put(
+  //         `https://meeel.xyz/update`,
+  //         { total_calories: colories },
+  //         {
+  //           headers: { Authorization: userId.toString() },
+  //         }
+  //       );
+
+  //       if (response.status === 200) {
+  //         setIsEditable(false);
+  //         fetchUserData(); // Refetch user data to get the latest info
+  //       }
+  //     } catch (error) {
+  //       setError("Failed to update servings: " + error.message);
+  //     } finally {
+  //       setLoading(false);
+  //       setsave("Save successful!");
+  //       setTimeout(() => {
+  //         setsave("Save");
+  //         setIsEditable(false);
+  //       }, 2000);
+  //     }
+  //   }
+  // };
   // .............................................................................................. functions .............................................
 
+  const handleCtaClick = () => {  
+    setActiveTab('contact');
+  };
   return (
+    <>
     <div className="min-h-screen">
       <Navbar />
       <div className="flex min-h-screen bg-white">
@@ -509,7 +475,7 @@ export default function page() {
             >
               <MenuItem
                 icon={UserRound}
-                text={name}
+                text={name} 
                 onClick={() => {
                   setActiveTab("name");
                   setIsEditable(false);
@@ -525,7 +491,8 @@ export default function page() {
                   className={` border-Text2 py-3 px-4 capitalize  bg-transparent rounded-lg w-full placeholder-Text2 text-Text2 focus:outline-none focus:ring-2 focus:ring-transparent transition duration-300 ${
                     isEditable ? "border-P-Green1 bg-white" : "border-gray-300 bg-gray-100"
                   }`}
-                  value={name} // Use local state for name
+                  value={name }
+                
                   disabled={!isEditable}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -644,7 +611,7 @@ export default function page() {
                 onClick={() => {
                   window.scrollTo({
                     top: 0,
-                    behavior: "smooth", // This adds smooth scrolling
+                    behavior: "smooth",
                   });
                   setActiveTab("contact");
                   setIsOpen(false);
@@ -686,7 +653,7 @@ export default function page() {
             {activeTab === "payment" && <Temp />}
             {activeTab === "account" && (
               <div className=" py-4 flex items-center justify-center ">
-                <Link href="/deleteaccount" className="">
+                <Link href="/deleteAccount" >
                   <button
                     onClick={() => {
                       window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be lost.");
@@ -699,8 +666,11 @@ export default function page() {
               </div>
             )}
             {activeTab === "pdf" && (
-              <h1>pdf</h1>
-              // <Showpdf/>
+              <>
+
+         
+              <ShowPdf/>
+              </>
             )}
             {activeTab === "contact" && <ContactUsPage />}
 
@@ -712,9 +682,11 @@ export default function page() {
       <Cta
       title="Contact us"
       description="Have more questions? Get in touch with us."
+      onClick={handleCtaClick}
     /> 
      <Footer/>
-      <Copyright/>
+      <CopyRight/>
     </div>
+    </>
   );
 }

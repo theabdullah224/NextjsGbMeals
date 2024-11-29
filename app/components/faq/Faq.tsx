@@ -21,7 +21,7 @@ const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
         <h3 className='text-2xl border-b-8 border-S-Orange leading-none font-bold'>FAQ's</h3>
         
         {/* Main title with dynamic coloring */}
-        <h3 className='text-center text-2xl 2xl:text-5xl font-bold' lang="en">
+        <h3 className='text-center text-2xl 2xl:text-2xl font-bold py-6' lang="en">
           Frequently <span className='text-P-Green1'> Asked</span> Questions
         </h3>
         
@@ -29,7 +29,7 @@ const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
         <p className='text-lg max-w-[40rem] text-center mb-2'>{description}</p>
 
         {/* Rendering FAQ components with questions and answers passed as props */}
-        <div className="ques">
+        <div className="ques ">
           <Faqcomp question={question1} ans={ans1} />
         </div>
       </div>
@@ -37,4 +37,4 @@ const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
   );
 };
 
-export default Faq; // Exporting the Faq component as the default export
+export default Faq; 
