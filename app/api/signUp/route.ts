@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import User from "../models/UserModel";
 
@@ -12,6 +13,7 @@ export const POST = async (req: Request) => {
   
     
   
+    // @ts-ignore
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return new Response(JSON.stringify({ success: false, message: "User already exists" }), {
