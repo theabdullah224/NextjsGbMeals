@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -16,7 +15,7 @@ export async function GET(req: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { email } = params;
+
 
   try {
     await connectMongoDB();
