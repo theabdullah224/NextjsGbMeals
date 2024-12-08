@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
@@ -16,6 +17,7 @@ function page() {
   const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // @ts-ignore
   const token = localStorage.getItem('delAccToken')
 
   const handleVerifyCode = async () => {
@@ -25,6 +27,7 @@ function page() {
       await axios.post('/api/confirm-delete-account', { verification_code: verificationCode }, {
         headers: { Authorization: `Bearer ${token}` }
       });
+      // @ts-ignore
       localStorage.removeItem('delAccToken')
       alert("Account Deleted Successfuly");
       signOut()
