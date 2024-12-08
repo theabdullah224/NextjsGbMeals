@@ -7,20 +7,23 @@ export async function POST(request: NextRequest) {
   await connectMongoDB();
 
   try {
+    // Get data from the request body
     const data = await request.json();
     const { name, email, password, planType } = data;
 
-    if (!email || !password) {
+    // Input validation
+    if (!email || !password || !name) {
       return NextResponse.json(
-        { error: "Invalid input: Name, email, and password are required." }, 
+        { error: "Invalid input: Name, email, and password are required." },
         { status: 400 }
       );
     }
 
+    // Check if the user already exists
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return NextResponse.json(
-        { error: "User with this email already exists" }, 
+        { error: "User with this email already exists" },
         { status: 400 }
       );
     }
