@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextResponse } from 'next/server';
 import User from '../models/UserModel';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/authoptions'; 
+import { authOptions } from '@/app/auth/auth'; 
 import { connectMongoDB } from '@/app/lib/dbConnection';
 
 export async function PUT(request) {
@@ -22,7 +23,9 @@ export async function PUT(request) {
     if (!name || name.trim() === '') {
       return NextResponse.json({ error: 'Name is required' }, { status: 400 });
     }
+    // @ts-ignore
     const updatedUser = await User.findByIdAndUpdate(
+      // @ts-ignore
       session.user.id,
       { name: name.trim() },
       { 

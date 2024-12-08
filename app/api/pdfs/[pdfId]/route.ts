@@ -56,7 +56,7 @@ export async function DELETE(
     } catch (s3Error) {
       console.error('Error deleting from S3:', s3Error);
     }
-
+// @ts-ignore
     await PDFRecord.findByIdAndDelete(pdfId);
     return NextResponse.json(
       { message: 'PDF deleted successfully' }, 

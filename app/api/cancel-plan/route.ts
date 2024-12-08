@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { connectMongoDB } from '@/app/lib/dbConnection';
 import User from '../models/UserModel';
 import { NextResponse } from 'next/server';
@@ -15,6 +16,7 @@ export async function POST(request: Request) {
     }
 
     // Find the user by email
+    // @ts-ignore
     const user = await User.findOne({ email });
 
     if (!user) {

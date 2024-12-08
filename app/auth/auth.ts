@@ -4,7 +4,7 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import User from '../../models/UserModel'; // Adjust path as necessary
+import User from '@/app/api/models/UserModel'; // Adjust path as necessary
 import { connectMongoDB } from '@/app/lib/dbConnection'; // Ensure path is correct
 
 // Reuse the database connection (connectMongoDB) across multiple requests
