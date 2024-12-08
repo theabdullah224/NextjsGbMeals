@@ -17,6 +17,7 @@ const s3Client = new S3Client({
 
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME!;
 
+
 export async function DELETE(request: NextRequest) {
   const url = new URL(request.url); // Parse the request URL
   const pdfId = url.pathname.split('/').pop(); // Extract "pdfId" from the path
@@ -25,24 +26,20 @@ export async function DELETE(request: NextRequest) {
     return new NextResponse('PDF ID not provided', { status: 400 });
   }
 
-
-
   try {
-  
+    // Connect to the database
     await connectMongoDB();
 
-        const pdfId = params.pdfId;    
-
-   // @ts-ignore
+    // Use the extracted pdfId directly
     const pdf = await PDFRecord.findById(pdfId);
-    console.log(pdf)
-    
+
     if (!pdf) {
       return NextResponse.json(
-        { error: 'PDF not found' }, 
+        { error: 'PDF not found' },
         { status: 404 }
       );
     }
+
 
   
     try {
