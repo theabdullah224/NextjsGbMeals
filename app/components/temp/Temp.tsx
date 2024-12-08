@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -136,6 +137,7 @@ const ManageSubscriptionPage = () => {
   };
 
   const fetchUserData = async () => {
+    // @ts-ignore
     const userId = session?.user.id;
     try {
       const response = await fetch("/api/Fetch-User-data", {
