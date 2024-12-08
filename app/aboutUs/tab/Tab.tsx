@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 import React, { useRef } from 'react';
@@ -6,11 +7,11 @@ import lady from '../../../public/Resource/ladywithapple.jpg';
 
 
 const Tab: React.FC = () => {
-  const heading2Ref = useRef<HTMLElement | null>(null);
-  const heading3Ref = useRef<HTMLElement | null>(null);
-  const heading4Ref = useRef<HTMLElement | null>(null);
-  const heading5Ref = useRef<HTMLElement | null>(null);
-  const heading6Ref = useRef<HTMLElement | null>(null);
+  const heading2Ref = useRef<HTMLElement | any>(null);
+  const heading3Ref = useRef<HTMLElement | any>(null);
+  const heading4Ref = useRef<HTMLElement | any>(null);
+  const heading5Ref = useRef<HTMLElement | any>(null);
+  const heading6Ref = useRef<HTMLElement | any>(null);
 
   const scrollToHeading = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {
