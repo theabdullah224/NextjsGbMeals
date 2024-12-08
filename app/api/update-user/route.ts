@@ -5,13 +5,14 @@ import { connectMongoDB } from '@/app/lib/dbConnection';
 import { NextResponse,NextRequest } from 'next/server';
 import User from '../models/UserModel'; // Your User model
 
-export async function POST(req: NextRequest, res: NextResponse) {
-  // Connect to the database
-  await connectMongoDB();
+export async function POST(req: NextRequest) {
+  try {
+    // Connect to the database
+    await connectMongoDB();
 
-  // Get the user data from the request body
-  const body = await req.json();
-  const { userId, name, email, prefMeal, persons, totalCalories, foodAllergies, dislikes, mealPerDay, days } = body;
+    // Get the user data from the request body
+    const body = await req.json();
+    const { userId, name, email, prefMeal, persons, totalCalories, foodAllergies, dislikes, mealPerDay, days } = body;
 
   // Ensure we have the userId for the update
   if (!userId) {
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
   }
 
-  try {
+
     // Find the user by their ID
     // @ts-ignore
     const user = await User.findById(userId);
