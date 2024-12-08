@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+
+
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import FrontPage from "./components/frontpage/FrontPage";
@@ -33,16 +34,10 @@ export default function page() {
       <Navbar />
       <FrontPage title="Subscribe And Enjoy 30 Days For Free." description="Receive a weekly meal plan tailored to your preferences and dietary needs." bgimg={bgimge.src} display="block" btndisplay="none" />
       
-      <marquee  className="text-lg bg-S-Orange  " behavior="scroll" direction="right">
-        Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
-        &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp;
-        Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
-        &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp;
-        Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
-        &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp;
-        Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
-        &nbsp; &nbsp; &nbsp;&nbsp;
-      </marquee>
+      <div class="scrolling-marquee">
+  Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;
+  Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;
+</div>
 
       {/* component */}
 

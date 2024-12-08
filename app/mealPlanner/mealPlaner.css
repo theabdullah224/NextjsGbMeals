@@ -12,6 +12,29 @@ marquee{
 /* font-weight: 100; */
     overflow-x: hidden;
 }
+
+.scrolling-marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  .scrolling-marquee {
+    display: inline-block;
+    animation: marquee 10s linear infinite;
+    font-size: 1.25rem;
+    background-color: #FF6F61; /* Example background color */
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
 .customizable {
     height: fit-content;
     box-sizing: border-box;
