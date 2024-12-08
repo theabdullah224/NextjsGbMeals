@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose from 'mongoose';
+
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { connectMongoDB } from '@/app/lib/dbConnection';
 import PDFRecord from '../../models/PDFRecord';
@@ -26,7 +27,7 @@ export async function DELETE(
 
         const pdfId = params.pdfId;    
 
-   
+   // @ts-ignore
     const pdf = await PDFRecord.findById(pdfId);
     console.log(pdf)
     

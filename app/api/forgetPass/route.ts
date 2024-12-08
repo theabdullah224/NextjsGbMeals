@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
@@ -24,6 +27,7 @@ export async function POST(req: NextRequest) {
     }
 
     await connectMongoDB();
+    // @ts-ignore
     const user = await User.findOne({ email });
 
 

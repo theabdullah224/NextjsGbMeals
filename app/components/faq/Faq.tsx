@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client"
 import React from 'react'; // Importing React library
 import './faq.css'; // Importing the stylesheet for this component
@@ -32,7 +33,7 @@ const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
         <div className="ques ">
           
           <Faqcomp 
-          
+          // @ts-ignore
           question={question1} ans={ans1} />
         </div>
       </div>

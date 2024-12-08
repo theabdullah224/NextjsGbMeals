@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from "next/server";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authoptions";
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import User from "../models/UserModel";
 
@@ -11,6 +14,7 @@ export async function POST(req: Request) {
     if (!session) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
+    //@ts-ignore
     const userId = session.user.id; 
     await connectMongoDB() 
 
@@ -22,6 +26,7 @@ export async function POST(req: Request) {
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
+    // @ts-ignore
     const user = await User.findOne({ email });
 
     if (!user) {

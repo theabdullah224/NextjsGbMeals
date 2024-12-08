@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -38,7 +39,7 @@ const Save: React.FC<SaveProps> = ({ srcimg }) => {
           </h3>
           <p className="p-txts text-lg text-Text2">
             Efficient meal planning can lead to significant cost savings by reducing food waste and avoiding unnecessary
-            purchases. With our 6-day meal planner, you'll have a clear plan for your meals, ensuring you only buy what
+            purchases. With our 6-day meal planner, you&apos;ll have a clear plan for your meals, ensuring you only buy what
             you need and making the most of your ingredients.
           </p>
         </div>

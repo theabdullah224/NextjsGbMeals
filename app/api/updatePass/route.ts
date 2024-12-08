@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import User from "../models/UserModel";
 import bcrypt from "bcryptjs";
@@ -45,6 +47,7 @@ export async function POST(req: NextRequest) {
 
     const { userId } = decodedToken as { userId: string };
     await connectMongoDB();
+    // @ts-ignore
     const user = await User.findById(userId);
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });

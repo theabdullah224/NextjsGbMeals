@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { DateTime } from "luxon";
 import { connectMongoDB } from "./dbConnection";

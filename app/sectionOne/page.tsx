@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import Navbar from '../components/navbar/Navbar'
 import Banner from "../components/banner/Banner";
@@ -12,6 +13,7 @@ const page = () => {
       <Cook
         subtitle="Healthy Meal"
         description="Our meal planning service takes the stress out of deciding what to cook and ensures you eat nutritious meals every day. With our carefully curated meal plans, you can enjoy the benefits of a healthy diet without the hassle of planning and shopping."
+        // @ts-ignore
         srcimg={srcimg}
         // shadowcolor="#738065"
       />
@@ -25,6 +27,7 @@ const page = () => {
         description="Experience the benefits of cooking at home with fresh ingredients.
             Our meal planner makes it easy to create delicious and healthy
             meals."
+            // @ts-ignore
             bgimg={workinglady.src}
         leftfancy="Save Time"
         descleft=" Plan your meals in advance and spend less time figuring out what

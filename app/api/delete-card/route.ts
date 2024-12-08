@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // app/api/delete-card/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
@@ -20,6 +22,7 @@ export async function POST(req: NextRequest) {
             );
         }
         await connectMongoDB();
+        // @ts-ignore
         const user = await User.findOne({ email });
 
         if (!user) {

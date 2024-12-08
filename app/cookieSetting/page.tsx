@@ -94,7 +94,7 @@ export default function page () {
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-2 text-Text1">More Information</h2>
         <p className="text-gray-600 mb-4">
-          We use different types of cookies to optimize your experience on our website. You can consent to the use of such technologies by clicking on "Save Preferences". 
+          We use different types of cookies to optimize your experience on our website. You can consent to the use of such technologies by clicking on Save Preferences. 
         </p>
        
       </div>

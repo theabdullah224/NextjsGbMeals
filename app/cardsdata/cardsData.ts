@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+
 import cardbgimg from "../../public/Resource/bgcardimg.png";
 import tickIcon from "../../public/Resource/tick.svg";
 import egg from "../../public/Resource/eggs.svg";

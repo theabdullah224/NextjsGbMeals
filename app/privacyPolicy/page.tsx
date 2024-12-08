@@ -69,7 +69,7 @@ function PrivacyPolicy() {
         </h2>
         <p className="text-lg text-Text2 mt-2"> <b>
           Service Providers:</b> We may employ third-party companies and individuals
-          to facilitate our service ("Service Providers"), provide the service
+          to facilitate our service (Service Providers), provide the service
           on our behalf, perform service-related services, or assist us in
           analyzing how our service is used.
         </p>

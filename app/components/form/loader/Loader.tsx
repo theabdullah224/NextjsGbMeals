@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Loader from '../../../../public/Resource/spinner.svg'
 import './loader.css'

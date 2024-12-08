@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 import React, { useEffect, useState } from 'react'; // Importing React
 import Image from 'next/image'; // Use next/image for optimized images in Next.js

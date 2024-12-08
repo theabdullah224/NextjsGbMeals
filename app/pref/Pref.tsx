@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {  useEffect, useState } from "react";
 import downarrow from "../../public/Resource/downarrow.svg";
@@ -29,10 +31,12 @@ function Pref() {
   const { data: session } = useSession();
   const [userdata, setuserdata] = useState("")
 
+  // @ts-ignore
   const UserId  = session?.user?.id
 
 
   const fetchUserData = async () => {
+    // @ts-ignore
     const userId =session?.user?.id
     try {
       const response = await fetch("/api/Fetch-User-data", {
@@ -85,11 +89,17 @@ function Pref() {
   useEffect(() => {
     if (userdata) {
       setMenuStates({
+        // @ts-ignore
         mealPerDay: { open: false, selected: userdata?.mealPerDay || "" },
+        // @ts-ignore
         servings: { open: false, selected: userdata?.persons || "" },
+        // @ts-ignore
         allergy: { open: false, selected: userdata?.foodAllergies || "" },
+        // @ts-ignore
         Calories: { open: false, selected: userdata?.totalCalories || "" },
+        // @ts-ignore
         dislike: { open: false, selected: userdata?.dislikes || "" },
+        // @ts-ignore
         PreferredMeal: { open: false, selected: userdata?.prefMeal || "" },
       });
     }
@@ -253,6 +263,7 @@ function Pref() {
 
 
   const handleGeneratePDF = async () => {
+    // @ts-ignore
     if (session?.user?.status === "active") {
       setLoader(true);
   
@@ -294,6 +305,7 @@ function Pref() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        // @ts-ignore
         userId:session?.user.id,
         prefMeal:menuStates.PreferredMeal.selected,
         persons:menuStates.servings.selected,

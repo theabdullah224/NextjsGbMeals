@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'; // Importing React
 import "./cook.css"; // Importing the stylesheet for this component
 import Favicon from "../../../public/Resource/favicon.png"; // Importing the favicon image

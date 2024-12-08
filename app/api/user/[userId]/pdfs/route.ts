@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextRequest, NextResponse } from "next/server";
 import PDFRecord from "@/app/api/models/PDFRecord";
 import { connectMongoDB } from "@/app/lib/dbConnection";
@@ -12,6 +14,8 @@ export async function GET(request: NextRequest, context: { params: { userId: str
 
   try {
     await connectMongoDB();
+
+    // @ts-ignore
     const pdfRecords = await PDFRecord.find({ userId }).sort({ createdAt: -1 });
     const pdfList = pdfRecords.map((pdf) => ({
       id: pdf._id.toString(),

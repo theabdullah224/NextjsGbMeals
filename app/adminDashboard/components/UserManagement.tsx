@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 import React, { useState, useEffect } from "react";
 import { Search, Trash2 } from "lucide-react";

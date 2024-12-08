@@ -63,7 +63,7 @@ export default function page() {
          <b> Release of Claims:</b> By using the gbmeals service, you agree to release,
           indemnify, and hold harmless gbmeals, its officers, employees, agents,
           successors, and assigns from any claims, damages, losses, liabilities,
-          costs, expenses, and fees (including reasonable attorneys' fees) that
+          costs, expenses, and fees (including reasonable attorneys&apos; fees) that
           arise from or relate to your use of the meal planning service,
           including but not limited to any injuries, illnesses, or damages you
           may suffer.
@@ -71,7 +71,7 @@ export default function page() {
         <p className="text-lg text-Text2 mt-2">
         <b>  Use at Your Own Risk:</b> You expressly agree that your use of the gbmeals
           meal planning service is at your sole risk. The service is provided on
-          an "as is" and "as available" basis.
+          an &quot;as is&quot; and &quot;as available&quot; basis.
         </p>
 
         <h2 className="text-2xl text-Text1 font-semibold mt-8">Governing Law</h2>
@@ -85,7 +85,7 @@ export default function page() {
         <h2 className='text-2xl font-semibold mt-8 text-Text1'>Subscription Cancellation
         </h2>
         <p className='text-lg text-Text2 mt-2'> <b>Right to Cancel:</b> At gbmeals, you have the flexibility to cancel your subscription at any time.</p>
-        <p className='text-lg text-Text2 mt-2'><b>Process for Cancellation:</b> To cancel your subscription, please log into your account on the gbmeals website and follow the instructions provided in the account settings. Alternatively, you can contact our customer service team for assistance. The necessary contact details are available on our website under the "Contact Us" section</p>
+        <p className='text-lg text-Text2 mt-2'><b>Process for Cancellation:</b> To cancel your subscription, please log into your account on the gbmeals website and follow the instructions provided in the account settings. Alternatively, you can contact our customer service team for assistance. The necessary contact details are available on our website under the &quot;Contact Us&quot; section</p>
         <p className='text-lg text-Text2 mt-2'><b>Immediate Effect:</b> Cancellation will take effect immediately upon your request. You will not be charged for any subsequent billing cycles.
         </p>
 

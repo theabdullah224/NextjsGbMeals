@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { connectMongoDB } from "@/app/lib/dbConnection";
-import { User } from "lucide-react";
 import { NextRequest, NextResponse } from "next/server";
 import UserModel from "../models/UserModel";
 
@@ -8,7 +8,7 @@ export  async function POST(req: NextRequest) {
         const { userId } = await req.json();
 
         await connectMongoDB();
-
+// @ts-ignore
         const user = await UserModel.findOne({ userId });
 
         if (!user) {

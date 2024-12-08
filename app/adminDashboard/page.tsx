@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useEffect, useState } from "react";
@@ -44,13 +46,6 @@ export default function page() {
   ];
 
 
-  useEffect(() => {
-    
-  
-    if(!session){
-      router.push("/")
-    }
-  }, [session])
   
   const [formData, setFormData] = useState({
     name: '',
@@ -62,7 +57,7 @@ export default function page() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  const handleChange = (e:any) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,

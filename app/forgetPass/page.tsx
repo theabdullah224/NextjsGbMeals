@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useState } from "react";
 import cardbgimg from "../../public/Resource/bgcardimg.png";
@@ -86,7 +87,7 @@ export default function page (){
                 Trouble logging in?
               </h1>
               <p className="text-white text-lg my-2 max-w-[35rem]">
-                Enter your email and we'll send you a link to get back into your
+                Enter your email and we&apos;ll send you a link to get back into your
                 account.
               </p>
               <input

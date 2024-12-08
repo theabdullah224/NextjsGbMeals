@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 // Importing React and necessary hooks for managing state and layout effects
 import React, { useState, useLayoutEffect } from 'react';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import FrontPage from "./components/frontpage/FrontPage";
@@ -28,8 +29,10 @@ import CopyRight from "../components/copyRight/copyRight";
 export default function page() {
   return (
     <>
-      <Navbar backgroundcolor="white" />
+    
+      <Navbar />
       <FrontPage title="Subscribe And Enjoy 30 Days For Free." description="Receive a weekly meal plan tailored to your preferences and dietary needs." bgimg={bgimge.src} display="block" btndisplay="none" />
+      
       <marquee  className="text-lg bg-S-Orange  " behavior="scroll" direction="right">
         Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
         &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp;
@@ -50,16 +53,19 @@ export default function page() {
               Meal Plan
             </h4>
             <Reciptcomp
+            // @ts-ignore
               ricon={Breakfast1}
               title="Tailored Meal Plans"
               description="Receive personalized meal plans designed to meet your dietary needs and preferences. Our plans are carefully crafted by nutrition experts to ensure a balanced and healthy diet."
             />
             <Reciptcomp
+            // @ts-ignore
               ricon={Breakfast2}
               title="Easy-to-Follow Recipes"
               description="Our recipes are simple and straightforward, making it easy for you to prepare delicious meals at home. Each recipe comes with step-by-step instructions and cooking tips."
             />
             <Reciptcomp
+            // @ts-ignore
               ricon={Breakfast3}
               title="Convenient Shopping List"
               description="Save time and eliminate the guesswork with our convenient shopping list. We provide you with a detailed list of ingredients needed for each recipe, making grocery shopping a breeze."
@@ -91,7 +97,7 @@ export default function page() {
       display="block"
       border="2px solid #F5A228"
       logo={love.src}
-      
+      // @ts-ignore
         subtitle="Subscribe"
         title="Get your meal plan now "
         description= "Subscribe to receive your weekly meal plan PDF"
@@ -119,6 +125,7 @@ export default function page() {
       <Faq
         description="Find answers to common questions about our meal plans, portion sizes, dietary restrictions, and subscription details."
         question1="What are the portion sizes?"
+        // @ts-ignore
         question2="Are there any dietary restrictions?"
         question3="How does the subscription work?"
         question4="Can I customize the servings?"

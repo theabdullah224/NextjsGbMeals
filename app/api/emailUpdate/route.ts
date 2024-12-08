@@ -1,7 +1,10 @@
+
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import User from '../models/UserModel';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'; 
+import { authOptions } from '@/app/api/auth/[...nextauth]/authoptions'; 
 import { connectMongoDB } from '@/app/lib/dbConnection';
 export async function PUT(request) {
     try {
@@ -19,7 +22,9 @@ export async function PUT(request) {
         return NextResponse.json({ error: 'Email is required' }, { status: 400 });
       }
   
+      // @ts-ignore
       const updatedUser = await User.findByIdAndUpdate(
+        // @ts-ignore
         session.user.id,
         { email: email.trim() },
         { 

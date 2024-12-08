@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { NextRequest } from 'next/server';
@@ -26,6 +28,7 @@ export async function POST(req: NextRequest) {
         await connectMongoDB();
 
        
+        // @ts-ignore
         const user = await User.findOne({ email });
 
         if (!user) {

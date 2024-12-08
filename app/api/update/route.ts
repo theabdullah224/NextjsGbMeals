@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import User from '../models/UserModel';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'; 
+import { authOptions } from '@/app/api/auth/[...nextauth]/authoptions'; 
 import { connectMongoDB } from '@/app/lib/dbConnection';
 
 export async function PUT(request) {

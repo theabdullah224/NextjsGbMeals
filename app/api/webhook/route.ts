@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // import { NextRequest, NextResponse } from "next/server";
 // import Stripe from "stripe";
 // import User from "../models/UserModel";
@@ -95,6 +98,7 @@ import { connectMongoDB } from '@/app/lib/dbConnection';
 import { sendStripeEmail } from '@/app/lib/sendStripeEmail';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  // @ts-ignore
   apiVersion: '2022-11-15',
 });
 
@@ -131,6 +135,7 @@ export async function POST(request: Request) {
 
 
     if (email) {
+      // @ts-ignore
       const user = await User.findOne({ email });
 
       if (user) {

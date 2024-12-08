@@ -1,13 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import Header from '../navbar/Navbar'
-import FrontPage from './FrontPage'
-import Plansimg from './Resource/plans.jpg'
-import CardNavigator from './Card'
-// import { Form } from 'react-router-dom'
-import Form from './Form'
-import Cta from './Cta'
-import Footer from './Footer'
-import Copyright from './Copyright'
+
+import Form from './../form/Form'
+
 import './plans.css'
 import  { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';

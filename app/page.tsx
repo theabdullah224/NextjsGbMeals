@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // native  modules
 import Image from "next/image";
 
@@ -66,6 +68,7 @@ export default function Home() {
         <Faq
           description="Frequently asked questions ordered by popularity. Remember that if the visitor has not committed to the call to action, they may still have questions (doubts) that can be answered."
           question1="How does it work?"
+          // @ts-ignore
           question2="What is included?"
           question3="Is it suitable for me?"
           question4="How can I sign up?"

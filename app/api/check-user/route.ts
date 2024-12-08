@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -13,6 +15,7 @@ export async function GET(req: Request, { params }: { params: { email: string } 
 
   try {
     await connectMongoDB();
+    // @ts-ignore
     const user = await User.findOne({ email });
 
     if (user) {

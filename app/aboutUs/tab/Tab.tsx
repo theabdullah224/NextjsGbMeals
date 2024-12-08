@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 import React, { useRef } from 'react';
 import './tab.css';
 import lady from '../../../public/Resource/ladywithapple.jpg';
-import Image from 'next/image';
+
 
 const Tab: React.FC = () => {
   const heading2Ref = useRef<HTMLElement | null>(null);

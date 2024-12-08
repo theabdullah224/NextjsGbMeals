@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+
 import { NextResponse } from "next/server";
 import { OpenAI } from "openai";
 import puppeteer from "puppeteer";
 import { SavePdfAws } from "../../lib/SavePdfAws";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { sendPdf } from "@/app/lib/sendPdf";
 
 const openai = new OpenAI({

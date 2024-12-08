@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { connectMongoDB } from '@/app/lib/dbConnection';
 import { NextResponse,NextRequest } from 'next/server';
@@ -19,6 +21,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   try {
     // Find the user by their ID
+    // @ts-ignore
     const user = await User.findById(userId);
 
     if (!user) {

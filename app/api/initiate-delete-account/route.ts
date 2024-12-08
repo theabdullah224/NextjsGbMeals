@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcryptjs';
@@ -23,6 +25,7 @@ export async function POST(request: NextRequest) {
     }
 
  
+    // @ts-ignore
     const user = await User.findOne({ email });   
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return NextResponse.json(

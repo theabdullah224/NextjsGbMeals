@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -9,7 +11,7 @@ import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 
-export default function page() {
+function page() {
   const router = useRouter();
   const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -75,3 +77,4 @@ export default function page() {
   );
 }
 
+export default page

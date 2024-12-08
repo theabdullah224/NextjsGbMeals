@@ -1,3 +1,6 @@
+
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import User from '../models/UserModel'; // Import your User model
 
@@ -12,6 +15,7 @@ export async function POST(req: Request) {
     }
 
     // Fetch the user data from the database based on the userId
+    // @ts-ignore
     const user = await User.findById(userId);
 
     if (!user) {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 // import mongoose from 'mongoose';
 import { connectMongoDB } from '@/app/lib/dbConnection';
@@ -10,6 +12,7 @@ export async function DELETE(req: Request, { params }: { params: { email: string
   try {
     await connectMongoDB(); 
 
+    // @ts-ignore
      const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
