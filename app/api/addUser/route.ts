@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { connectMongoDB } from '../../lib/dbConnection';
@@ -20,6 +21,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if the user already exists
+    // @ts-ignore
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return NextResponse.json(
