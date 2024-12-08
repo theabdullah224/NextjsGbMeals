@@ -31,6 +31,7 @@ export async function DELETE(request: NextRequest) {
     await connectMongoDB();
 
     // Use the extracted pdfId directly
+    // @ts-ignore
     const pdf = await PDFRecord.findById(pdfId);
 
     if (!pdf) {
