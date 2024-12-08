@@ -35,7 +35,7 @@ export default function page() {
       <Navbar />
       <FrontPage title="Subscribe And Enjoy 30 Days For Free." description="Receive a weekly meal plan tailored to your preferences and dietary needs." bgimg={bgimge.src} display="block" btndisplay="none" />
       
-      <div class="scrolling-marquee">
+      <div className="scrolling-marquee">
   Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;
   Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;
 </div>
