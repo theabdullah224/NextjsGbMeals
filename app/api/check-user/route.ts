@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { connectMongoDB } from "@/app/lib/dbConnection";
 import { getServerSession } from "next-auth";
