@@ -5,7 +5,12 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import User from "../models/UserModel";
 
-export async function GET(req: Request, { params }: { params: { email: string } }) {
+export async function GET(req: Request) {
+  const url = new URL(req.url); // Parse the request URL
+  const email = url.searchParams.get('email'); // Get "email" from query params
+  if (!email) {
+    return new Response('Email not provided', { status: 400 });
+  }
   const session = getServerSession();
   if (!session) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
