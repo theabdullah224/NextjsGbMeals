@@ -48,10 +48,10 @@ const Testimonials: React.FC<TestimonialsProps> = (props) => {
         <div className="testcolor border-S-Orange" style={{backgroundColor: props.testcolor, border: props.border}}>
 
           <img className="w-28 mb-3" src={props.logo} alt="Company Logo" />
-          <h1 className="testimonial-title text-2xl 2xl:text-5xl font-bold" style={{display: props.display}}>
+          <h1 className="testimonial-title text-2xl 2xl:text-5xl font-bold text-Text1" style={{display: props.display}}>
             Subscribe <br /> Get your <span className="text-P-Green1">meal plan</span> now 
           </h1>
-          <p className="testimonial-description text-lg text-center">{props.description}</p>
+          <p className="testimonial-description text-lg text-center text-Text1">{props.description}</p>
 
           <div style={{display: props.display}}>
             <div className="flex w-fit flex-wrap items-center justify-center mt-8 gap-6">

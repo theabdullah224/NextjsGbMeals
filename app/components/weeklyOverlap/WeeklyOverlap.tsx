@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import "./weeklyOverlap.css";
 import Favicon from '../../../public/Resource/favicon.png';
@@ -35,9 +35,6 @@ const WeeklyOverlap: React.FC<WeeklyOverlapProps> = ({
   const router = useRouter(); // Use Next.js router
 
 
-  const handleLearnMoreClick = () => {
-    router.push('/tryfreefor30-days#faqs'); // Using Next.js router for navigation
-  };
 
   const handleSignUpClick = () => {
     router.push('/plans#form'); // Using Next.js router for navigation
@@ -48,12 +45,12 @@ const WeeklyOverlap: React.FC<WeeklyOverlapProps> = ({
       <div className="weekly" style={{ backgroundImage: `url(${bgimg})` }}>
         <div className="colorweekly">
           <div className="itemweekly">
-            <h4 className="text-2xl border-b-8 border-S-Orange leading-none font-bold">
+            <h4 className=" text-2xl border-b-8 border-S-Orange leading-none font-bold ">
               {subtitle}
             </h4>
             <h2
-              className="txt-h2weekly text-2xl 2xl:text-5xl font-bold"
-              style={{ fontSize: titlefont }}
+              className="txt-h2weekly  text-2xl 2xl:text-5xl font-bold"
+         
             >
               {title}
             </h2>

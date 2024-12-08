@@ -1,16 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import logo2 from "../../../public/Resource/logo2.png";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const handleSubscribeClick = (): void => {
     router.push("/plans#form");
@@ -26,12 +28,14 @@ const Navbar: React.FC = () => {
   const handleSignOut = async () => {
     await signOut({ 
       redirect: true,  // This will redirect after sign out
-      callbackUrl: ' https://2e9c-203-175-69-57.ngrok-free.app/'  // Redirect to home page
+      callbackUrl: '/'  // Redirect to home page
     });
   };
 
+
+  console.log(pathname)
   return (
-    <div className="relative">
+    <div className="relative text-Text1">
       {/* Main header */}
       <div className="sm:px-9 px-4 lg:px-9 py-4 lg:py-7 font-roboto bg-white flex justify-between items-center">
         {/* Logo */}
@@ -46,9 +50,8 @@ const Navbar: React.FC = () => {
               <li key={index}>
                 <Link
                   href={item === "Home" ? "/" : item === "Try Free for 30-Days" ? "/mealPlanner" : item === "My Account" ? "/myAccount" : item === "Log In" ? "/login" : item === "About Us" ? "/aboutUs" : ``}
-                  //"text-S-Orange underline
-                  //@ts-ignore
-                  className={router.pathname === (item === "Home" ? "/" : `/${(item as string).toLowerCase().replace(/\s+/g, "")}`) ? "text-S-Orange underline" : "text-Text1 hover:text-S-Orange hover:underline"}
+                 
+                  className={pathname === (item === "Home" ? "/" : item === "Try Free for 30-Days" ? "/mealPlanner" : item === "My Account" ? "/myAccount" : item === "Log In" ? "/login" : item === "About Us" ? "/aboutUs" : ``) ? "text-S-Orange underline" : "text-Text1 hover:text-S-Orange hover:underline"}
                 >
                   {item}
                 </Link>
@@ -93,7 +96,8 @@ const Navbar: React.FC = () => {
             {["Home", !session && "Try Free for 30-Days", session ? "My Account" : "Log In", "About Us"].filter(Boolean).map((item) => (
               <li key={item as string}>
                 <Link
-                  href={item === "Home" ? "/" : `/${(item as string).toLowerCase().replace(/\s+/g, "")}`}
+                  href={item === "Home" ? "/" : item === "Try Free for 30-Days" ? "/mealPlanner" : item === "My Account" ? "/myAccount" : item === "Log In" ? "/login" : item === "About Us" ? "/aboutUs" : ``}
+                  className={pathname === (item === "Home" ? "/" : item === "Try Free for 30-Days" ? "/mealPlanner" : item === "My Account" ? "/myAccount" : item === "Log In" ? "/login" : item === "About Us" ? "/aboutUs" : ``) ? "text-S-Orange underline" : "text-Text1 hover:text-S-Orange hover:underline"}
                   //@ts-ignore
                   // className={({ isActive }) =>
                   //   isActive

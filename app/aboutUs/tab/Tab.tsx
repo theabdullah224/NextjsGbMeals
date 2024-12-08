@@ -96,6 +96,7 @@ const Tab: React.FC = () => {
           <p className="text-sm sm:text-lg text-Text2">
             Join us at gbmeals and take the first step towards transforming your life, one meal at a time. Together, we can overcome the challenges of modern living and achieve optimal health.
           </p>
+          
         </div>
       </div>
     </div>

@@ -56,6 +56,7 @@ export const SavePdfAws = async (id: string, mealPlanPDF: any, shoppingListPDF: 
     };
   } catch (error) {
     console.error("Error in SavePdfAws:", error);
+    // @ts-nocheck
     throw new Error("Failed to save PDFs to AWS S3");
   }
 };

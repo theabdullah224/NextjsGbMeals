@@ -82,14 +82,13 @@ const PriceCard: React.FC = () => {
         },
         body: JSON.stringify({ planType, email }),
       });
-      console.log(".......",res)
+     
       const data = await res.json();
     
-      // if (!res.ok) {
-      //   throw new Error(data.error || 'Failed to create session');
-      // }
-  
-      // Redirect to Stripe Checkout
+
+      console.log(data)
+      window.location.href = data.url
+     
       if (data.sessionId) {
         const stripe = await getStripe();
         stripe?.redirectToCheckout({ sessionId: data.sessionId });
@@ -129,7 +128,7 @@ const PriceCard: React.FC = () => {
 
       {!loader && (
         <section className="container pt-[2rem] pb-[5rem] mx-auto flex flex-col items-center justify-center gap-4">
-          <h1 className="text-2xl mb-4 border-b-8 border-S-Orange leading-none font-bold mx-auto inline-block">Pricing</h1>
+          <h1 className="text-2xl mb-4 border-b-8 border-S-Orange leading-none font-bold mx-auto inline-block text-Text1">Pricing</h1>
           <div className="flex gap-6 items-center flex-col sm:flex-row justify-center sm:flex-wrap">
             {/* Map over cardData */}
             {cardData.map((card, index) => (
@@ -174,12 +173,7 @@ const PriceCard: React.FC = () => {
                       </>
                     )}
                     {!session && (
-                      <button
-                        onClick={() => router.push("/plans#form")}
-                        className="w-full py-2 px-4 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
-                      >
-                        Sign In to Continue
-                      </button>
+                     ""
                     )}
                   </div>
                 </div>

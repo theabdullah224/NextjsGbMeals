@@ -30,7 +30,7 @@ export default function page() {
     <>
       <Navbar backgroundcolor="white" />
       <FrontPage title="Subscribe And Enjoy 30 Days For Free." description="Receive a weekly meal plan tailored to your preferences and dietary needs." bgimg={bgimge.src} display="block" btndisplay="none" />
-      <marquee className="text-lg bg-S-Orange  " behavior="scroll" direction="right">
+      <marquee  className="text-lg bg-S-Orange  " behavior="scroll" direction="right">
         Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
         &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp;
         Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days &nbsp; &nbsp; &nbsp;&nbsp; Subscribe Free for 30 Days
@@ -44,9 +44,9 @@ export default function page() {
       {/* component */}
 
       <div className="customizable">
-        <div className="left-content">
-          <div className="content">
-            <h4 className="text-2xl border-b-8 border-S-Orange leading-none font-bold inline-block" style={{ marginBottom: `5vh` }}>
+        <div className="">
+          <div className="">
+            <h4 className="text-2xl border-b-8 border-S-Orange leading-none font-bold inline-block text-Text1" style={{ marginBottom: `5vh` }}>
               Meal Plan
             </h4>
             <Reciptcomp
@@ -83,8 +83,7 @@ export default function page() {
         specialtext="Weekly Meal"
         aspecialtext=" Plan in PDF"
         display="none"
-        description="Subscribe now and receive a delicious and healthy meal plan every Friday in PDF format. Take the hassle out of meal planning and enjoy the convenience of having your meals ready for the week."
-      />
+        description="Subscribe now and receive a delicious and healthy meal plan every Friday in PDF format. Take the hassle out of meal planning and enjoy the convenience of having your meals ready for the week." orderleft={""} leftfancy={""} descleft={""} rightfancy={""} righdesc={""} orderimg={""} imgscale={""}      />
 
       <PriceCard />
       
@@ -92,6 +91,7 @@ export default function page() {
       display="block"
       border="2px solid #F5A228"
       logo={love.src}
+      
         subtitle="Subscribe"
         title="Get your meal plan now "
         description= "Subscribe to receive your weekly meal plan PDF"
@@ -99,17 +99,16 @@ export default function page() {
         testcolor="rgba(255, 255, 255, 0.95)"
       />
  <WeeklyOverlap
-      titlefont="65px !important"
-      btndisplay="none"
-       bgimg={bgimg.src}
-       bgfront={wbgimg.src}
-       inputdisplay="block"
-       displayfvicon= "none"
-       downbtndescription="By joining, you agree to our Terms and Conditions"
-      //  subtitle=''
-      title="Subscribe to our Meal Plan"
-      description="Get delicious and healthy meal plans every week"
-      />
+        titlefont="65px"
+        btndisplay="none"
+        bgimg={bgimg.src}
+        bgfront={wbgimg.src}
+        inputdisplay="block"
+        displayfvicon="none"
+        downbtndescription="By joining, you agree to our Terms and Conditions"
+        //  subtitle=''
+        title="Subscribe to our Meal Plan"
+        description="Get delicious and healthy meal plans every week" subtitle={""}      />
 
 <div className="heighth">
         

@@ -14,11 +14,11 @@ import './footer.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
+    <footer className="footer ">
       <div className="fcol1">
         <Image className="logof" src={Logo2} alt="Logo" />
         <p className="footerp text-Text2 text-md font-bold" style={{ margin: '20px 0px 0px 0px ' }}>
-          Get Control Our Your Health
+          Get Control Your Health
         </p>
         <p className="pt-4 text-Text1 text-xl font-bold">Follow Us</p>
         <div className="logos w-fit">
@@ -43,17 +43,17 @@ const Footer: React.FC = () => {
         <h4 className="footerh4 text-Text1 text-2xl font-bold">Quick&nbsp;Links</h4>
         <ul className="ulf">
           <li>
-            <Link className="text-md font-bold text-Text2" href="/" scroll={false}>
+            <Link className="text-md font-bold text-Text2" href="/" scroll={true}>
               Home
             </Link>
           </li>
           <li>
-            <Link className="text-md font-bold text-Text2" href="/aboutus" scroll={false}>
+            <Link className="text-md font-bold text-Text2" href="/aboutUs" scroll={true}>
               About Us
             </Link>
           </li>
           <li>
-            <Link className="text-md font-bold text-Text2" href="/plans" scroll={false}>
+            <Link className="text-md font-bold text-Text2" href="/plans" scroll={true}>
               Meal Plans
             </Link>
           </li>

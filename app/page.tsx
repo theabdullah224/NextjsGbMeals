@@ -58,10 +58,9 @@ export default function Home() {
           displayfvicon="none"
           subtitle="Healthy"
           title="Discover the Health Benefits of Mediterranean and Centenarian Diets"
-          description="The Mediterranean and Centenarian diets are renowned for their health benefits. Packed with fresh fruits, vegetables, whole grains, and lean proteins, these diets promote heart health, weight management and longevity.Our balanced diet is based on the mediterranean and centenarian diet."
-        />
+          description="The Mediterranean and Centenarian diets are renowned for their health benefits. Packed with fresh fruits, vegetables, whole grains, and lean proteins, these diets promote heart health, weight management and longevity.Our balanced diet is based on the mediterranean and centenarian diet." titlefont={""} downbtndescription={""} btndisplay={""}        />
 
-        <DiscoverBenifits />
+        <DiscoverBenifits subtitle={""} />
         <Save srcimg={ndlady.src} />
 
         <Faq

@@ -11,6 +11,8 @@ export async function PUT(request) {
 
     const session = await getServerSession(authOptions);
 
+
+    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nv",session,"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nv")
   
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -35,7 +37,7 @@ export async function PUT(request) {
 
     return NextResponse.json(updatedUser, { status: 200 });
 
-  } catch (error:any) {
+  } catch (error) {
     console.error('Update user error:', error);
 
     return NextResponse.json(

@@ -18,19 +18,22 @@ const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
         <div className="bgimg"></div>
 
         {/* FAQ title with a border and text styling */}
-        <h3 className='text-2xl border-b-8 border-S-Orange leading-none font-bold'>FAQ's</h3>
+        <h3 className='text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1 !mb-[3vh]'>FAQ&apos;s</h3>
         
         {/* Main title with dynamic coloring */}
-        <h3 className='text-center text-2xl 2xl:text-2xl font-bold py-6' lang="en">
+        <h3 className='text-center text-2xl 2xl:text-5xl  font-bold text-Text1 !mb-[3vh]' lang="en">
           Frequently <span className='text-P-Green1'> Asked</span> Questions
         </h3>
         
         {/* Description paragraph */}
-        <p className='text-lg max-w-[40rem] text-center mb-2'>{description}</p>
+        <p className='text-lg max-w-[40rem] text-center mb-2 text-Text2'>{description}</p>
 
         {/* Rendering FAQ components with questions and answers passed as props */}
         <div className="ques ">
-          <Faqcomp question={question1} ans={ans1} />
+          
+          <Faqcomp 
+          
+          question={question1} ans={ans1} />
         </div>
       </div>
     </div>

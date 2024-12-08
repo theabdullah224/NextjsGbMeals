@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import  { Schema, model, models } from "mongoose";
 
 export interface IUser {
   name: string;
@@ -17,7 +17,7 @@ export interface IUser {
   stripeCustomerId: string;
   stripeSubscriptionId: string;
   planType: string;
-  status: String;
+  status: string;
   currentPeriodEnd: Date;
   hasUsedFreePlan: boolean;
 
@@ -34,16 +34,16 @@ const userSchema = new Schema<IUser>({
   foodAllergies: { type: [String] },
   dislikes: { type: [String] },
   mealPerDay: { type: String },
-  days: { type: String },
+  days: { type: String , default:"6"},
   verificationCode: { type: String },
   verificationCodeExpiry: { type: Date },
 
-  stripeCustomerId: { type: String },
-  stripeSubscriptionId: { type: String },
-  planType: { type: String },
-  status: { type: String },
+  stripeCustomerId: { type: String, default: "" },
+  stripeSubscriptionId: { type: String, default: "" },
+  planType: { type: String, default: "inactive" },
+  status: { type: String, default: "inactive" },
   currentPeriodEnd: { type: Date },
-  hasUsedFreePlan: { type: Boolean, default: true },
+  hasUsedFreePlan: { type: Boolean, default: false },
 
   createdAt: { type: String, default: () => new Date().toISOString() },
 });

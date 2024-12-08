@@ -48,6 +48,8 @@ const ShowPdf = () => {
   
           if (!response.ok) throw new Error(data.message);
   
+
+            console.log(data.pdfs)
           setPdfs(data.pdfs);
           // setName(session.user.name || '');
         } catch (err: any) {
@@ -100,7 +102,7 @@ const ShowPdf = () => {
   };
 
   if (loading) {
-    return <div className="flex justify-center p-8">Loading...</div>;
+    return <div className="flex justify-center p-8 text-Text1">Loading...</div>;
   }
 
   if (error) {
@@ -127,26 +129,26 @@ const ShowPdf = () => {
                 Meal Plan & Shopping List
               </p>
               <p className="text-xs sm:text-sm text-gray-500">
-                {new Date(pdf.created_at).toLocaleDateString()}
+                {new Date(pdf.createdAt).toLocaleDateString()}
               </p>
             </div>
           </div>
-          <div className="flex space-x-2 w-full md:w-auto justify-end mt-2 sm:mt-0">
+          <div className="flex   space-x-2 w-full md:w-auto justify-end mt-2 sm:mt-0">
             <button
               onClick={() => handlePdfClick(pdf.mealPlanUrl)}
-              className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out"
+              className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out flex items-center justify-center"
             >
               View Meal Plan
             </button>
             <button
               onClick={() => handlePdfClick(pdf.shoppingListUrl)}
-              className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out"
+              className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out flex items-center justify-center"
             >
               View Shopping List
             </button>
             <button
               onClick={() => handleDelete(pdf.id)}
-              className="flex-1 sm:flex-none px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition duration-150 ease-in-out"
+              className="flex-1 sm:flex-none px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition duration-150 ease-in-out flex items-center justify-center"
             >
               <Trash2 className="h-4 w-4" />
             </button>

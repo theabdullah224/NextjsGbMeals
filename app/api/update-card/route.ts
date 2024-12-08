@@ -65,8 +65,8 @@ export async function POST(req: NextRequest) {
             payment_method_types: ['card'],
             mode: 'setup',
             customer: customer.id,
-            success_url: 'http://localhost:3000/', 
-            cancel_url: 'http://localhost:3000/', 
+            success_url: 'https://www.gbmeals.com/myaccount', 
+            cancel_url: 'https://www.gbmeals.com', 
         });
 
         return NextResponse.json({

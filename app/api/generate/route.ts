@@ -24,7 +24,9 @@ function parseMealPlanToHtml(jsonResponse: string): string {
     const data = JSON.parse(jsonResponse);
 
     // Start building the HTML content
-    let htmlOutput = '<div class="maindiv">';
+    let htmlOutput = `
+     <h1>Meal Plan</h1>
+    <div class="maindiv">`;
 
     // Loop through each day in the meal plan
     for (const day of data.mealPlan) {
@@ -55,14 +57,14 @@ function parseMealPlanToHtml(jsonResponse: string): string {
                             </div>
                             <table class="timetable">
                                 <thead>
-                                    <tr>
+                                    <tr class="color:white;">
                                         <th>Prep</th>
                                         <th>Cook</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr >
                                         <td>${meal.mainDish.prepTime}</td>
                                         <td>${meal.mainDish.cookTime}</td>
                                         <td>${meal.mainDish.totalTime}</td>
@@ -73,7 +75,7 @@ function parseMealPlanToHtml(jsonResponse: string): string {
                                 <h5>Nutritional Information</h5>
                                 <table class="nutritable">
                                     <thead>
-                                        <tr>
+                                        <tr class="color:white;">
                                             <th></th>
                                             <th>Main</th>
                                             <th>Side</th>
@@ -143,6 +145,7 @@ function parseMealPlanToHtml(jsonResponse: string): string {
     // Add the shopping list section
     htmlOutput += `
             <h1>Weekly Shopping List</h1>
+            <h1 style="margin-bottom:10px;">Weekly Shopping List</h1>
             <div class="container22">
         `;
 
@@ -177,13 +180,16 @@ function parseMealPlanToHtml(jsonResponse: string): string {
 }
 
 const styleData = `
+html {
+  -webkit-print-color-adjust: exact;
+}
 body {font-family: Arial, sans-serif;background-color: #fff;color: #333;margin: 0;padding: 20px;}
-.trblock{border-bottom: 2px solid #e5e7eb;}
-h1{text-align: center; color: #2d3748; font-size: 24px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.1em;}
+.trblock{page-break-inside: avoid;border-bottom: 2px solid #e5e7eb;}
+h1{text-align: center; color: #2d3748; font-size: 24px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.1em;}
 .maindiv{width: 100%; margin: 0 auto; padding: 15px; box-sizing: border-box;}
-.firsttable{page-break-after: always; width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; margin-bottom: 40px;}
+.firsttable{   page-break-after: always; width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; margin-bottom: 40px;}
 .firsttable thead tr th{
-    width: 33.33%; background-color: #738065; color: white; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px 12px; font-size: 14px; border-right: 1px solid rgba(255, 255, 255, 0.2);
+    width: 33.33%; background-color: #738065 !important; color: white; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px 12px; font-size: 12px; border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .firsttable tbody tr td {
   border-bottom: 2px solid #e5e7eb;
@@ -192,34 +198,35 @@ h1{text-align: center; color: #2d3748; font-size: 24px; margin-bottom: 20px; tex
 .firstcolumndiv{background-color: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
 .meal{font-size: 13px; color: #313131; font-weight: 600; display: block; margin-bottom: 4px;}
 .maindish{font-size: 16px; font-weight: 600; color: #313131; margin: 8px 0 4px 0;}
-.sidedish{font-size: 14px; font-weight: 500; color: #666; font-style: italic; margin: 4px 0 8px 0;}
-.timetable{width: 100%; margin: 16px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
-.timetable thead tr th{background-color: #A6AE9D; color: #313131; font-size: 14px; padding: 8px; border: 1px solid #d1d5db; width: 33%;}
-.timetable tbody tr td{font-size: 14px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
-h5{font-size: 14px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; background-color: #f3f4f6; padding: 8px; border-radius: 6px;}
-.nutritable{width: 100%; margin: 8px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
-.nutritable thead tr th{background-color: #A6AE9D; color: #313131; font-size: 14px; padding: 8px; border: 1px solid #d1d5db; width: 25%;}
-.nutritable tbody tr td{font-size: 14px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
+.sidedish{font-size: 12px; font-weight: 500; color: #666; font-style: italic; margin: 4px 0 8px 0;}
+.timetable{ overflow: hidden; width: 100%;  margin: 16px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
+.timetable thead tr th{background-color: #A6AE9D; color: #ffffff; font-size: 10px; padding: 8px; border: 1px solid #d1d5db; width: 33%;}
+.timetable tbody tr td{font-size: 12px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
+h5{font-size: 12px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; background-color: #f3f4f6; padding: 8px; border-radius: 6px;}
+.nutritable{ overflow: hidden; width: 100%; margin: 8px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
+.nutritable thead tr th{background-color: #A6AE9D; color: #ffffff; font-size: 10px; padding: 8px; border: 1px solid #d1d5db; width: 25%;}
+.nutritable tbody tr td{font-size: 12px;  text-align: center; padding: 8px; border: 1px solid #d1d5db;}
 .secondcolumn{padding: 20px 16px; border-right: 2px solid #e5e7eb; background-color: white; font-size: 13px; vertical-align: top;}
 .secondcolumn div{background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
-.secondcolumn h6{margin: 0 0 12px 0; font-size: 14px; color: #313131; font-weight: 600;}
+.secondcolumn h6{margin: 0 0 12px 0; font-size: 12px; color: #313131; font-weight: 600;}
 .secondcolumn ol{padding-left: 20px; color: #4a5568; margin: 0;}
-.secondcolumn li {margin-bottom: 8px; font-size: 14px;}
-.secondcolumn p{color: #4a5568; line-height: 1.6; margin: 0; font-size: 14px;}
+.secondcolumn li {margin-bottom: 8px; font-size: 12px;}
+.secondcolumn p{color: #4a5568; line-height: 1.6; margin: 0; font-size: 12px;}
 .container22 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     max-width: 900px;
     margin: 0 auto;
-    justify-content: space-between;
+     justify-content: flex-start; /* Align all columns to the top */
+    align-items: flex-start;
 }
 .column22 {
     flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
     padding: 15px;
 }
-.category22 {margin-bottom: 20px;}
+.category22 {  margin-bottom: 20px; height: fit-content;}
 .category22 span {font-size: 1.3rem;color: #333;font-weight: bold;margin: 0 0 10px;width: fit-content;}
 .category22 ul {
     list-style-type: disc;
@@ -234,11 +241,12 @@ h5{font-size: 14px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; back
 
 export async function POST(request: Request) {
   const data = await request.json();
-  const session = await getServerSession(authOptions);
 
-  const { days, prefMeal, mealPerDay, persons, totalCalories, foodAllergies, dislikes, id } = data;
+  const days = 6;
+  const {  prefMeal, mealPerDay, persons, totalCalories, foodAllergies, dislikes, id } = data;
 
   const prompt = `
+  Only use english no other language
   MOST IMPORTANT: MUST PROVIDE THE COMPLETE MEAL PLAN ACCORDING TO ${days}
   never give meal plan less than the ${days} days.
   
@@ -345,6 +353,7 @@ export async function POST(request: Request) {
   }
 `;
 
+
   try {
     const completion = await openai.chat.completions.create({
       messages: [
@@ -366,7 +375,7 @@ export async function POST(request: Request) {
         },
       ],
 
-      model: "gpt-4o-mini",
+      model: "gpt-4o",
     });
     const responseContent = completion.choices[0]?.message?.content;
 
@@ -383,10 +392,10 @@ export async function POST(request: Request) {
     const mealPlanHtml = parseMealPlanToHtml(cleanedContent);
     const cleanedResponse = mealPlanHtml.replace(/\\n/g, "");
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless:false});
 
     const page = await browser.newPage();
-
+    const currentDate = new Date().toLocaleDateString();
     function generateMealPlanHTML(cleanedResponse: any) {
       return `
         <!DOCTYPE html>
@@ -402,7 +411,10 @@ export async function POST(request: Request) {
         <img src="https://www.gbmeals.com/static/media/logo2.2cc494b3c43bf1131ac7.png" 
         alt="Logo" 
         style="display: block; margin: 10px auto; width: 100px; height: auto;" />
+       
         ${cleanedResponse}
+
+       
         </body>
         </html>
         `;
@@ -418,10 +430,26 @@ export async function POST(request: Request) {
     const mealPlanHTML = generateMealPlanHTML(part2Response);
 
     await page.setContent(mealPlanHTML, { waitUntil: "networkidle0" });
-    const mealPlanPDF = await page.pdf({ format: "A4" });
+    const mealPlanPDF = await await page.pdf({
+      format: "A4",
+      margin: {
+        top: '10mm',
+        right: '2mm',
+        bottom: '10mm',
+        left: '2mm'
+      }
+    });
 
     await page.setContent(shopingListHTML, { waitUntil: "networkidle0" });
-    const shoppingListPDF = await page.pdf({ format: "A4" });
+    const shoppingListPDF = await await page.pdf({
+      format: "A4",
+      margin: {
+        top: '10mm',
+        right: '2mm',
+        bottom: '10mm',
+        left: '2mm'
+      }
+    });
 
     await browser.close();
     //@ts-ignore

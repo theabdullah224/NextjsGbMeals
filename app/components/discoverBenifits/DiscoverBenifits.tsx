@@ -21,9 +21,6 @@ const DiscoverBenefits: React.FC<DiscoverBenefitsProps> = ({ subtitle }) => {
  
 
   // Function to handle the "Learn More" button click, navigates to the learn more page
-  const handleLearnMoreClick = () => {
-    router.push('/tryfreefor30-days#faqs');
-  };
 
   // Function to handle the "Sign Up" button click, navigates to the signup page
   const handleSignUpClick = () => {
@@ -33,11 +30,11 @@ const DiscoverBenefits: React.FC<DiscoverBenefitsProps> = ({ subtitle }) => {
   return (
     <div className='DiscoverBenifits py-8 md:py-[10rem]'>
       {/* Subtitle section with a border and text styling */}
-      <h3 className='text-2xl border-b-8 text-Text1 border-S-Orange leading-none font-bold'>
+      <h3 className='text-2xl border-b-8 text-Text1 border-S-Orange leading-none font-bold mb-[3vh]'>
         {subtitle} Sustainable
       </h3>
       {/* Main title with dynamic coloring */}
-      <h2 className='text-2xl text-center 2xl:text-5xl font-bold sm:text-left sm:text-center'>
+      <h2 className='text-2xl text-center 2xl:text-5xl font-bold sm:text-center text-Text1'>
         Reduce <span style={{ color: '#738065' }}>Food Waste</span> With Meal Planning
       </h2>
       {/* Description paragraph */}

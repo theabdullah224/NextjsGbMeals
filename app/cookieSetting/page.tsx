@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
@@ -20,10 +21,10 @@ export default function page () {
     }
   }, []);
 
-  const handleToggle = (category:any) => {
+  const handleToggle = (category) => {
     setPreferences(prev => ({
       ...prev,
-      //@ts-ignore
+     
       [category]: { ...prev[category], enabled: !prev[category].enabled }
     }));
   };
@@ -49,10 +50,10 @@ export default function page () {
     <>
     <Navbar/>
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-6">Cookie Preferences</h1>
+      <h1 className="text-3xl font-bold mb-6 text-Text1">Cookie Preferences</h1>
       
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-2">About Cookies</h2>
+        <h2 className="text-xl font-semibold mb-2 text-Text1">About Cookies</h2>
         <p className="text-gray-600 mb-4">
           Cookies are small pieces of data stored on your device to enhance your browsing experience.
           We use cookies to remember your preferences, analyze site usage, and assist in our marketing efforts. 
@@ -61,12 +62,12 @@ export default function page () {
       </div>
 
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Manage Cookie Preferences</h2>
+        <h2 className="text-xl font-semibold mb-4 text-Text1" >Manage Cookie Preferences</h2>
         <div className="space-y-6">
           {Object.entries(preferences).map(([key, { enabled, description }]) => (
             <div key={key} className="flex flex-col sm:flex-row sm:items-center justify-between">
               <div className="mb-2 sm:mb-0 sm:mr-4">
-                <h3 className="text-lg font-medium capitalize">{key} Cookies</h3>
+                <h3 className="text-lg font-medium capitalize text-Text1"  >{key} Cookies</h3>
                 <p className="text-sm text-gray-600">{description}</p>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
@@ -91,7 +92,7 @@ export default function page () {
       </div>
 
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-2">More Information</h2>
+        <h2 className="text-xl font-semibold mb-2 text-Text1">More Information</h2>
         <p className="text-gray-600 mb-4">
           We use different types of cookies to optimize your experience on our website. You can consent to the use of such technologies by clicking on "Save Preferences". 
         </p>

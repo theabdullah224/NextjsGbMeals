@@ -36,6 +36,9 @@ export default {
         'Text2': '#606060',
         
       },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
     },
   },
   plugins: [],

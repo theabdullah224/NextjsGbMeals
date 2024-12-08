@@ -28,12 +28,14 @@ export async function POST(req: NextRequest) {
                 { status: 404 }
             );
         }
-        if (['pro', 'Ultra pro'].includes(user.planType)) {
+        if (['pro', 'ultra pro'].includes(user.planType)) {
             return NextResponse.json(
                 { error: 'Please cancel your plan before deleting the card' },
                 { status: 400 }
             );
         }
+
+        
         const customers = await stripe.customers.list({ email });
 
         if (customers.data.length === 0) {

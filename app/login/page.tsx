@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { signIn, useSession } from "next-auth/react"; // Import signIn from NextAuth
@@ -42,6 +43,7 @@ export default function page() {
       }
        else {
         // Redirect to dashboard or desired page
+        
         router.push("/myAccount");
       }
       // if (session?.user?.role === "admin") {

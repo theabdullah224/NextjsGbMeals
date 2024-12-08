@@ -23,7 +23,8 @@ export async function POST(request: Request) {
 
 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.mailtrap.io', 
+        host: process.env.SMTP_SERVER, 
+        port: 465,
       auth: {
         user: process.env.MAIL_USERNAME,
         pass: process.env.MAIL_PASSWORD,  

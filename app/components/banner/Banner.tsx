@@ -66,7 +66,7 @@ const page = () => {
         <h2 className="text-2xl 2xl:text-5xl font-bold text-Text1 mb-6 mt-6">
           Transform <span className="text-P-Green1"> Your Health</span> with Our Meal Planner
         </h2>
-        <h3 className="text-xl capitalize border-b-8 text-Text1 border-S-Orange leading-none font-bold inline-block">
+        <h3 className="text-xl capitalize border-b-8 text-Text1 border-S-Orange leading-none font-bold inline-block !mb-[3vh]">
           A meal planner for you
         </h3>
         <p className="text-lg mb-6 capitalize text-Text2">

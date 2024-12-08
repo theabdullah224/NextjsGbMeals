@@ -82,6 +82,8 @@
     height: fit-content;
     width: fit-content;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin-top: 7vh;
 }
@@ -89,6 +91,7 @@
 .col1 {
     height: 333px; 
     width: 406px;
+ 
     background-color: #f6f7f5;
     color: white;
     display: flex;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-
+import './faqcomp.css'
 // Define types for FAQItem props
 interface FAQItemProps {
   question: string;
@@ -15,44 +15,34 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    // <div className="mb-4 bg-white py-6 max-w-[45rem] rounded-lg shadow-sm overflow-hidden  ">
-    //   <button className="w-full text-left p-4 flex items-center justify-between" onClick={() => setIsOpen(!isOpen)}>
-    //     <h5 className="text-lg my-auto font-medium text-gray-800">{question}</h5>
-    //     <div className="p-[8px] flex items-center justify-center rounded-md bg-orange-400 text-white">
-    //       <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} className="text-lg" />
-    //     </div>
-    //   </button>
-    //   <div className={`overflow-hidden transition-max-height duration-300 ease-in-out ${isOpen ? "max-h-96" : "max-h-0"}`}>
-    //     <div className="p-4 pt-0">
-    //       <p className="text-gray-700 pr-16 text-justify leading-relaxed">{answer}</p>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="mb-4 bg-white py-4 sm:py-6 max-w-full md:max-w-[45rem] rounded-lg shadow-sm overflow-hidden ">
-  <button
-    className="w-full text-left p-3 sm:p-4 flex items-center justify-between"
-    onClick={() => setIsOpen(!isOpen)}
-  >
-    <h5 className="text-sm sm:text-base lg:text-lg my-auto font-medium text-gray-800">
-      {question}
-    </h5>
-    <div className="p-2 sm:p-[8px] flex items-center justify-center rounded-md bg-orange-400 text-white">
-      <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} className="text-sm sm:text-lg" />
+  
+    <div className="mb-4  bg-white py-6 max-w-[45rem]   rounded-lg shadow-sm overflow-hidden ">
+      <button
+        className="w-full text-left p-3 sm:p-4 flex items-center justify-between"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h5 className="text-sm sm:text-base lg:text-lg my-auto font-medium text-gray-800">
+          {question}
+        </h5>
+        <div className="p-[8px] flex items-center justify-center rounded-md bg-orange-400 text-white">
+          <FontAwesomeIcon
+            icon={isOpen ? faMinus : faPlus}
+            className="text-sm sm:text-lg"
+          />
+        </div>
+      </button>
+      <div
+        className={`overflow-hidden transition-max-height duration-300 ease-in-out ${
+          isOpen ? "max-h-96" : "max-h-0"
+        }`}
+      >
+        <div className="p-3 sm:p-4 pt-0">
+          <p className="text-sm sm:text-base text-gray-700 pr-4 sm:pr-16 text-justify leading-relaxed">
+            {answer}
+          </p>
+        </div>
+      </div>
     </div>
-  </button>
-  <div
-    className={`overflow-hidden transition-max-height duration-300 ease-in-out ${
-      isOpen ? "max-h-96" : "max-h-0"
-    }`}
-  >
-    <div className="p-3 sm:p-4 pt-0">
-      <p className="text-sm sm:text-base text-gray-700 pr-4 sm:pr-16 text-justify leading-relaxed">
-        {answer}
-      </p>
-    </div>
-  </div>
-</div>
-
   );
 };
 
@@ -81,11 +71,14 @@ const FAQComp: React.FC = () => {
     },
     {
       question: "How much does gbmeals cost?",
-      answer: "You can subscribe to our service for £6.99 per month or take advantage of our annual subscription for £69. You can cancel your subscription at any time.",
+      answer:
+        "You can subscribe to our service for £6.99 per month or take advantage of our annual subscription for £59. You can cancel your subscription at any time.",
     },
     {
-      question: "Can I customize my meal plan according to my dietary restrictions?",
-      answer: "Yes! Our meal plans are highly customizable. We take into account individual dietary needs, preferences, and health goals to create a meal plan that’s just right for you.",
+      question:
+        "Can I customize my meal plan according to my dietary restrictions?",
+      answer:
+        "Yes! Our meal plans are highly customizable. We take into account individual dietary needs, preferences, and health goals to create a meal plan that’s just right for you.",
     },
     {
       question: "Why should I cook my own meals?",
@@ -93,13 +86,15 @@ const FAQComp: React.FC = () => {
         "Cooking your own meals gives you control over ingredients and portion sizes, promoting a healthier diet. It also reduces your intake of unhealthy fats, sugars, and sodium. Regular home cooking is associated with a lower risk of chronic diseases and can enhance mental well-being.",
     },
     {
-      question: "What makes gbmeals different from other meal planning services?",
+      question:
+        "What makes gbmeals different from other meal planning services?",
       answer:
         "Unlike many other services, gbmeals focuses on sustainable, long-term lifestyle changes rather than quick fixes. We emphasize the development of cooking skills and personalized nutrition, ensuring our plans not only meet your dietary needs but also help you establish lifelong healthy eating habits.",
     },
     {
       question: "How can following a meal plan from gbmeals benefit my health?",
-      answer: "Our meal plans encourage a balanced diet and include a wide range of foods, ensuring you get all the necessary nutrients. This can prevent nutrient deficiencies, promote long-term health, and support weight management.",
+      answer:
+        "Our meal plans encourage a balanced diet and include a wide range of foods, ensuring you get all the necessary nutrients. This can prevent nutrient deficiencies, promote long-term health, and support weight management.",
     },
     {
       question: "What is the vision of gbmeals?",
@@ -109,51 +104,39 @@ const FAQComp: React.FC = () => {
   ];
 
   return (
-    // <section className="relative h-fit py-12 bg-[#f7f7f6] rounded-3xl w-[100rem]   overflow-hidden   bg">
-    //   <Image src="/Resource/Vector (1).svg" alt="" width={10} height={100}  className="absolute -z-1 top-0 left-[35%] w-fit" />
-    //   <Image src="/Resource/Lines group.svg" alt=""  width={10} height={10} className="absolute top-4 -z-1 left-2 w-28 z-10" />
-    //   <div className="container relative mx-auto px-4 z-50 ">
-    //     <div className="flex items-center justify-center flex-wrap w-full gap-6">
-    //       {faqData.map((item, index) => (
-    //         <FAQItem key={index} question={item.question} answer={item.answer} />
-    //       ))}
-    //     </div>
-    //   </div>
-    // </section>
 
-    <section className="relative h-fit py-8 sm:py-12 bg-[#f7f7f6] rounded-3xl w-[100rem] overflow-hidden ">
-    {/* Background Vector Image */}
-    <Image
-      src="/Resource/Vector (1).svg"
-      alt=""
-      width={500} // Dynamic scaling for responsiveness
-      height={500}
-      className="absolute -z-1 top-0 left-1/2 transform -translate-x-1/2 sm:left-[35%] sm:w-[300px] md:w-[400px] lg:w-fit"
-    />
-  
-    {/* Decorative Lines Image */}
-    <Image
-      src="/Resource/Lines group.svg"
-      alt=""
-      width={100}
-      height={100}
-      className="absolute top-4 left-4 w-12 sm:w-16 md:w-24 lg:w-28 -z-1"
-    />
-  
-    <div className="container relative mx-auto px-4 sm:px-6 lg:px-12 z-50">
-      <div className="flex flex-col md:flex-row items-center justify-center flex-wrap w-full gap-4 sm:gap-6">
-        {faqData.map((item, index) => (
-          <FAQItem key={index} question={item.question} answer={item.answer} />
-        ))}
+
+    <section className="relative h-fit  py-8 sm:py-12 bg-[#f7f7f6] rounded-3xl   overflow-hidden ">
+      {/* Background Vector Image */}
+      <Image
+        src="/Resource/Vector (1).svg"
+        alt=""
+        width={500} // Dynamic scaling for responsiveness
+        height={500}
+        className="absolute -z-1 top-0 left-1/2 transform -translate-x-1/2 sm:left-[35%] sm:w-[300px] md:w-[400px] lg:w-fit"
+      />
+
+      {/* Decorative Lines Image */}
+      <Image
+        src="/Resource/Lines group.svg"
+        alt=""
+        width={100}
+        height={100}
+        className="absolute top-4 left-4 w-12 sm:w-16 md:w-24 lg:w-28 -z-1"
+      />
+
+      <div className="    relative  mx-auto px-4 z-50 ">
+        <div className="flex items-center justify-center flex-wrap  w-full  gap-6">
+          {faqData.map((item, index) => (
+            <FAQItem
+              key={index}
+              question={item.question}
+              answer={item.answer}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-  
-
-
-
-  
-  
+    </section>
   );
 };
 

@@ -40,10 +40,7 @@ const SaveMoney: React.FC<CookProps> = (props) => {
 
   const router = useRouter();
 
-  const handleLearnMoreClick = () => {
-    router.push('/tryfreefor30-days#faqs');
-  };
-
+ 
   const handleSignUpClick = () => {
     router.push("/plans#form");
   };
@@ -53,7 +50,7 @@ const SaveMoney: React.FC<CookProps> = (props) => {
     <div className="savemoney">
       <div className="left-content-2" style={{ order: `${props.orderleft}` }}>
         <div className="contentsave">
-          <p className="inline-block mb-8 text-2xl border-b-8 border-S-Orange leading-none font-bold ">{props.subtitle}</p>
+          <p className="inline-block mb-8 text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1 ">{props.subtitle}</p>
           <h3 className="txt-1savemoney text-2xl 2xl:text-5xl font-bold text-Text1">
             {props.bspecialtext}
             <span className="specialtxt text-P-Green1">{props.specialtext}</span>

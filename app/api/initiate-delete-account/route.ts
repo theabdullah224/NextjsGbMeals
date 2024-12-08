@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
     user.verificationCodeExpiry = expiry;
     await user.save();
     const transporter = nodemailer.createTransport({
-       host: 'smtp.mailtrap.io', 
+       host: process.env.SMTP_SERVER, 
+       port:465,
       auth: {
         user: process.env.MAIL_USERNAME,
         pass: process.env.MAIL_PASSWORD,
@@ -49,7 +50,7 @@ export async function POST(request: NextRequest) {
     });
 
     const mailOptions = {
-      from: process.env.MAIL_FROM_ADDRESS,
+      from: process.env.MAIL_USERNAME,
       to: email,
       subject: "Account Deletion Verification Code",
       text: `Your verification code to delete your account is ${verificationCode}. The code will expire in 10 minutes.`,

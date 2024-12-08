@@ -1,23 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import "./SaveMoney.css";
 import Favicon from "../../../public/Resource/favicon.png";
 // import { useNavigate } from "react-router-dom";
 // import useStore from './Store';
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import workinglady from "../public/Resource/workinglady.jpg";
 import { useSession } from "next-auth/react";
 
-function SaveMoney(props: any) {
+function SaveMoney(props) {
   const { data: session } = useSession();
   
 
   const router = useRouter();
 
-  const handleLearnMoreClick = () => {
-    router.push("/tryfreefor30-days#faqs");
-  };
 
   const handleSignUpClick = () => {
     router.push("/plans");
@@ -28,7 +24,7 @@ function SaveMoney(props: any) {
     <div className="savemoney">
       <div className="left-content-2" style={{ order: `${props.orderleft}` }}>
         <div className="contentsave">
-          <p className="inline-block mb-8 text-2xl border-b-8 border-S-Orange leading-none font-bold ">{props.subtitle}</p>
+          <p className="inline-block mb-8 text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1">{props.subtitle}</p>
           <h3 className="txt-1savemoney text-2xl 2xl:text-5xl font-bold text-Text1">
             {props.bspecialtext}
             <span className="specialtxt text-P-Green1">{props.specialtext}</span>
@@ -37,15 +33,15 @@ function SaveMoney(props: any) {
           <p className="p-txtsavemoney text-lg text-Text2">{props.description}</p>
         </div>
 
-        <div className="mainsave  ">
-          <div className="leftsave " style={{ display: `${props.display}` }}>
+        <div className="mainsave  w-full ">
+          <div className="leftsave  w-1/2" style={{ display: `${props.display}` }}>
             <h5 className="fancy1leftsavemoney mb-4 text-xl font-bold text-Text1">{props.leftfancy}</h5>
             <p className="p-txtbottom text-lg text-Text2 ">{props.descleft}</p>
           </div>
 
           <div className="border-r-2 border-P-Green2 ml-2 mr-8"></div>
 
-          <div className="leftsave w-fit" style={{ display: `${props.display}` }}>
+          <div className="leftsave w-1/2" style={{ display: `${props.display}` }}>
             <h5 className="fancy1leftsavemoney mb-4 text-xl font-bold text-Text1">{props.rightfancy}</h5>
             <p className="p-txtbottom w-fit text-lg text-Text2">{props.righdesc}</p>
           </div>

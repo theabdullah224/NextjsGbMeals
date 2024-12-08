@@ -1,7 +1,7 @@
 import React from 'react'; // Importing React
 import "./cook.css"; // Importing the stylesheet for this component
 import Favicon from "../../../public/Resource/favicon.png"; // Importing the favicon image
-import gb from "./Resource/gb.png"; // Importing an image (though it's not used in this code)
+
 import Image from 'next/image';
 
 function Cook(props:any) {
@@ -12,7 +12,7 @@ function Cook(props:any) {
         <div className="left-contentcook">
             <div className="contentcook">
                 {/* Subtitle with custom styles */}
-                <p className='fancycook text-2xl border-b-8 border-S-Orange leading-none font-bold '>{props.subtitle}</p>
+                <p className='fancycook text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1 '>{props.subtitle}</p>
                 {/* Title with special text highlighting */}
                 <h3 className='txt-1cook text-2xl 2xl:text-5xl font-bold text-Text1' lang="en">
                   Simplify <span className='specialtxt text-P-Green1'> Your Life</span> With Our Convenient And 

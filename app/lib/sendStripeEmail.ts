@@ -1,25 +1,25 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.mailtrap.io', 
-  port: 587,  
+  host: process.env.SMTP_SERVER, 
+  port: 465,  
   auth: {
     user: process.env.MAIL_USERNAME,  
     pass: process.env.MAIL_PASSWORD,  
   },
 });
 
-export const sendStripeEmail = async (email: string , planType:any , name:string) => {
+export const sendStripeEmail = async (email: string, planType, subscriptionStatus: string) => {
     console.log(email , planType)
   const mailOptions = {
     from: process.env.MAIL_FROM_ADDRESS,  
     to:email,
     subject: "Active subscription",
-    text: `  Hello ${name},
+    text: `  Hello!,
 
-        Welcome to GBMeals, and thank you for subscribing to our ${planType.capitalize()} Plan!
+        Welcome to GBMeals, and thank you for subscribing to our ${planType} Plan!
 
-        With your ${planType.capitalize()} Plan, you'll have access to personalized meal plans tailored to your preferences. 
+        With your ${planType} Plan, you'll have access to personalized meal plans tailored to your preferences. 
         Start planning your meals today and enjoy delicious, healthy meals made just for you.
 
         If you have any questions, feel free to contact our support team.
