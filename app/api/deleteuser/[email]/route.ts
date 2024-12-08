@@ -6,8 +6,13 @@ import { connectMongoDB } from '@/app/lib/dbConnection';
 import User from '../../models/UserModel';
 
 
-export async function DELETE(req: Request, { params }: { params: { email: string } }) {
-  const { email } = params;
+export async function DELETE(req: Request) {
+  const url = new URL(req.url); // Parse the request URL
+  const email = url.pathname.split('/').pop(); // Extract "email" from the path
+
+  if (!email) {
+    return new Response('Email not provided', { status: 400 });
+  }
 
   try {
     await connectMongoDB(); 
