@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // app/api/confirm-delete-account/route.ts
 import { NextResponse } from 'next/server';

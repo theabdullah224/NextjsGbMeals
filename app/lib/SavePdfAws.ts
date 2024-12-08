@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { DateTime } from "luxon";
@@ -44,6 +46,7 @@ export const SavePdfAws = async (id: string, mealPlanPDF: any, shoppingListPDF: 
     const shoppingListUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${shoppingListKey}`;
 
     connectMongoDB();
+    // @ts-ignore
     const pdfRecord = await PDFRecord.create({
       userId: id,
       mealPlanUrl: mealPlanUrl,
