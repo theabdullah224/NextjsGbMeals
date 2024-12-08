@@ -18,7 +18,14 @@ function page() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   // @ts-ignore
-  const token = localStorage.getItem('delAccToken')
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // This will only run on the client side
+    const storedToken = localStorage.getItem('delAccToken');
+    setToken(storedToken);
+  }, []);
+  
 
   const handleVerifyCode = async () => {
     setLoading(true);
