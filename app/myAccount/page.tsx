@@ -18,6 +18,7 @@ import ContactUsPage from "../components/contactPageUser/ContactUsPage";
 import Pref from "../pref/Pref";
 import Temp from "../components/temp/Temp";
 import CopyRight from "../components/copyRight/copyRight";
+import useSWR from "swr";
 
 export default function page() {
   const { data: session } = useSession();
@@ -114,14 +115,14 @@ export default function page() {
     
     
         // @ts-ignore
-        setName(userData?.name);
+        setName(userData?.name );
         
  
         
       } 
       if(isEmailEditable != true){
         // @ts-ignore
-      setemail(userData.email);
+      setemail(userData.email );
 
     }
     }, [email, name, userData, session, isEditable, isEmailEditable]); 
