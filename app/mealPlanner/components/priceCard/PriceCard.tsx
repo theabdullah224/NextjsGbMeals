@@ -162,15 +162,21 @@ const PriceCard: React.FC = () => {
 <button
                     onClick={() => handleButtonClick(card.planType)}
                     className={`w-full py-2 px-4 rounded-lg flex items-center justify-center text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base ${
-                      userData?.planType === card.planType
+                      userData?.
+                      // @ts-ignore
+                      planType === card.planType
                         ? "bg-P-Green1"
                         : "bg-P-Green1"
                     }`}
-                    disabled={userData?.planType === card.planType}
+                    disabled={userData?.
+                      // @ts-ignore
+                      planType === card.planType}
                   >
                     {loadingCard === card.planType
                       ? "Loading..."
-                      : userData?.planType === card.planType
+                      : userData?.
+                      // @ts-ignore
+                      planType === card.planType
                       ? "Subscribed"
                       : "Upgrade"}
                   </button>
