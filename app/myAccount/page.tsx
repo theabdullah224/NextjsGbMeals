@@ -115,14 +115,14 @@ export default function page() {
     
     
         // @ts-ignore
-        setName(userData?.name );
+        setName(userData?.name || "loading..." );
         
  
         
       } 
       if(isEmailEditable != true){
         // @ts-ignore
-      setemail(userData.email );
+      setemail(userData.email || "loading..." );
 
     }
     }, [email, name, userData, session, isEditable, isEmailEditable]); 
