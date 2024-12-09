@@ -147,33 +147,63 @@ function parseMealPlanToHtml(jsonResponse: string): string {
 
     // Add the shopping list section
     htmlOutput += `
-            <h1>Weekly Shopping List</h1>
-            <h1 style="margin-bottom:10px;">Weekly Shopping List</h1>
-            <div class="container22">
-        `;
+    <h1>Weekly Shopping List</h1>
+    <h1 style="margin-bottom:10px;">Weekly Shopping List</h1>
+    <div class="container22">
+        <div class="column22">
+`;
 
-    // Loop through the shopping list categories
-    for (const category of data.shoppingList) {
-      htmlOutput += `
-                <div class="column22">
-                    <div class="category22">
-                        <span>${category.category}</span>
-                        <ul>
-            `;
+// Divide categories into two columns dynamically
+const middleIndex = Math.ceil(data.shoppingList.length / 2); // Split the data into two halves
+const leftColumn = data.shoppingList.slice(0, middleIndex); // First half
+const rightColumn = data.shoppingList.slice(middleIndex); // Second half
 
-      // Loop through items in each category
-      for (const item of category.items) {
-        htmlOutput += `<li>${item.name} - ${item.quantity}</li>`;
-      }
+// Loop for the left column
+for (const category of leftColumn) {
+  htmlOutput += `
+            <div class="category22">
+                <h3>${category.category}</h3>
+                <ul>
+  `;
 
-      htmlOutput += `
-                        </ul>
-                    </div>
-                </div>
-            `;
-    }
+  for (const item of category.items) {
+    htmlOutput += `<li>${item.name} - ${item.quantity}</li>`;
+  }
 
-    htmlOutput += "</div></div>"; // Closing tags for container22 and maindiv
+  htmlOutput += `
+                </ul>
+            </div>
+  `;
+}
+
+htmlOutput += `
+        </div>
+        <div class="column22">
+`;
+
+// Loop for the right column
+for (const category of rightColumn) {
+  htmlOutput += `
+            <div class="category22">
+                <h3>${category.category}</h3>
+                <ul>
+  `;
+
+  for (const item of category.items) {
+    htmlOutput += `<li>${item.name} - ${item.quantity}</li>`;
+  }
+
+  htmlOutput += `
+                </ul>
+            </div>
+  `;
+}
+
+htmlOutput += `
+        </div>
+    </div>
+`;
+// Closing tags for container22 and maindiv
 
     return htmlOutput;
   } catch (error) {
@@ -216,30 +246,52 @@ h5{font-size: 12px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; back
 .secondcolumn li {margin-bottom: 8px; font-size: 12px;}
 .secondcolumn p{color: #4a5568; line-height: 1.6; margin: 0; font-size: 12px;}
 .container22 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-     justify-content: flex-start; /* Align all columns to the top */
-    align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 20px; /* Space between columns */
+  max-width: 900px;
+  margin: 0 auto !important;
+  margin-left: 50px  !important;
 }
-.column22 {
-    flex: 1 1 calc(50% - 20px);
-    box-sizing: border-box;
-    padding: 15px;
+
+/* Individual column styling */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between sections */
 }
-.category22 {  margin-bottom: 20px; height: fit-content;}
-.category22 span {font-size: 1.3rem;color: #333;font-weight: bold;margin: 0 0 10px;width: fit-content;}
-.category22 ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin: 0;
+
+/* Section styles */
+.section {
+
+  padding: 10px;
+  /* Light background for better visibility */
+  border-radius: 5px;
 }
-.category22 li {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
+
+/* Section headers */
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
 }
+
+/* List styling */
+.section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.section ul li {
+  margin-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+  .category22 ul li{
+  padding-top: 3px;
+
+}
+
 `;
 
 export async function POST(request: Request) {
@@ -290,9 +342,9 @@ export async function POST(request: Request) {
 
   ### Additional Requirements:
   1. **Shopping List**:
-     - Generate a consolidated weekly shopping list for all ingredients required for the meal plan.
+     - Generate a consolidated weekly shopping list for all ingredients required for the meal plan. while considaring the ${persons} and total meals ${mealPerDay} and total calories ${totalCalories} meal should be for 6 days according to the  ${persons} ,${mealPerDay},${totalCalories};  
      - Categorize the shopping list by item type (e.g., Vegetables, Fruits, Meat, etc.).
-     - Provide weekly quantities for each item in international units (e.g., kg, g, liters).
+     - Provide weekly quantities for each item in international units (e.g., kg, g, liters, never use very small quantity like tbsp only and only use the internation units).
 
   2. **Restrictions**:
      - Avoid the following allergens: ${foodAllergies}.

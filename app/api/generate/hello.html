@@ -1,209 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-         body {font-family: Arial, sans-serif;background-color: #fff;color: #333;margin: 0;padding: 20px;}
-              .trblock{border-bottom: 2px solid #e5e7eb;}
-              h1{text-align: center; color: #2d3748; font-size: 24px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.1em;}
-        .maindiv{width: 100%; margin: 0 auto; padding: 15px; box-sizing: border-box;}
-        .firsttable{page-break-after: always; width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; margin-bottom: 40px;}
-        .firsttable thead tr th{
-            width: 33.33%; background-color: #738065; color: white; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px 12px; font-size: 14px; border-right: 1px solid rgba(255, 255, 255, 0.2);
-        }
-                .firsttable tbody tr td {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+html {
+  -webkit-print-color-adjust: exact;
+}
+body {font-family: Arial, sans-serif;background-color: #fff;color: #333;margin: 0;padding: 20px;}
+.trblock{page-break-inside: avoid;border-bottom: 2px solid #e5e7eb;}
+h1{text-align: center; color: #2d3748; font-size: 24px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.1em;}
+.maindiv{width: 100%; margin: 0 auto; padding: 15px; box-sizing: border-box;}
+.firsttable{   page-break-after: always; width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; margin-bottom: 40px;}
+.firsttable thead tr th{
+    width: 33.33%; background-color: #738065 !important; color: white; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px 12px; font-size: 12px; border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.firsttable tbody tr td {
   border-bottom: 2px solid #e5e7eb;
 }
-        .firstcolumn{padding: 20px 16px; border-right: 2px solid #e5e7eb;  border-left: 2px solid #e5e7eb; background-color: white; font-size: 13px; vertical-align: top;}
-        .firstcolumndiv{background-color: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
-        .meal{font-size: 13px; color: #313131; font-weight: 600; display: block; margin-bottom: 4px;}
-        .maindish{font-size: 16px; font-weight: 600; color: #313131; margin: 8px 0 4px 0;}
-        .sidedish{font-size: 14px; font-weight: 500; color: #666; font-style: italic; margin: 4px 0 8px 0;}
-        .timetable{width: 100%; margin: 16px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
-        .timetable thead tr th{background-color: #A6AE9D; color: #313131; font-size: 14px; padding: 8px; border: 1px solid #d1d5db; width: 33%;}
-        .timetable tbody tr td{font-size: 14px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
-        h5{font-size: 14px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; background-color: #f3f4f6; padding: 8px; border-radius: 6px;}
-        .nutritable{width: 100%; margin: 8px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
-        .nutritable thead tr th{background-color: #A6AE9D; color: #313131; font-size: 14px; padding: 8px; border: 1px solid #d1d5db; width: 25%;}
-        .nutritable tbody tr td{font-size: 14px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
-        .secondcolumn{padding: 20px 16px; border-right: 2px solid #e5e7eb; background-color: white; font-size: 13px; vertical-align: top;}
-        .secondcolumn div{background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
-        .secondcolumn h6{margin: 0 0 12px 0; font-size: 14px; color: #313131; font-weight: 600;}
-        .secondcolumn ol{padding-left: 20px; color: #4a5568; margin: 0;}
-        .secondcolumn li {margin-bottom: 8px; font-size: 14px;}
-        .secondcolumn p{color: #4a5568; line-height: 1.6; margin: 0; font-size: 14px;}
-        .tabletwo{width: 100%; border-collapse: separate; border-spacing: 0; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
-        .tabletwo thead tr th{padding: 16px; text-align: left;  background-color: #738065; color: white; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; width: 20%; border-right: 1px solid rgba(255, 255, 255, 0.2);}
-        .tabletwo tbody tr td{padding: 15px;}
-        .tablethree{width: 100%; border-collapse: collapse; background-color: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
-        .tablethree thead tr th{padding: 12px; text-align: left;  border-bottom: 1px solid #d1d5db; font-size: 13px; color: #ffffff;}
-        .tablethree tbody tr td{padding: 12px; color: #4a5568; border-bottom: 1px solid #e5e7eb; font-size: 13px;}
-
-        .container {max-width: 800px;margin: auto;}
-.section {margin-bottom: 20px;}
-.section h2 {font-size: 1.2em;margin-bottom: 10px;font-weight: bold;}
-
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        
-
-
-      
-
-h1 {text-align: center;color: #333;font-size: 2rem;margin-bottom: 20px;}
+.firstcolumn{padding: 20px 16px; border-right: 2px solid #e5e7eb;  border-left: 2px solid #e5e7eb; background-color: white; font-size: 13px; vertical-align: top;}
+.firstcolumndiv{background-color: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
+.meal{font-size: 13px; color: #313131; font-weight: 600; display: block; margin-bottom: 4px;}
+.maindish{font-size: 16px; font-weight: 600; color: #313131; margin: 8px 0 4px 0;}
+.sidedish{font-size: 12px; font-weight: 500; color: #666; font-style: italic; margin: 4px 0 8px 0;}
+.timetable{ overflow: hidden; width: 100%;  margin: 16px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
+.timetable thead tr th{background-color: #A6AE9D; color: #ffffff; font-size: 10px; padding: 8px; border: 1px solid #d1d5db; width: 33%;}
+.timetable tbody tr td{font-size: 12px; text-align: center; padding: 8px; border: 1px solid #d1d5db;}
+h5{font-size: 12px; font-weight: 600; color: #313131; margin: 12px 0 8px 0; background-color: #f3f4f6; padding: 8px; border-radius: 6px;}
+.nutritable{ overflow: hidden; width: 100%; margin: 8px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border-collapse: collapse; background-color: #f8fafc;}
+.nutritable thead tr th{background-color: #A6AE9D; color: #ffffff; font-size: 10px; padding: 8px; border: 1px solid #d1d5db; width: 25%;}
+.nutritable tbody tr td{font-size: 12px;  text-align: center; padding: 8px; border: 1px solid #d1d5db;}
+.secondcolumn{padding: 20px 16px; border-right: 2px solid #e5e7eb; background-color: white; font-size: 13px; vertical-align: top;}
+.secondcolumn div{background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);}
+.secondcolumn h6{margin: 0 0 12px 0; font-size: 12px; color: #313131; font-weight: 600;}
+.secondcolumn ol{padding-left: 20px; color: #4a5568; margin: 0;}
+.secondcolumn li {margin-bottom: 8px; font-size: 12px;}
+.secondcolumn p{color: #4a5568; line-height: 1.6; margin: 0; font-size: 12px;}
+/* Container for the two columns */
 .container22 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 20px; /* Space between columns */
+  max-width: 900px;
+  margin: 0 auto !important;
 }
 
-.column22 {
-
-    flex: 1 1 calc(50% - 20px); /* Ensures two columns with space in between */
-    box-sizing: border-box;
-
-    padding: 15px;
-   
- 
+/* Individual column styling */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between sections */
 }
 
-      
-.category22 {margin-bottom: 20px;}
-.category22 span {font-size: 1.3rem;color: #333;font-weight: bold;margin: 0 0 10px;width: fit-content;}
-.category22 ul {
-list-style-type: disc;
-padding-left: 20px;
-margin: 0;
+/* Section styles */
+.section {
+
+  padding: 10px;
+  /* Light background for better visibility */
+  border-radius: 5px;
 }
-.category22 li {
-font-size: 0.9rem;
-margin-bottom: 5px;}
-    </style>
+
+/* Section headers */
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* List styling */
+.section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.section ul li {
+  margin-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 10px;
+}
+
+.category22 ul li{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+  </style>
 </head>
 <body>
-    <h1>Weekly Shopping List</h1>
-<div class="container22">
-  <div class="column22">
-    <div class="category22">
-      <span>Fruits</span>
-      <ul>
-        <li>Apple - 2kg</li>
-        <li>Banana - 1kg</li>
-        <li>Grapes - 1kg</li>
-        <li>Orange - 1kg</li>
-        <li>Pineapple - 1kg</li>
-      </ul>
+  <div class="container22">
+    <!-- Left Column -->
+    <div class="column">
+      <div class="section">
+        <h3>Vegetables & Fruits</h3>
+        <ul>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>
+          <li>750g Maris Piper potatoes</li>d
+          <li>2 lbs (900g) waxy potatoes</li>
+          <li>3 vine tomatoes</li>
+          <li>...</li>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h3>Meat & Seafood</h3>
+        <ul>
+          <li>600-800g chicken thighs</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>
+          <li>300g cooked prawns</li>dd
+          <li>...</li>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h3>Frozen</h3>
+        <ul>
+          <li>200g frozen peas</li>
+        </ul>
+      </div>
     </div>
-    <div class="category22">
-      <span>Fruits</span>
-      <ul>
-        <li>Apple - 2kg</li>
-        <li>Banana - 1kg</li>
-        <li>Grapes - 1kg</li>
-        <li>Orange - 1kg</li>
-        <li>Pineapple - 1kg</li>
-      </ul>
-    </div>
-    <div class="category22">
-      <span>Fruits</span>
-      <ul>
-        <li>Apple - 2kg</li>
-        <li>Banana - 1kg</li>
-        <li>Grapes - 1kg</li>
-        <li>Orange - 1kg</li>
-        <li>Pineapple - 1kg</li>
-      </ul>
-    </div>
-    <div class="category22">
-      <span>Fruits</span>
-      <ul>
-        <li>Apple - 2kg</li>
-        <li>Banana - 1kg</li>
-        <li>Grapes - 1kg</li>
-        <li>Orange - 1kg</li>
-        <li>Pineapple - 1kg</li>
-      </ul>
-    </div>
-    <div class="category22">
-      <span>Fruits</span>
-      <ul>
-        <li>Apple - 2kg</li>
-        <li>Banana - 1kg</li>
-        <li>Grapes - 1kg</li>
-        <li>Orange - 1kg</li>
-        <li>Pineapple - 1kg</li>
-      </ul>
+  
+    <!-- Right Column -->
+    <div class="column">
+      <div class="section">
+        <h3>Spices & Seasonings</h3>
+        <ul>
+          <li>Dried chili flakes</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>Sweet smoked paprika</li>d
+          <li>...</li>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h3>Oils & Vinegars</h3>
+        <ul>
+          <li>1 tablespoon sherry vinegar</li>
+          <li>...</li>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h3>Broths & Stocks</h3>
+        <ul>
+          <li>1.3L chicken stock</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="column22">
-    <div class="category22">
-      <span>Vegetables</span>
-      <ul>
-        <li>Potato - 5kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-      </ul>
-    </div>
-    <div class="category22">
-      <span>Vegetables</span>
-      <ul>
-        <li>Potato - 5kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-      </ul>
-    </div>
-    <div class="category22">
-      <span>Vegetables</span>
-      <ul>
-        <li>Potato - 5kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-        <li>Tomato - 2kg</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
+  
 </body>
 </html>

@@ -265,7 +265,7 @@ function Pref({userData}:prefprops) {
     setIsEditable((prev) => !prev);
   };
 
-  console.log(userdata)
+ 
 
   const handleGeneratePDF = async () => {
     // @ts-ignore
