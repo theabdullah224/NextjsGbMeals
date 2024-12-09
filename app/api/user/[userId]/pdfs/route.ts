@@ -4,8 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 import PDFRecord from "@/app/api/models/PDFRecord";
 import { connectMongoDB } from "@/app/lib/dbConnection";
 
+// @ts-ignore
 export async function GET(request: NextRequest, context: { params: { userId: string } }) {
   // Validate userId
+  // @ts-ignore
   const userId = context.params.userId;
 
   if (!userId) {
