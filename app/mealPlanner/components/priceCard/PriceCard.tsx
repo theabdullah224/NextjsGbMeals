@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
@@ -40,42 +41,57 @@ const PriceCard: React.FC = () => {
   // const [email, setEmail] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [loader, setLoader] = useState<boolean>(false);
-
+  const [error, setError] = useState(null);
   const { data: session } = useSession();
   //@ts-ignore
   const userId = session?.user?.id;
   const email = session?.user?.email;
   const router = useRouter();
+  const [userData, setUserData] = useState("")
+  const [loadingCard, setLoadingCard] = useState(null); // Track the card being loaded
+
+  const handleButtonClick = (planType) => {
+    setLoadingCard(planType); // Set the loading state for the clicked card
+    buyFunction(planType); // Call the buy function
+  };
 
 
-  // useEffect(() => {
-  //   if (session) {
-  //     fetchUserData(userId);
-  //     //@ts-ignore
-  //     setEmail(userEmail);
-  //   }
-  // }, []);
-
-  // Fetch user data from the API
-  const fetchUserData = async (userId: string): Promise<void> => {
+  const fetchUserData = async () => {
+    // @ts-ignore
+    const userId = session?.user.id;
     try {
-      const response = await axios.get(`https://meeel.xyz/show`, {
-        headers: { Authorization: userId },
+      const response = await fetch("/api/Fetch-User-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
       });
 
-      if (response.data && typeof response.data === "object") {
-        setStatus(response.data.subscription_status);
-        localStorage.setItem("userdata", JSON.stringify(response.data)); // Save userdata in localStorage
+      const data = await response.json();
+
+      if (response.ok) {
+        setUserData(data.user);
+
+        console.log(data.user);
       } else {
-        throw new Error("Unexpected response format");
+        setError(data.error || "Error fetching user data");
       }
     } catch (error) {
-      console.error("Error fetching user data: ", error);
+      setError("Failed to fetch user data");
     }
   };
 
+  useEffect(() => {
+    fetchUserData();
+  }, [session]);
+
+
+
   // Handle the subscription purchase
   const buyFunction = async (planType: string): Promise<void> => {
+
+    
     try {
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -99,25 +115,7 @@ const PriceCard: React.FC = () => {
       console.error('Error creating checkout session:', error);
     }
   };
-    // setLoader(true);
-    // try {
-    //   if (session) {
-    //     const response = await axios.post("/api/create-checkout-session", {
-    //       planType,
-    //       email,
-    //     });
-
-    //     if (response.status === 200) {
-    //       window.location.href = response.data.url;
-    //     }
-    //   } else {
-    //     router.push("/plans#form");
-    //   }
-    // } catch (error) {
-    //   console.error("Error processing payment:", error);
-    // } finally {
-    //   setLoader(false); 
-    // }
+   
   
 
   return (
@@ -160,17 +158,24 @@ const PriceCard: React.FC = () => {
                   <div className="mt-8">
                     {session && (
                       <>
-                        {/* {status === "ultra_pro" || status === "inactive" ? ( */}
-                          <button
-                            onClick={() => buyFunction(card.planType)}
-                            className="w-full py-2 px-4 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
-                          >
-                            Upgrade
-                          </button>
 
-                        {/* ) : ( */}
-                          {/* <button className="w-full py-2 px-4 rounded-lg bg-green-300 text-white font-medium">Already Subscribed</button> */}
-                        {/* )} */}
+<button
+                    onClick={() => handleButtonClick(card.planType)}
+                    className={`w-full py-2 px-4 rounded-lg flex items-center justify-center text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base ${
+                      userData?.planType === card.planType
+                        ? "bg-P-Green1"
+                        : "bg-P-Green1"
+                    }`}
+                    disabled={userData?.planType === card.planType}
+                  >
+                    {loadingCard === card.planType
+                      ? "Loading..."
+                      : userData?.planType === card.planType
+                      ? "Subscribed"
+                      : "Upgrade"}
+                  </button>
+
+                        
 
                       </>
                     )}
