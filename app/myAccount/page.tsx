@@ -413,16 +413,22 @@ export default function page() {
             {activeTab === "payment" && <Temp />}
             {activeTab === "account" && (
               <div className=" py-4 flex items-center justify-center ">
-                <Link href="/deleteAccount" >
+
+
+
+              
                   <button
                     onClick={() => {
-                      window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be lost.");
+                      if(window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be lost.")){
+                          router.push('/deleteAccount')
+                      }
+                      
                     }}
                     className="py-2    mx-auto md:mx-0 px-6 sm:px-8 box-border rounded-lg flex items-center justify-center bg-transparent border-2 border-Text1 text-Text1   hover:bg-red-600 hover:text-white transition-all font-roboto font-medium text-xs sm:text-base"
                   >
                     Delete Account
                   </button>
-                </Link>
+               
               </div>
             )}
             {activeTab === "pdf" && (

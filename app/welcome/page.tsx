@@ -75,7 +75,7 @@ export default function page({ }) {
 
 
         alert("PDF generated and sent successfully!");
-        window.location.reload();
+        // window.location.reload();
       
     } catch (error) {
       

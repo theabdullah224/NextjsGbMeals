@@ -28,7 +28,7 @@ export default function page() {
 
           // Store token in local storage
           localStorage.setItem('delAccToken', response.data.token);
-          router.push('/DeleteConfirmation');
+          router.push('/');
       } catch (err:any) {
           console.error(err); // Log the entire error
           setError(err.response?.data?.error || "An error occurred");
