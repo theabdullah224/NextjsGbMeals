@@ -5,10 +5,11 @@ import PDFRecord from "@/app/api/models/PDFRecord";
 import { connectMongoDB } from "@/app/lib/dbConnection";
 
 // @ts-ignore
-export async function GET(request: NextRequest, context: { params: { userId: string } }) {
-  // Validate userId
-  // @ts-ignore
-  const userId = context.params.userId;
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ userId: string }> }
+) {
+  const { userId } = await params;
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });
