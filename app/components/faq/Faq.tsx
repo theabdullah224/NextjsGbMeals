@@ -14,7 +14,7 @@ interface FaqProps {
 const Faq: React.FC<FaqProps> = ({ description, question1, ans1 }) => {
   return (
     <div className="faqs">
-      <div className="inside">
+      <div className="inside  2xl:px-[10vw]">
         {/* Background image div */}
         <div className="bgimg"></div>
 

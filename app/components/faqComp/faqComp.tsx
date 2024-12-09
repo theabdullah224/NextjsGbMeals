@@ -16,7 +16,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
   return (
   
-    <div className="mb-4  bg-white py-6 max-w-[45rem]   rounded-lg shadow-sm overflow-hidden ">
+    <div className="mb-4  bg-white py-6 w-full max-w-[45rem]   rounded-lg shadow-sm overflow-hidden ">
       <button
         className="w-full text-left p-3 sm:p-4 flex items-center justify-between"
         onClick={() => setIsOpen(!isOpen)}
@@ -106,7 +106,7 @@ const FAQComp: React.FC = () => {
   return (
 
 
-    <section className="relative h-fit  py-8 sm:py-12 bg-[#f7f7f6] rounded-3xl   overflow-hidden ">
+    <section className="relative h-fit  py-8 sm:py-12 bg-[#f7f7f6] rounded-3xl   overflow-hidden   ">
       {/* Background Vector Image */}
       <Image
         src="/Resource/Vector (1).svg"
