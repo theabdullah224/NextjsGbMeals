@@ -6,7 +6,7 @@ import CopyRight from "../components/copyRight/copyRight";
 
 export default function page() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <div className="container px-9 py-4 ">
         {/* Terms and Conditions */}
