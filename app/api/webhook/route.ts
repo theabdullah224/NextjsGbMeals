@@ -144,9 +144,9 @@ export async function POST(request: Request) {
           console.log(`Received plan type: ${planType}`);
 
           let subscriptionStatus = 'inactive';
-          if (planType === 'prod_Ql6X2xQ2gj00A4') {
+          if (planType === 'prod_RJ3d45EsFz2L5b') {
             subscriptionStatus = 'pro';
-          } else if (planType === 'prod_RKxTjCFu9MAS3x') {
+          } else if (planType === 'prod_RJ3cO4YrpGmTXD') {
             subscriptionStatus = 'ultra_pro';
           }
 

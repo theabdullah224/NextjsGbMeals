@@ -246,7 +246,7 @@ export async function POST(request: Request) {
   const data = await request.json();
 
   const days = 6;
-  const {  prefMeal, mealPerDay, persons, totalCalories, foodAllergies, dislikes, id } = data;
+  const {  email,prefMeal, mealPerDay, persons, totalCalories, foodAllergies, dislikes, id } = data;
 
   const prompt = `
   Only use english no other language
@@ -458,7 +458,7 @@ export async function POST(request: Request) {
     //@ts-ignore
     const result = await SavePdfAws(id, shoppingListPDF, mealPlanPDF);
 
-    await sendPdf(mealPlanPDF, shoppingListPDF);
+    await sendPdf(mealPlanPDF, shoppingListPDF,email);
 
     return new NextResponse("Pdf generated successfully.", {
       headers: {

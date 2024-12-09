@@ -44,7 +44,7 @@ const ShowPdf = () => {
     // @ts-ignore
     if (session?.user?.id) {
       // @ts-ignore
-      const userId = session.user.id; // Explicitly save the user ID from the session
+      const userId = session?.user?.id; // Explicitly save the user ID from the session
   
       const fetchPDFs = async () => {
         try {

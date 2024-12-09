@@ -50,17 +50,17 @@ export default function page() {
         }}
       >
         {loading ? (
-          <Image src={Loader} alt="Loading..." className="animate-spin" />
+          <Image src={Loader} alt="Loading..." className="" />
         ) : (
           <>
-            <div className='flex flex-wrap mt-4 gap-2 flex-col items-start'>
+            <div className='flex flex-wrap mt-4 gap-2 flex-col items-start w-full sm:w-fit'>
               <h1 className='text-2xl border-b-8 border-S-Orange leading-none font-bold text-white'>Delete Account</h1>
               <input
                 type="email"
                 name="email"
                 value={loginData.email}
                 onChange={handleChange}
-                className='border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 sm:w-[32rem] placeholder-white text-white'
+                className='border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 w-full sm:w-[32rem] placeholder-white text-white'
                 placeholder='Email Address'
               />
               <input
@@ -68,14 +68,14 @@ export default function page() {
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}
-                className='border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 sm:w-[32rem] placeholder-white text-white'
+                className='border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 w-full sm:w-[32rem] placeholder-white text-white'
                 placeholder='Password'
               />
               {error && <p className="text-red-500 mt-2">{error}</p>} 
               <div className='flex flex-wrap w-full gap-2 justify-between '>
                 <button
                   onClick={handleDelete}
-                  className='py-2 px-12 w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-base'
+                  className=' py-2 px-12 sm:w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-base'
                 >
                   Continue
                 </button>

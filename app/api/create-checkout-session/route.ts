@@ -74,11 +74,11 @@ export async function POST(request: Request) {
 
     const planMapping: Record<string, { price_id: string; amount: number }> = {
       pro: {
-        price_id: 'price_1PtaKAHKrMJi6qxuwVZ2fZJV',
+        price_id: 'price_1QQRWRJXiI2auGiyE1zY7Yzg',
         amount: 699,
       },
       ultra_pro: {
-        price_id: 'price_1QSHYGHKrMJi6qxuVeT7xBkU',
+        price_id: 'price_1QQRUuJXiI2auGiyRWSKwkhy',
         amount: 5900,
       },
     };

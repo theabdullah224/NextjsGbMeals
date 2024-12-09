@@ -4,15 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 import PDFRecord from "@/app/api/models/PDFRecord";
 import { connectMongoDB } from "@/app/lib/dbConnection";
 
-export async function GET(request: NextRequest) {
-  // Extract userId from the URL
-  const url = new URL(request.url);
-  const userId = url.pathname.split('/').pop(); // Get the last segment from the URL
+export async function GET(request: NextRequest, context: { params: { userId: string } }) {
+  // Validate userId
+  const userId = context.params.userId;
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });
   }
-
   try {
     await connectMongoDB();
 

@@ -37,11 +37,15 @@ export default function page({ }) {
        
       } catch (error) {}
     };
+
+
     fetchData();
-  }, []);
+  }, [session]);
 
   const generateAndSendPDF = async () => {
+    console.log(data)
     try {
+      const email = session?.user?.email
       const generateResponse = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -59,22 +63,23 @@ export default function page({ }) {
           // @ts-ignore
           mealPerDay:data.mealPerDay,
           // @ts-ignore
-          days:data.days,        
+                
           // @ts-ignore
           id: data._id,
+          email:email
         }),
       });
     
 
       
-// @ts-ignore
-      if (!sendResponse.ok || sendData.error) {
-        // @ts-ignore
-        throw new Error(sendData.error || "Failed to send PDF.");
-      }
-      alert("PDF generated and sent successfully!");
-      window.location.reload();
-    } catch (error) {}
+
+
+        alert("PDF generated and sent successfully!");
+        window.location.reload();
+      
+    } catch (error) {
+      
+    }
   };
 
   const handleRedirect = async () => {

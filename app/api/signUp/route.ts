@@ -4,6 +4,8 @@ import User from "../models/UserModel";
 
 import bcrypt from "bcryptjs";
 import { sendWelcomeEmail } from "@/app/lib/sendWelcomeEmail";
+
+
 export const POST = async (req: Request) => {
   try {
     await connectMongoDB();

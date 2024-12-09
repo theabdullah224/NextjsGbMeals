@@ -58,6 +58,9 @@ const ContactUsPage = () => {
     
           if (response.ok) {
             setStatus("Message sent successfully!");
+            setTimeout(() => {
+              setStatus("")
+            }, 3000);
             setFormData({ name: "", email: "", message: "" });
           } else {
             

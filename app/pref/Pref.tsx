@@ -264,6 +264,7 @@ function Pref() {
 
   const handleGeneratePDF = async () => {
     // @ts-ignore
+    const email = await session?.user.email
     if (session?.user?.status === "active") {
       setLoader(true);
   
@@ -275,6 +276,7 @@ function Pref() {
         prefMeal: menuStates.PreferredMeal.selected,
         totalCalories: menuStates.Calories.selected,
         id: UserId,
+        email:email
       };
   
       try {
