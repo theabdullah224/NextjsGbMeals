@@ -265,6 +265,7 @@ function Pref() {
   const handleGeneratePDF = async () => {
     // @ts-ignore
     const email = await session?.user.email
+    // @ts-ignore
     if (session?.user?.status === "active") {
       setLoader(true);
   
