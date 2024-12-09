@@ -31,7 +31,7 @@ export default function RootLayout({
     <AuthProvider>
     <html lang="en">
       <head>
-      <link rel="icon" href="/Resource/gb.png" />
+      <link rel="icon" href="/favicon.png" />
       </head>
       <body
         className={`bg-white ${geistSans.variable} ${geistMono.variable} antialiased`}
