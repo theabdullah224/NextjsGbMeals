@@ -275,7 +275,7 @@ export default function page() {
                   id="email"
                   type="email"
                   ref={inputRef}
-                  className={` border-Text2 py-3 px-4 capitalize  bg-transparent rounded-lg w-full placeholder-Text2 text-Text2 focus:outline-none focus:ring-2 focus:ring-transparent transition duration-300 ${
+                  className={` border-Text2 py-3 px-4   bg-transparent rounded-lg w-full placeholder-Text2 text-Text2 focus:outline-none focus:ring-2 focus:ring-transparent transition duration-300 ${
                     isEmailEditable ? "border-P-Green1 bg-white" : "border-gray-300 bg-gray-100"
                   }`}
                   value={email }
