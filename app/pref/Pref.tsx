@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -8,8 +9,11 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 
+interface prefprops{
+  userData:any
+}
 
-function Pref() {
+function Pref({userData}:prefprops) {
 
   const [loader, setLoader] = useState(false);
   const [selectedPreferredMeal, setSelectedPreferredMeal] = useState([]);
@@ -261,12 +265,13 @@ function Pref() {
     setIsEditable((prev) => !prev);
   };
 
+  console.log(userdata)
 
   const handleGeneratePDF = async () => {
     // @ts-ignore
     const email = await session?.user.email
     // @ts-ignore
-    if (session?.user?.status === "active") {
+    if (userData.status === "active") {
       setLoader(true);
   
       const payload = {

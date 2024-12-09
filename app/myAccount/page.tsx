@@ -434,7 +434,7 @@ export default function page() {
             )}
             {activeTab === "contact" && <ContactUsPage />}
 
-            {activeTab === "pdfgenerate" && <Pref />}
+            {activeTab === "pdfgenerate" && <Pref userData={userData} />}
           </div>
         </div>
       </div>
