@@ -52,7 +52,10 @@ const PriceCard: React.FC = () => {
 
   const handleButtonClick = (planType) => {
     setLoadingCard(planType); // Set the loading state for the clicked card
-    buyFunction(planType); // Call the buy function
+    buyFunction(planType); 
+    
+    
+    // Call the buy function
   };
 
 
@@ -79,6 +82,8 @@ const PriceCard: React.FC = () => {
       }
     } catch (error) {
       setError("Failed to fetch user data");
+    }finally{
+      setLoadingCard(null)
     }
   };
 
