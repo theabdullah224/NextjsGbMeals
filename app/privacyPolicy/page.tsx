@@ -6,7 +6,7 @@ import CopyRight from "../components/copyRight/copyRight";
 
 function PrivacyPolicy() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <div className="container px-9 py-4">
         <h1 className="text-4xl 2xl:text-5xl text-Text1 font-bold mt-12">
