@@ -74,11 +74,11 @@ export async function POST(request: Request) {
 
     const planMapping: Record<string, { price_id: string; amount: number }> = {
       pro: {
-        price_id: 'price_1QQRWRJXiI2auGiyE1zY7Yzg',
+        price_id: 'price_1PtaKAHKrMJi6qxuwVZ2fZJV',
         amount: 699,
       },
       ultra_pro: {
-        price_id: 'price_1QQRUuJXiI2auGiyRWSKwkhy',
+        price_id: 'price_1QSHYGHKrMJi6qxuVeT7xBkU',
         amount: 5900,
       },
     };
@@ -110,8 +110,8 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'subscription',
-      success_url: 'https://www.gbmeals.com/welcome',
-      cancel_url: 'https://www.gbmeals.com/',
+      success_url: 'https://nextjsgbmeals.vercel.app/welcome',
+      cancel_url: 'https://nextjsgbmeals.vercel.app/',
       
       subscription_data:subscriptionData,
       customer_email: email,
