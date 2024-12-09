@@ -52,20 +52,26 @@ const ManageSubscriptionPage = () => {
   }, []);
 
   const handleCancelPlan = async () => {
-
-    try {
-      const response = await axios.post("/api/cancel-plan", { email: email });
-      setMessage(response.data.message);
-
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
-    } catch (error: any) {
-      setMessage(
-        error.response?.data?.error ||
-          "An error occurred while canceling the plan."
-      );
-    } finally {
+    if(userData?.status === "inactive"){
+      alert("No Plan to Cancel!")
+    }else{
+      try {
+        const response = await axios.post("/api/cancel-plan", { email: email });
+        setUserData("")
+        await fetchUserData()
+        setMessage(response.data.message);
+  
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
+      } catch (error: any) {
+        setMessage(
+          error.response?.data?.error ||
+            "An error occurred while canceling the plan."
+        );
+      } finally {
+      }
+      
     }
   };
 
@@ -88,6 +94,7 @@ const ManageSubscriptionPage = () => {
 
   const handleUpdateCard = async () => {
 
+    
     try {
       const response = await fetch("/api/update-card", {
         method: "POST",
