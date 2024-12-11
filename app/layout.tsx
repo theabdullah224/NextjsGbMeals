@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AuthProvider } from "./AuthProvider";
 import localFont from "next/font/local";
 import "./globals.css";
-import {updateExpiredPlans} from "./api/SubscriptionCheck/server-task";
+import {updateExpiredPlans} from "./app/api/SubscriptionCheck/server-task";
 import SessionExpiryManager from "@/app/components/SessionExpiryManager";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Script from 'next/script';
@@ -34,6 +34,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <link rel="icon" href="/favicon.png" />
+
+    
+
+
       <Script
           strategy="afterInteractive" // ensures script is loaded after page is interactive
           src="https://www.googletagmanager.com/gtag/js?id=G-43L99VSCR0"
@@ -51,6 +55,8 @@ export default function RootLayout({
             gtag('config', 'G-43L99VSCR0');
           `}
         </Script>
+
+        
       </head>
       <body
         className={`bg-white ${geistSans.variable} ${geistMono.variable} antialiased`}

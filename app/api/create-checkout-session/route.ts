@@ -110,8 +110,8 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'subscription',
-      success_url: 'https://nextjsgbmeals.vercel.app/welcome',
-      cancel_url: 'https://nextjsgbmeals.vercel.app/',
+      success_url: 'https://www.gbmeals.com/welcome',
+      cancel_url: 'https://www.gbmeals.com/',
       
       subscription_data:subscriptionData,
       customer_email: email,

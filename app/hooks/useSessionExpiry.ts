@@ -15,7 +15,7 @@ const useSessionExpiryModal = () => {
 
       const expiresAt = new Date(session.expires).getTime();
       const currentTime = new Date().getTime();
-      const timeout = expiresAt - currentTime -6000; // Show modal 1 minute before expiration
+      const timeout = expiresAt - currentTime -3600000; // Show modal 1 minute before expiration
 
       if (timeout > 0) {
         const timer = setTimeout(() => {

@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { connectMongoDB } from '../../lib/dbConnection';
 import User from '../models/UserModel';
+import bcrypt from "bcryptjs";
+
 
 export async function POST(request: NextRequest) {
   await connectMongoDB();
@@ -29,11 +31,11 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
- 
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       name,
       email,
-      password,
+      password:hashedPassword,
       planType: planType || 'inactive'
     });    
     await newUser.save();

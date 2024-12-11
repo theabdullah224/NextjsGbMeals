@@ -9,9 +9,12 @@ import Modal from "@/app/components/Modal"; // Import the Modal component
 const SessionExpiryManager = () => {
   const { showSessionExpired, setShowSessionExpired } = useSessionExpiryModal();
 
-  const handleClose = () => {
+  const handleClose = async () => {
     // Perform the logout operation and close the modal
-    signOut({ callbackUrl: "/login" });
+    await signOut({ 
+      redirect: true,  // This will redirect after sign out
+      callbackUrl: '/'  // Redirect to home page
+    });
     setShowSessionExpired(false); // Close the modal immediately after logout
   };
 

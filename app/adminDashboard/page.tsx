@@ -293,7 +293,7 @@ export default function page() {
               />
             </label>
   
-            <label className="flex flex-col">
+            {/* <label className="flex flex-col">
     <span className="mb-1 font-medium">Subscription Status</span>
     <select
       name="subscription_status"
@@ -305,7 +305,7 @@ export default function page() {
       <option value="ultra_pro">Ultra Pro</option>
       <option value="inactive">Inactive</option>
     </select>
-  </label>
+  </label> */}
   
   
             <button
