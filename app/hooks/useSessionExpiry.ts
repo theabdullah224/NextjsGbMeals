@@ -9,30 +9,31 @@ const useSessionExpiryModal = () => {
   const [showSessionExpired, setShowSessionExpired] = useState(false);
 
   useEffect(() => {
-    // If the session is authenticated
-    console.log(session,status)
-    if (status === "authenticated" && session?.expires) {
-
-      const expiresAt = new Date(session.expires).getTime();
-      const currentTime = new Date().getTime();
-      const timeout = expiresAt - currentTime -3600000; // Show modal 1 minute before expiration
-
-      if (timeout > 0) {
-        const timer = setTimeout(() => {
+    setTimeout(() => {
+      
+      if (status === "authenticated" && session?.expires) {
+  
+        const expiresAt = new Date(session.expires).getTime();
+        const currentTime = new Date().getTime();
+        const timeout = expiresAt - currentTime -3600000; // Show modal 1 minute before expiration
+  
+        if (timeout > 0) {
+          const timer = setTimeout(() => {
+            setShowSessionExpired(true);
+          }, timeout);
+  
+          return () => clearTimeout(timer); // Cleanup timer on component unmount
+        } else {
+          // If already expired, show the modal immediately
           setShowSessionExpired(true);
-        }, timeout);
-
-        return () => clearTimeout(timer); // Cleanup timer on component unmount
-      } else {
-        // If already expired, show the modal immediately
-        setShowSessionExpired(true);
+        }
       }
-    }
-
-    // If the session is unauthenticated, hide the modal
-    if (status === "unauthenticated") {
-      setShowSessionExpired(false);
-    }
+  
+      // If the session is unauthenticated, hide the modal
+      if (status === "unauthenticated") {
+        setShowSessionExpired(false);
+      }
+    }, 180000);
   }, [session, status]);
 
   return { showSessionExpired, setShowSessionExpired };
