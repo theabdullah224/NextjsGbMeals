@@ -85,7 +85,7 @@ export default function page() {
 
   useEffect(() => {
     fetchUserData();
-  }, [session]);
+  }, [session,isEditable,isEmailEditable]);
 
  
   const handleEditClick = () => {
@@ -146,9 +146,10 @@ export default function page() {
       // @ts-ignore
       const userId = session.user.id;
     
-  
+      
       setLoading(true);
       try {
+        
         const response = await axios.put(
           `/api/update`,
           { 
@@ -160,11 +161,14 @@ export default function page() {
           }
         );
   
+        setIsEditable(false);
+        
         if (response.status === 200) {
           // fetchUserData(); // Refetch user data to get the latest info
           setIsEditable(false);
         }
       } catch (error) {
+        setIsEditable(false);
         // @ts-ignore
         setError(`Failed to update user data: ${error.message}`);
       } finally {

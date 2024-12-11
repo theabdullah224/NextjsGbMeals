@@ -4,7 +4,9 @@ import { AuthProvider } from "./AuthProvider";
 import localFont from "next/font/local";
 import "./globals.css";
 import {updateExpiredPlans} from "./api/SubscriptionCheck/server-task";
-
+import SessionExpiryManager from "@/app/components/SessionExpiryManager";
+import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script';
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,11 +34,30 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <link rel="icon" href="/favicon.png" />
+      <Script
+          strategy="afterInteractive" // ensures script is loaded after page is interactive
+          src="https://www.googletagmanager.com/gtag/js?id=G-43L99VSCR0"
+          async
+        />
+        <Script
+          id="google-ads-script"
+          strategy="afterInteractive" // ensures script is loaded after page is interactive
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-43L99VSCR0');
+          `}
+        </Script>
       </head>
       <body
         className={`bg-white ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <GoogleAnalytics gaId="G-43L99VSCR0" />
+        <SessionExpiryManager />
       </body>
     </html>
     </AuthProvider>
