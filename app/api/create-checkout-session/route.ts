@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { planType, email } = body;
 
-    console.log(`Creating payment for plan: ${planType}, email: ${email}`);
+   
 
     const planMapping: Record<string, { price_id: string; amount: number }> = {
       pro: {

@@ -76,7 +76,7 @@ const PriceCard: React.FC = () => {
       if (response.ok) {
         setUserData(data.user);
 
-        console.log(data.user);
+       
       } else {
         setError(data.error || "Error fetching user data");
       }
@@ -109,7 +109,7 @@ const PriceCard: React.FC = () => {
       const data = await res.json();
     
 
-      console.log(data)
+   
       window.location.href = data.url
      
       if (data.sessionId) {

@@ -31,7 +31,7 @@ export default function page({ }) {
         const res = await axios.post("/api/getData", {
           userId: userId,
         });
-        console.log("data ......", res.data.user);
+      
         setData(res.data.user)
         //@ts-ignore
        
@@ -43,7 +43,7 @@ export default function page({ }) {
   }, [session]);
 
   const generateAndSendPDF = async () => {
-    console.log(data)
+  
     try {
       const email = session?.user?.email
       const generateResponse = await fetch("/api/generate", {

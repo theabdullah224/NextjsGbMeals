@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendStripeEmail = async (email: string, planType, subscriptionStatus: string) => {
-    console.log(email , planType)
+
   const mailOptions = {
     from: process.env.MAIL_FROM_ADDRESS,  
     to:email,
@@ -31,7 +31,7 @@ export const sendStripeEmail = async (email: string, planType, subscriptionStatu
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Subscription  email sent successfully!");
+   
   } catch (error) {
     console.error("Error sending email:", error);
   }

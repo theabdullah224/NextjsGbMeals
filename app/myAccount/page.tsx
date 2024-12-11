@@ -74,7 +74,7 @@ export default function page() {
       if (response.ok) {
         setUserData(data.user);
 
-        console.log(data.user);
+      
       } else {
         setError(data.error || "Error fetching user data");
       }

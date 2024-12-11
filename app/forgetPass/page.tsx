@@ -34,7 +34,7 @@ export default function page (){
       const response  = await axios.post ("/api/forgetPass", {email})
 
       if (response.status === 200) {
-        console.log(".......",response.data.token)
+       
         const tokendata  = response.data.token;
         localStorage.setItem('authToken', tokendata);
         router.push("/verification");

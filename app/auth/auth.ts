@@ -33,7 +33,7 @@ export const authOptions:NextAuthOptions = {
         try {
           // Check for hardcoded admin credentials (for testing purposes)
           if (email === 'admin@gmail.com' && password === '12345678') {
-            console.log('Admin authenticated successfully');
+           
             return { id: 'admin', email, name: 'Admin', role: 'admin' };
           }
 
@@ -42,19 +42,19 @@ export const authOptions:NextAuthOptions = {
           const user = await User.findOne({ email });
 
           if (!user) {
-            console.log('No user found with that email');
+          
             throw new Error('No user found with that email');
           }
 
           // Check if password matches
           const isPasswordValid = await bcrypt.compare(password, user.password);
           if (!isPasswordValid) {
-            console.log('Invalid password');
+         
             throw new Error('Invalid password');
           }
 
           // Return the user object if authentication is successful
-          console.log('User authenticated successfully');
+       
           return { id: user._id, email: user.email, name: user.name, status: user.status, role: 'user' };
         } catch (error) {
           console.error('Authentication error:', error);

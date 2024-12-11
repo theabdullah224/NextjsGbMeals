@@ -21,7 +21,7 @@ export const sendVerifyEmail = async (email: string , verificationCode:any) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("verify email sent successfully!");
+    
   } catch (error) {
     console.error("Error sending email:", error);
   }

@@ -5,7 +5,7 @@ import UserModel from "@/app/api/models/UserModel";
 export async function updateExpiredPlans() {
   try {
 
-    console.log("chekcking......")
+    
     // Connect to the database
     await connectMongoDB();
 
@@ -31,9 +31,7 @@ export async function updateExpiredPlans() {
       }
     );
 
-    console.log(
-      `${result.modifiedCount} user(s) plan updated successfully to inactive.`
-    );
+
     return result.modifiedCount;
   } catch (error) {
     console.error("Error updating expired plans:", error);

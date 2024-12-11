@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
   };
 
 
-  console.log(pathname)
+
   return (
     <div className="relative text-Text1">
       {/* Main header */}

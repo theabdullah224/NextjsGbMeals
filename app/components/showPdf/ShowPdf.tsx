@@ -12,32 +12,6 @@ const ShowPdf = () => {
   const {data:session} = useSession()
 
  
-  // const userId = session?.user?.id;
-
-
-
-  // const fetchPDFs = async () => {  
-    
-  //   try {
-  //     const response = await fetch(`/api/user/${userId}/pdfs`);
-  //     const data = await response.json();
-      
-  //     if (!response.ok) throw new Error(data.message);
-      
-  //     setPdfs(data.pdfs);
-  //   } catch (err:any) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  
-
-  // useEffect(() => {   
-
-  //   fetchPDFs();
-
-  // }, []);
 
   useEffect(() => {
     // Only fetch PDFs if session and userId are available
@@ -54,7 +28,7 @@ const ShowPdf = () => {
           if (!response.ok) throw new Error(data.message);
   
 
-            console.log(data.pdfs)
+          
           setPdfs(data.pdfs);
           // setName(session.user.name || '');
         } catch (err: any) {

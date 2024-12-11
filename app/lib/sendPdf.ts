@@ -94,7 +94,7 @@ export const sendPdf = async (mealPlanPDF: any, shoppingListPDF: any,email:any) 
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Emails with PDFs sent successfully!");
+   
   } catch (error) {
     console.error("Error sending email:", error);
   }

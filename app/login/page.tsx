@@ -21,8 +21,7 @@ export default function page() {
   // const [isAdmin, setIsAdmin] = useState<boolean | string>("");
   const router = useRouter();
   const { data: session } = useSession();
-  // console.log("session.....", session);
-
+  
   const navi = () => {
     router.push("/forgetPass");
   };

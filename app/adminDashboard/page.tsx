@@ -65,7 +65,7 @@ export default function page() {
       ...prevData,
       [name]: value,
     }));
-    console.log(formData  )
+    
   };
   
   const handleLogout = async() => {

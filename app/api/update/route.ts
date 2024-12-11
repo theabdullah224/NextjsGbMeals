@@ -13,7 +13,6 @@ export async function PUT(request) {
     const session = await getServerSession(authOptions);
 
 
-    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nv",session,"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nv")
   
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

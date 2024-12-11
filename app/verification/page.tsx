@@ -34,7 +34,7 @@ export default function page() {
         }
       );
 
-      // console.log("-===========>>>>", localStorage.getItem('authToken'));
+     
 
       if (response.status === 200) {
         const { reset_token } = response.data;
