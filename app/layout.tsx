@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { AuthProvider } from "./AuthProvider";
 import localFont from "next/font/local";
 import "./globals.css";
-import {updateExpiredPlans} from "./app/api/SubscriptionCheck/server-task";
+import {updateExpiredPlans} from "@/app/api/SubscriptionCheck/server-task";
 import SessionExpiryManager from "@/app/components/SessionExpiryManager";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Script from 'next/script';
@@ -28,7 +28,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // updateExpiredPlans()
+  updateExpiredPlans()
   return (
     <AuthProvider>
     <html lang="en">

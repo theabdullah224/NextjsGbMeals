@@ -40,5 +40,5 @@ export async function updateExpiredPlans() {
 }
 
 
-// setInterval(updateExpiredPlans, 1 * 60 * 1000); 
+setInterval(updateExpiredPlans, 60 * 60 * 1000); 
 
