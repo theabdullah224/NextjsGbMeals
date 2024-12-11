@@ -36,9 +36,13 @@ function page() {
       });
       // @ts-ignore
       localStorage.removeItem('delAccToken')
-      alert("Account Deleted Successfuly");
-      signOut()
+      await signOut({ 
+        redirect: true,  // This will redirect after sign out
+        callbackUrl: '/'  // Redirect to home page
+      });
       router.push("/"); 
+      
+      alert("Account Deleted Successfuly");
     } catch (err:any) {
       setError(err.response?.data?.error || "An error occurred");
     } finally {
@@ -47,7 +51,7 @@ function page() {
   };
   
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <Navbar/>
       <div
         className="w-screen h-screen flex flex-col items-center justify-center p-6"

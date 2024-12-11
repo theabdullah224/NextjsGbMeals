@@ -19,7 +19,9 @@ export default function page() {
       setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    
       setLoading(true);
       setError("");
       try {
@@ -28,7 +30,7 @@ export default function page() {
 
           // Store token in local storage
           localStorage.setItem('delAccToken', response.data.token);
-          router.push('/');
+          router.push('/DeleteConfirmation');
       } catch (err:any) {
           console.error(err); // Log the entire error
           setError(err.response?.data?.error || "An error occurred");
