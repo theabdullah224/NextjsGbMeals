@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Metadata } from "next";
 import { AuthProvider } from "./AuthProvider";
@@ -9,6 +10,14 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { startMealPlanScheduler } from "./lib/mealPlanScheduler";
 import Script from "next/script";
 import { generateWeeklyMealPlans } from "./lib/weeklyMealPlanGenerator";
+
+interface RootLayoutProps {
+  children: React.ReactNode;
+  title?: string;
+  description?: string;
+}
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -25,15 +34,12 @@ export const metadata: Metadata = {
   description: "Get Control Your Health",
 };
 
-export default async function RootLayout({
-  children,
-  title = "gbMeals",
-  description="Get Control Your Health"
-}: Readonly<{
-  children: React.ReactNode;
-  title?: string;
-  description?:string
-}>) {
+
+// @ts-ignore
+export default async function RootLayout({children,title = metadata.title,description = metadata.description,}: RootLayoutProps) {
+
+
+
   updateExpiredPlans();
   setTimeout(async () => {
     // await  generateWeeklyMealPlans()
@@ -43,8 +49,8 @@ export default async function RootLayout({
       <html lang="en">
         <head>
           <link rel="icon" href="/favicon.png" />
-          <meta name="description" content={description} />
           <title>{title}</title>
+          <meta name="description" content={description} />
 
           <Script
             strategy="afterInteractive" // ensures script is loaded after page is interactive
