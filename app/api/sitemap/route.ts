@@ -1,5 +1,6 @@
 // app/api/sitemap/route.ts
 import { MetadataRoute } from 'next'
+import { NextResponse } from 'next/server';
 
  function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -90,11 +91,11 @@ import { MetadataRoute } from 'next'
 export const GET = async () => {
   try {
     const sitemapData = sitemap();
-    return new Response(JSON.stringify(sitemapData), {
+    return new NextResponse(JSON.stringify(sitemapData), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error(error.message);
-    return new Response('Internal Server Error', { status: 500 });
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 };
