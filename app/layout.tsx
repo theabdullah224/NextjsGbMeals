@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Metadata } from "next";
 import { AuthProvider } from "./AuthProvider";
@@ -10,14 +9,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { startMealPlanScheduler } from "./lib/mealPlanScheduler";
 import Script from "next/script";
 import { generateWeeklyMealPlans } from "./lib/weeklyMealPlanGenerator";
-
-interface RootLayoutProps {
-  children: React.ReactNode;
-  title?: string;
-  description?: string;
-}
-
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -34,9 +25,18 @@ export const metadata: Metadata = {
   description: "Get Control Your Health",
 };
 
+type LayoutProps = {
+  children: React.ReactNode;
+  title?: string;
+  description?: string;
+}
 
-// @ts-ignore
-export default async function RootLayout({children,title = metadata.title,description = metadata.description,}: RootLayoutProps) {
+
+export default function RootLayout({ 
+  children,
+  title = metadata.title as string,
+  description = metadata.description as string,
+}: LayoutProps) {
 
 
 
@@ -49,8 +49,8 @@ export default async function RootLayout({children,title = metadata.title,descri
       <html lang="en">
         <head>
           <link rel="icon" href="/favicon.png" />
-          <title>{title}</title>
           <meta name="description" content={description} />
+          <title>{title}</title>
 
           <Script
             strategy="afterInteractive" // ensures script is loaded after page is interactive
