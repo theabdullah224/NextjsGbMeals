@@ -28,9 +28,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   title = "gbMeals",
+  description="Get Control Your Health"
 }: Readonly<{
   children: React.ReactNode;
   title?: string;
+  description?:string
 }>) {
   updateExpiredPlans();
   setTimeout(async () => {
@@ -41,7 +43,7 @@ export default async function RootLayout({
       <html lang="en">
         <head>
           <link rel="icon" href="/favicon.png" />
-
+          <meta name="description" content={description} />
           <title>{title}</title>
 
           <Script

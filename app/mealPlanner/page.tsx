@@ -31,7 +31,7 @@ import RootLayout from "../layout";
 
 export default function page() {
   return (
-    <RootLayout title="Try Free for 30-Days">
+    <RootLayout title="Try Free for 30-Days" description="Experience gbMeals for free with a 30-day trial to access premium features.">
 
     <>
     

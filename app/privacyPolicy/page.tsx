@@ -7,7 +7,7 @@ import RootLayout from "../layout";
 
 function PrivacyPolicy() {
   return (
-    <RootLayout title="Privacy Policy">
+    <RootLayout title="Privacy Policy" description="Understand how gbMeals collects, uses, and protects your data with our privacy policy.">
 
     <div className="overflow-x-hidden">
       <Navbar />

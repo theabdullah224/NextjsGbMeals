@@ -7,7 +7,7 @@ import RootLayout from "../layout";
 
 export default function page() {
   return (
-    <RootLayout title="Terms of Service">
+    <RootLayout title="Terms of Service" description="Read the terms and conditions that govern your use of gbMeals services.">
 
     <div className="overflow-x-hidden bg-white">
       <Navbar />

@@ -15,7 +15,7 @@ const page: React.FC = () => {
 
 
   return (
-    <RootLayout title="More About Us" >
+    <RootLayout title="More About Us"   description="Learn about gbMeals">
 
     <div className="!w-full overflow-x-hidden">
       <Navbar />
