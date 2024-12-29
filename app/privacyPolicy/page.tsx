@@ -1,11 +1,14 @@
-"use client"
+
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import CopyRight from "../components/copyRight/copyRight";
+import RootLayout from "../layout";
 
 
 function PrivacyPolicy() {
   return (
+    <RootLayout title="Privacy Policy">
+
     <div className="overflow-x-hidden">
       <Navbar />
       <div className="container px-9 py-4">
@@ -88,6 +91,7 @@ function PrivacyPolicy() {
       </div>
       <CopyRight />
     </div>
+    </RootLayout>
   );
 }
 

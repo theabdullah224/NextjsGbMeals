@@ -27,9 +27,12 @@ import Faq from "../components/faq/Faq";
 import Cta from "../components/cta/Cta";
 import Footer from "../components/footer/Footer";
 import CopyRight from "../components/copyRight/copyRight";
+import RootLayout from "../layout";
 
 export default function page() {
   return (
+    <RootLayout title="Try Free for 30-Days">
+
     <>
     
       <Navbar />
@@ -142,5 +145,6 @@ export default function page() {
     <CopyRight/>
 
     </>
+    </RootLayout>
   );
 }

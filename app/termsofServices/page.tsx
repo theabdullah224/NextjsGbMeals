@@ -1,12 +1,15 @@
-"use client"
+
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import CopyRight from "../components/copyRight/copyRight";
+import RootLayout from "../layout";
 
 
 export default function page() {
   return (
-    <div className="overflow-x-hidden">
+    <RootLayout title="Terms of Service">
+
+    <div className="overflow-x-hidden bg-white">
       <Navbar />
       <div className="container px-9 py-4 ">
         {/* Terms and Conditions */}
@@ -155,6 +158,7 @@ export default function page() {
       </div>
       <CopyRight/>
     </div>
+    </RootLayout>
   );
 }
 

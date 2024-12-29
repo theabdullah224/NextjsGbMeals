@@ -1,4 +1,4 @@
-"use client"
+
 import React from "react"; 
 import Cta from "../components/cta/Cta"; 
 import Navbar from "../components/navbar/Navbar";
@@ -6,6 +6,7 @@ import Footer from "../components/footer/Footer";
 import CopyRight from "../components/copyRight/copyRight";
 
 import Tab from "./tab/Tab";
+import RootLayout from "../layout";
 
 
 const page: React.FC = () => {
@@ -14,6 +15,8 @@ const page: React.FC = () => {
 
 
   return (
+    <RootLayout title="More About Us" >
+
     <div className="!w-full overflow-x-hidden">
       <Navbar />
       
@@ -25,6 +28,7 @@ const page: React.FC = () => {
       <Footer />
       <CopyRight />
     </div>
+    </RootLayout>
   );
 };
 
