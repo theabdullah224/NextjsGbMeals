@@ -94,7 +94,7 @@ export async function POST(request: Request) {
             } else if(subscriptionStatus == "ultra_pro"){
               subscriptionStatus = "Premium"
             }
-            await sendStripeEmail(user.email, user.name, subscriptionStatus);
+            // await sendStripeEmail(user.email, user.name, subscriptionStatus);
           }
         } catch (err) {
           console.error(`Error updating subscription: ${err}`);
