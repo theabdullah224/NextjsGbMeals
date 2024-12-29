@@ -13,6 +13,7 @@ export default function Modal({ title, children, onClose }: ModalProps) {
         <h2 className="text-lg font-semibold">{title}</h2>
         <div className="mt-4">{children}</div>
         <button
+         aria-label="ok"
           onClick={onClose}
           className="mt-4 px-4 py-2 bg-P-Green1 text-white rounded-lg float-right"
         >

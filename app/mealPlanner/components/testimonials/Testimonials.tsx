@@ -58,6 +58,7 @@ const Testimonials: React.FC<TestimonialsProps> = (props) => {
             <div className="flex w-fit flex-wrap items-center justify-center mt-8 gap-6">
               {!session  && 
                 <button
+                aria-label="signup"
                   className="py-2 px-12 box-border rounded-lg flex items-center justify-center bg-white text-P-Green1 border-2 border-P-Green1 hover:bg-P-Green1 hover:text-white font-roboto font-medium text-base"
                   onClick={handleSignUpClick}
                 >

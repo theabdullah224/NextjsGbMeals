@@ -59,6 +59,7 @@ const FrontPage: React.FC<FrontPageProps> = (props) => {
             {/* Button to navigate to the "Sign Up" page */}
             {!isLoggedIn && (
               <button
+              aria-label="signup"
                 className="mt-5 m-auto xl:m-0 py-2 px-10 box-border rounded-lg flex items-center justify-center bg-transparent border-2 text-white font-roboto font-medium text-base"
                 onClick={handleSignUpClick} // Attach the click handler
               >

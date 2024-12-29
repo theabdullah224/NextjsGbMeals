@@ -51,7 +51,10 @@ function SaveMoney(props) {
             Learn&nbsp;More
           </button> */}
           {!session && (
-            <button className=" py-2 px-12 box-border rounded-lg flex items-center justify-center bg-white text-P-Green1 border-2 border-P-Green1  hover:bg-P-Green1 hover:text-white font-roboto font-medium text-base" onClick={handleSignUpClick}>
+            <button
+            
+             aria-label="signup"
+            className=" py-2 px-12 box-border rounded-lg flex items-center justify-center bg-white text-P-Green1 border-2 border-P-Green1  hover:bg-P-Green1 hover:text-white font-roboto font-medium text-base" onClick={handleSignUpClick}>
               Sign&nbsp;Up
             </button>
           )}
@@ -67,7 +70,10 @@ function SaveMoney(props) {
               left: `${props.left}`,
             }}
           >
-            <Image className="favicon-2" src={Favicon} alt="" style={{ transform: `scaleX(${props.imgscale})` }} />
+            <Image 
+            priority
+            
+            className="favicon-2" src={Favicon} alt="Favicon" style={{ transform: `scaleX(${props.imgscale})` }} />
           </div>
         </div>
       </div>

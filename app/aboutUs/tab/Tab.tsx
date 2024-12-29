@@ -28,24 +28,29 @@ const Tab: React.FC = () => {
               Our Story
             </h3>
             <button
+             aria-label="Health"
+           
               className="w-full py-2 px-8 sm:px-16 mb-2 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
               onClick={() => scrollToHeading(heading2Ref)}
             >
               Health&nbsp;Journey
             </button>
             <button
+             aria-label="problem"
               className="w-full py-2 px-8 sm:px-16 mb-2 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
               onClick={() => scrollToHeading(heading3Ref)}
             >
               The&nbsp;Problem
             </button>
             <button
+             aria-label="Solution"
               className="w-full py-2 px-8 sm:px-16 mb-2 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
               onClick={() => scrollToHeading(heading4Ref)}
             >
               Our&nbsp;Solution
             </button>
             <button
+             aria-label="joinus"
               className="w-full py-2 px-8 sm:px-16 mb-2 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
               onClick={() => scrollToHeading(heading5Ref)}
             >

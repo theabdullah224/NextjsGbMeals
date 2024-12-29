@@ -69,6 +69,7 @@ const WeeklyOverlap: React.FC<WeeklyOverlapProps> = ({
                 />
 
                 <button
+                aria-label="signup"
                   className="mt-4 sm:w-[50vw] py-3 box-border rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] font-roboto font-medium text-base"
                   onClick={handleSignUpClick}
                 >
@@ -85,6 +86,7 @@ const WeeklyOverlap: React.FC<WeeklyOverlapProps> = ({
             >
               {!session && (
                 <button
+                aria-label="signup"
                   className="py-2 px-12 box-border rounded-lg flex items-center justify-center text-white border-2 border-white hover:text-P-Green1 hover:bg-white font-roboto font-medium text-base"
                   onClick={handleSignUpClick}
                 >
@@ -100,6 +102,7 @@ const WeeklyOverlap: React.FC<WeeklyOverlapProps> = ({
         style={{ backgroundImage: `url(${bgfront})` }}
       >
         <Image
+        priority
           className="wfv"
           src={Favicon}
           alt="Favicon"

@@ -62,6 +62,7 @@ const Save: React.FC<SaveProps> = ({ srcimg }) => {
           <div className="flex gap-4 items-center flex-col sm:flex-row">
             {!session && (
               <button
+               aria-label="signup"
                 className="py-2 px-12 box-border rounded-lg flex items-center justify-center bg-transparent text-P-Green1 border-2 border-P-Green1 hover:bg-P-Green1 hover:text-white font-roboto font-medium text-base"
                 onClick={handleSignUpClick}
               >
@@ -74,7 +75,9 @@ const Save: React.FC<SaveProps> = ({ srcimg }) => {
       <div className="image-sidesavec">
         <div className="image">
           <div className="imgd" style={{ backgroundImage: `url(${srcimg})` }}>
-            <Image className="favicon11" src={Favicon} width={100} alt="" />
+            <Image
+             loading="lazy"
+            className="favicon11" src={Favicon} width={100} alt="" />
             
           </div>
         </div>

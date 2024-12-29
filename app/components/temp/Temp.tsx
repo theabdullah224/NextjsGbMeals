@@ -23,6 +23,7 @@ const Button = ({ children, onClick, variant = "primary" }) => {
 
   return (
     <button
+    aria-label="button"
       className={`${baseClasses} ${variantClasses[variant]}`}
       onClick={onClick}
     >
@@ -208,6 +209,7 @@ const ManageSubscriptionPage = () => {
         <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-0  sm:space-x-4">
           <Link href="/payment">
             <Button
+            
               // @ts-ignore
               variant="primary"
               children={undefined}

@@ -171,6 +171,7 @@ export default function page() {
             >
               <div className="absolute top-0 right-0 -mr-12 pt-2">
                 <button
+                 aria-label="toggle"
                   className="ml-1  flex items-center justify-center"
                   onClick={toggleMobileMenu}
                 >
@@ -215,6 +216,7 @@ export default function page() {
             <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
               {/* Toggle button for mobile */}
               <button
+               aria-label="menu"
                 onClick={toggleMobileMenu}
                 className="text-gray-500  md:hidden"
               >
@@ -223,6 +225,7 @@ export default function page() {
               </button>
               {/* Toggle Sidebar Button on Large Screens */}
               <button
+               aria-label="menu"
                 onClick={toggleSidebar}
                 className="hidden md:hidden text-gray-500 "
               >
@@ -237,6 +240,7 @@ export default function page() {
                 {activeSection}
               </h2>
               <button
+               aria-label="logout"
                     className=" py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                     onClick={handleLogout}
                   >
@@ -309,6 +313,7 @@ export default function page() {
   
   
             <button
+             aria-label="adduser"
               type="submit"
               className="bg-P-Green1 text-white p-3 rounded-md mt-4 hover:bg-blue-600 transition-colors"
             >

@@ -110,7 +110,9 @@ export default function page({ }) {
           <h1 className="text-4xl font-bold mb-6 text-center text-[#738065]">Welcome!</h1>
           <p className="text-lg mb-8 text-[#606060] text-center">To gb meals, We&apos;re excited to have you here. Explore our site and discover amazing content tailored just for you.</p>
           <div className="flex justify-center">
-            <button onClick={()=>{    handleRedirect();}} className="bg-[#F5A228] text-white font-bold py-2 px-6 rounded-full hover:bg-[#738065] transition duration-300 ease-in-out transform hover:scale-105">
+            <button
+            aria-label="get started"
+            onClick={()=>{    handleRedirect();}} className="bg-[#F5A228] text-white font-bold py-2 px-6 rounded-full hover:bg-[#738065] transition duration-300 ease-in-out transform hover:scale-105">
               Get Started
             </button>
           </div>

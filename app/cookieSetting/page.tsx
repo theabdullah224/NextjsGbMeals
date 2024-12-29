@@ -84,6 +84,7 @@ export default function page () {
           ))}
         </div>
         <button 
+        aria-label="savepreferences"
           onClick={handleSave}
           className="py-1 px-7 mt-4 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
         >

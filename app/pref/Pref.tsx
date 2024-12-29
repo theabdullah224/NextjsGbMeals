@@ -118,6 +118,7 @@ function Pref({userData}:prefprops) {
     <li className="relative text-Text1">
       <span className="text-base font-roboto font-bold truncate">{title}</span>
       <button
+      aria-label="allergy"
         onClick={() => isEditable && handleMenuClick(menu)}
         className={`text-sm text-Text2 border-2 rounded-lg border-[#A6AE9D] px-4 py-3 w-[75vw] sm:w-[30rem] flex justify-between items-center truncate  ${
           !isEditable && "opacity-50 cursor-not-allowed"
@@ -149,6 +150,7 @@ function Pref({userData}:prefprops) {
                 }`}
               />
               <button
+              aria-label="add"
                   onClick={() => {
                     // Call addCustomOption with the current input value
                     addCustomOption(menu, menuStates[menu].inputValue.trim());
@@ -377,6 +379,7 @@ function Pref({userData}:prefprops) {
 
             <div className="flex gap-2 flex-col sm:flex-row sm:gap-2 flex-wrap items-center justify-center">
             <button
+            aria-label="generate pdf"
                 onClick={()=>{handleGeneratePDF();}}
                 className={`${
                   loader && "disabled:opacity-50 cursor-not-allowed"
@@ -387,6 +390,7 @@ function Pref({userData}:prefprops) {
               </button>
               {isEditable ? (
                 <button
+                aria-label="save"
                   onClick={handleSubmit}
                   className="sm:mt-4   py-2 px-14 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                 >
@@ -394,6 +398,7 @@ function Pref({userData}:prefprops) {
                 </button>
               ) : (
                 <button
+                aria-label="edit"
                   onClick={handleEditClick}
                   className="sm:mt-4   py-2 px-14 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                 >

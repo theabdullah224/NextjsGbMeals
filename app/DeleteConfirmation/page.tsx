@@ -77,6 +77,7 @@ function page() {
               {error && <p className="text-red-500">{error}</p>}
               <div className='flex flex-wrap w-full gap-2 justify-between'>
                 <button
+                aria-label="delete"
                   onClick={handleVerifyCode}
                   className='py-2 px-12 sm:w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-base'
                 >

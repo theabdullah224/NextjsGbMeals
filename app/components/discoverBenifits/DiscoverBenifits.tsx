@@ -43,11 +43,12 @@ const DiscoverBenefits: React.FC<DiscoverBenefitsProps> = ({ subtitle }) => {
         Discover how meal planning can help you reduce food waste and make a positive impact on the environment.
       </p>
       {/* Favicon image */}
-      <Image className='favicondiscover hidden sm:block' src={favicon} alt="Favicon" />
+      <Image priority className='favicondiscover hidden sm:block' src={favicon} alt="Favicon" />
       {/* Buttons for navigation */}
       <div className="flex mt-8 gap-6 items-center flex-col sm:flex-row">
         {!session && 
         <button
+         aria-label="signup"
           className="py-2 px-12 box-border rounded-lg flex items-center justify-center bg-white text-P-Green1 border-2 border-P-Green1 hover:bg-P-Green1 hover:text-white font-roboto font-medium text-base"
           onClick={handleSignUpClick}
         >

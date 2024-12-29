@@ -8,6 +8,7 @@ import Loader from "../../../../public/Resource/spinner.svg";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { getStripe } from '../../../lib/stripe';
+import Image from "next/image";
 
 const cardData = [
   {
@@ -127,7 +128,7 @@ const PriceCard: React.FC = () => {
     <div className="flex items-center justify-center">
       {loader && (
         <div>
-          <img src={Loader} alt="Loading..." className="" />
+          <Image src={Loader} alt="Loading..." className="" />
         </div>
       )}
 
@@ -164,7 +165,8 @@ const PriceCard: React.FC = () => {
                     {session && (
                       <>
 
-<button
+                    <button
+                    aria-label="upgrade"
                     onClick={() => handleButtonClick(card.planType)}
                     className={`w-full py-2 px-4 rounded-lg flex items-center justify-center text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base ${
                       userData?.

@@ -73,7 +73,8 @@ const page = () => {
         <p className="text-lg mb-6 capitalize text-Text2">
           Discover the benefits of meal planning and enjoy delicious, nutritious meals every day.
         </p>
-        {/* <button className="py-2 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base">
+        {/* <button
+         className="py-2 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base">
           Explore more meals
         </button> */}
       </div>
@@ -83,12 +84,15 @@ const page = () => {
         {/* Display the current slide image */}
         <Image
           src={slides[currentSlide].image}
-          alt=""
+          alt="banner"
+          priority
+           loading="eager"
           className="rounded-lg w-full h-auto object-cover"
         />
 
         {/* Button to go to the previous slide */}
         <button
+        
           onClick={prevSlide}
           aria-label="prev"
           className="absolute border-none left-4 xl:left-12 top-1/2 transform -translate-y-1/2 bg-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] rounded-full p-[2px] sm:p-2 transition-all duration-200"
@@ -98,6 +102,7 @@ const page = () => {
 
         {/* Button to go to the next slide */}
         <button
+        
           onClick={nextSlide}
            aria-label="next"
           className="absolute right-4 xl:right-12 border-none top-1/2 transform -translate-y-1/2 bg-P-Green1 rounded-full p-[2px] sm:p-2 transition-all duration-200 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221]"

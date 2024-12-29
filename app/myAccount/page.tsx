@@ -231,7 +231,9 @@ export default function page() {
         >
           <div className="flex items-center justify-between px-4">
          
-            <button onClick={toggleSidebar} className="lg:hidden">
+            <button 
+            aria-label="open"
+            onClick={toggleSidebar} className="lg:hidden">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -264,6 +266,7 @@ export default function page() {
                 {!isEditable && <Edit size={20} className="text-P-Green1" onClick={handleEditClick} />}
                 {isEditable && (
                   <button
+                  aria-label="save"
                     className="ml-2 py-2 px-4 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                     onClick={handleSaveNameClick}
                   >
@@ -289,6 +292,7 @@ export default function page() {
                 {!isEmailEditable && <Edit size={20} className="text-P-Green1" onClick={handleEmailEditClick} />}
                 {isEmailEditable && (
                   <button
+                  aria-label="save"
                     className="ml-2 py-2 px-4 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                     onClick={handleSaveEmailClick}
                   >
@@ -423,6 +427,7 @@ export default function page() {
 
               
                   <button
+                  aria-label="deleteaccount"
                     onClick={() => {
                       if(window.confirm("Are you sure you want to delete your account? This action is permanent and cannot be undone. All your data will be lost.")){
                           router.push('/deleteAccount')

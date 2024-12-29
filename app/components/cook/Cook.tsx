@@ -30,7 +30,11 @@ function Cook(props:any) {
             <div className="image">
                 <div className="imgcook" style={{backgroundImage:`url(${props.srcimg})`}}>
                     {/* Favicon image */}
-                    <Image className='faviconcook' src={Favicon} alt="" />
+                    <Image
+                    priority
+                    loading="lazy"
+                    
+                    className='faviconcook' src={Favicon} alt="Favicon" />
                 </div>
             </div>
         </div>

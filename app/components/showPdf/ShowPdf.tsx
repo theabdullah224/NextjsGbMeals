@@ -114,18 +114,21 @@ const ShowPdf = () => {
           </div>
           <div className="flex   space-x-2 w-full md:w-auto justify-end mt-2 sm:mt-0">
             <button
+            aria-label="viewmealplan"
               onClick={() => handlePdfClick(pdf.mealPlanUrl)}
               className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out flex items-center justify-center"
             >
               View Meal Plan
             </button>
             <button
+            aria-label="viewshoppinglist"
               onClick={() => handlePdfClick(pdf.shoppingListUrl)}
               className="flex-1 sm:flex-none px-3 py-1 bg-P-Green1 text-white text-sm rounded  transition duration-150 ease-in-out flex items-center justify-center"
             >
               View Shopping List
             </button>
             <button
+            aria-label="delete"
               onClick={() => handleDelete(pdf.id)}
               className="flex-1 sm:flex-none px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition duration-150 ease-in-out flex items-center justify-center"
             >

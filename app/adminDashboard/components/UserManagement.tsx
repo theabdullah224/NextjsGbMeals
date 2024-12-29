@@ -28,6 +28,7 @@ const UserCard = ({ user, expanded, onClick, onDelete }) => (
       </div>
     )}
     <button
+     aria-label="delete"
       className="absolute top-2 right-2 p-1 rounded-full hover:bg-red-100"
       onClick={(e) => {
         e.stopPropagation();

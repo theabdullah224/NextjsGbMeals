@@ -18,6 +18,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   
     <div className="mb-4  bg-white py-6 w-full max-w-[45rem]   rounded-lg shadow-sm overflow-hidden ">
       <button
+       aria-label="open"
         className="w-full text-left p-3 sm:p-4 flex items-center justify-between"
         onClick={() => setIsOpen(!isOpen)}
       >

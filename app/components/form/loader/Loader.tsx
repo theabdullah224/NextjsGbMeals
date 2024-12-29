@@ -2,10 +2,11 @@
 import React from 'react'
 import Loader from '../../../../public/Resource/spinner.svg'
 import './loader.css'
+import Image from 'next/image'
 function Svgloader() {
   return (
     <div>
-        <img className='loader' src={Loader} alt="" />
+        <Image className='loader' src={Loader} alt="" />
     </div>
   )
 }

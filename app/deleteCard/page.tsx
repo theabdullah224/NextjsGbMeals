@@ -122,18 +122,21 @@ const page: React.FC = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="flex gap-2">
                 <button
+                aria-label="updatecard"
                   onClick={handleUpdateCard}
                   className="py-2 mx-auto md:mx-0 px-8 box-border rounded-lg flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all font-roboto font-medium text-base"
                 >
                   Update Card
                 </button>
                 <button
+                aria-label="deletecard"
                   onClick={handleDeleteCard}
                   className="py-2 mx-auto md:mx-0 px-8 box-border rounded-lg flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all font-roboto font-medium text-base"
                 >
                   Delete Card
                 </button>
                 <button
+                aria-label="cancelplan"
                   onClick={handleCancelPlan}
                   className="py-2 mx-auto md:mx-0 px-8 box-border rounded-lg flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-black transition-all font-roboto font-medium text-base"
                 >

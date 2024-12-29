@@ -65,20 +65,25 @@ const Navbar: React.FC = () => {
         <div className="ml-8 hidden lg:flex lg:gap-2">
           {!session ? (
             <button
+             aria-label="try free for 30 days"
               onClick={handleSubscribeClick}
               className="py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
             >
               Try Free For 30-Days
             </button>
           ) : (
-            <button className="py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base" onClick={handleSignOut}>
+            <button
+             aria-label="logout"
+            className="py-1 px-7 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base" onClick={handleSignOut}>
               Logout 
             </button>
           )}
         </div>
 
         {/* Mobile menu button */}
-        <button onClick={toggleSidebar} aria-label="menu" className="lg:hidden text-Text1 hover:text-S-Orange">
+        <button
+        
+        onClick={toggleSidebar} aria-label="menu" className="lg:hidden text-Text1 hover:text-S-Orange">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
@@ -88,7 +93,9 @@ const Navbar: React.FC = () => {
       {/* Sidebar for mobile */}
       <div className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform ${isSidebarOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300 ease-in-out lg:hidden z-50`}>
         <div className="p-5">
-          <button onClick={toggleSidebar} className="absolute top-4 right-4 text-Text1 hover:text-S-Orange">
+          <button 
+           aria-label="toggle"
+          onClick={toggleSidebar} className="absolute top-4 right-4 text-Text1 hover:text-S-Orange">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -115,6 +122,7 @@ const Navbar: React.FC = () => {
           <div className="mt-6">
             {!session ? (
               <button
+               aria-label="freetrial"
                 onClick={() => {
                   handleSubscribeClick();
                   toggleSidebar();
@@ -125,6 +133,7 @@ const Navbar: React.FC = () => {
               </button>
             ) : (
               <button
+               aria-label="logout"
                 className="mt-2 w-full py-2 px-4 rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                 onClick={handleSignOut}
               >

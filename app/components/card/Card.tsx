@@ -626,7 +626,7 @@ const CardNavigator = ({ setLoading }) => {
                 <div className="w-[14px] rounded-full h-[1px] bg-white"></div>
               </div>
               {element.image && (
-                <img
+                <Image
                   className=" mb-2 w-5 sm:w-10 select-none"
                   src={element.image}
                   alt={element.label}
@@ -637,7 +637,7 @@ const CardNavigator = ({ setLoading }) => {
               </span>
               {isChecked && (
                 <div className="absolute w-3 sm:h-7 h-3 sm:w-7 flex z-40 items-center justify-center select-none  bg-[#32B200] rounded-full -top-1 -right-1  sm:-top-2 sm:-right-2">
-                  <img
+                  <Image
                     src={tickIcon.src}
                     alt="Selected"
                     className="tick-icon select-none "
@@ -707,7 +707,7 @@ const CardNavigator = ({ setLoading }) => {
     >
       {loader && (
         <div className="">
-          <img src={Loader} alt="" className="" />
+          <Image src={Loader} alt="" className="" />
         </div>
       )}
 
@@ -1003,6 +1003,7 @@ const CardNavigator = ({ setLoading }) => {
 
                           <div className="mt-4 flex justify-end space-x-2">
                             <button
+                             aria-label="done"
                               onClick={() => setIspopupOpen3(false)}
                               className="py-2 mt-4 select-none px-10 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                             >
@@ -1098,6 +1099,7 @@ const CardNavigator = ({ setLoading }) => {
 
                           <div className="mt-4 flex justify-end space-x-2">
                             <button
+                             aria-label="done"
                               onClick={() => setIspopupOpen(false)}
                               className="py-2 mt-4 select-none px-10 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                             >
@@ -1156,6 +1158,7 @@ const CardNavigator = ({ setLoading }) => {
                                 placeholder="Enter Allergies"
                               />
                               <button
+                               aria-label="add item"
                                 type="submit"
                                 className="py-2 mt-4 select-none px-10 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                               >
@@ -1170,6 +1173,7 @@ const CardNavigator = ({ setLoading }) => {
                                 >
                                   <span>{item}</span>
                                   <button
+                                   aria-label="Close"
                                     onClick={() => handleDelete(index)}
                                     className="ml-2 text-red-500 hover:text-red-700"
                                   >
@@ -1180,6 +1184,7 @@ const CardNavigator = ({ setLoading }) => {
                             </div>
                             <div className="mt-4 flex justify-end space-x-2">
                               <button
+                               aria-label="done"
                                 onClick={handleDone}
                                 className="py-2 mt-4 select-none px-10 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                               >
@@ -1239,6 +1244,7 @@ const CardNavigator = ({ setLoading }) => {
                                 placeholder="Enter Allergies"
                               />
                               <button
+                               aria-label="additem"
                                 type="submit"
                                 className="py-2 mt-4 select-none px-10 box-border rounded-lg flex items-center justify-center bg-P-Green1 text-white shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-base"
                               >
@@ -1253,6 +1259,7 @@ const CardNavigator = ({ setLoading }) => {
                                 >
                                   <span>{item}</span>
                                   <button
+                                   aria-label="Close"
                                     onClick={() => handleDeletedislike(index)}
                                     className="ml-2 text-red-500 hover:text-red-700"
                                   >
@@ -1263,6 +1270,7 @@ const CardNavigator = ({ setLoading }) => {
                             </div>
                             <div className="mt-4 flex justify-end space-x-2">
                               <button
+                               aria-label="done"
                                 onClick={() => {
                                   setIsOpendislike(false);
                                 }}
@@ -1283,6 +1291,7 @@ const CardNavigator = ({ setLoading }) => {
           <div className="buttonContainer1">
             {currentCardIndex === 0 && (
               <button
+               aria-label="next"
                 className="py-2 mt-4 select-none px-10 w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
                 onClick={handleNext}
               >
@@ -1294,12 +1303,14 @@ const CardNavigator = ({ setLoading }) => {
               <>
                 <div className="flex flex-wrap gap-2 mt-4">
                   <button
+                   aria-label="back"
                     className="py-1 sm:py-2 px-4 sm:px-12 w-[100px] sm:w-[200px] select-none box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white  hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
                     onClick={handleBack}
                   >
                     Back
                   </button>
                   <button
+                   aria-label="next"
                     className="py-2 px-10 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
                     onClick={handleNext}
                   >
@@ -1313,12 +1324,14 @@ const CardNavigator = ({ setLoading }) => {
               <>
                 <div className="flex flex-wrap gap-2 mt-4">
                   <button
+                   aria-label="back"
                     className="py-2 px-4 sm:px-12 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
                     onClick={handleBack}
                   >
                     Back
                   </button>
                   <button
+                   aria-label="next"
                     className="py-2 px-10 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
                     onClick={handleNext}
                   >
@@ -1331,12 +1344,14 @@ const CardNavigator = ({ setLoading }) => {
             {currentCardIndex === 5 && (
               <div className="flex flex-wrap gap-2 mt-4">
                 <button
+                 aria-label="back"
                   className="py-2 px-4 sm:px-12 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
                   onClick={handleBack}
                 >
                   Back
                 </button>
                 <button
+                 aria-label="next"
                   className="py-2 px-10 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
                   onClick={handleNext}
                 >
@@ -1350,12 +1365,14 @@ const CardNavigator = ({ setLoading }) => {
                   {eror && <p className="text-red-500 ">{eror}</p>}
                   <div className="flex gap-2 flex-wrap">
                     <button
+                     aria-label="back"
                       className="py-[1px] sm:py-2 px-4 sm:px-12 w-[100px] sm:w-[200px] select-none box-border rounded-md sm:rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white  hover:cursor-pointer text-white font-roboto font-medium text-xs sm:text-base"
                       onClick={handleBack}
                     >
                       Back
                     </button>
                     <button
+                     aria-label="signup"
                       type="submit"
                       className=" py-2 px-10 select-none w-[100px] sm:w-[200px] box-border rounded-md sm:rounded-lg flex items-center justify-center bg-white text-P-Green1 shadow-[inset_4px_4px_8px_#2a322179] hover:shadow-[inset_0px_0px_0px_#2A3221] font-roboto font-medium text-xs sm:text-base"
                       onClick={handleSignUp}
