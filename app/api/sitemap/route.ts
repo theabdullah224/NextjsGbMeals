@@ -1,7 +1,7 @@
 // app/api/sitemap/route.ts
 import { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+ function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: 'https://nextjsgbmeals.vercel.app/',
