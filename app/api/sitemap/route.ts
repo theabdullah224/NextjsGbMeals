@@ -89,8 +89,12 @@ import { MetadataRoute } from 'next'
 
 export const GET = async () => {
   try {
-    sitemap()
+    const sitemapData = sitemap();
+    return new Response(JSON.stringify(sitemapData), {
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
+    return new Response('Internal Server Error', { status: 500 });
   }
 };
