@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /adminDashboard
+Sitemap: https://www.gbmeals.com/api/sitemap
