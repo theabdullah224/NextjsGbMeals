@@ -1,12 +1,19 @@
 import React from 'react'
 import MyAccount from './MyAccount'
-import RootLayout from '../layout'
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'My Account - gbMeals',
+  description: 'Manage your gbMeals account settings, preferences, and subscriptions.',
+};
+
+
+
 function page() {
   return (
-    <RootLayout title="Your Account | gbMeals" description='Manage your gbMeals account settings, preferences, and subscriptions.'>
 
     <MyAccount/>
-    </RootLayout>
   )
 }
 

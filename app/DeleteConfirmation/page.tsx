@@ -1,12 +1,19 @@
 import React from 'react'
 import DeleteConfirmation from './DeleteConfirmation'
-import RootLayout from '../layout'
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Delete Confirmation - gbMeals',
+  description: 'Confirm your action to permanently delete your account or data from gbMeals.',
+};
+
+
+
 function page() {
   return (
-    <RootLayout title="Confirm Account Deletion" description='Confirm your action to permanently delete your account or data from gbMeals.Confirm your action to permanently delete your account or data from gbMeals.'>
 
     <DeleteConfirmation/>
-    </RootLayout>
   )
 }
 

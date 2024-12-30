@@ -2,12 +2,17 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import CopyRight from "../components/copyRight/copyRight";
-import RootLayout from "../layout";
 
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy - gbMeals',
+  description: 'Understand how gbMeals collects, uses, and protects your data with our privacy policy.',
+};
 
 function PrivacyPolicy() {
   return (
-    <RootLayout title="Privacy Policy" description="Understand how gbMeals collects, uses, and protects your data with our privacy policy.">
 
     <div className="overflow-x-hidden">
       <Navbar />
@@ -91,7 +96,6 @@ function PrivacyPolicy() {
       </div>
       <CopyRight />
     </div>
-    </RootLayout>
   );
 }
 

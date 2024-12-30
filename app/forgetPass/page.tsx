@@ -1,13 +1,20 @@
 import React from 'react'
 import ForgetPass from './ForgetPass'
-import RootLayout from '../layout'
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Forget Password - gbMeals',
+  description: 'Reset your password to regain access to your gbMeals account securely.',
+};
+
+
+
 function page() {
   return (
 
-    <RootLayout title="Reset Your Password" description='Reset your password to regain access to your gbMeals account securely.'>
 
     <ForgetPass/>
-    </RootLayout>
   )
 }
 

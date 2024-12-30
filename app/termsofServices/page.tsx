@@ -2,12 +2,16 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import CopyRight from "../components/copyRight/copyRight";
-import RootLayout from "../layout";
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Services - gbMeals',
+  description: 'Read the terms and conditions that govern your use of gbMeals services.',
+};
 
 export default function page() {
   return (
-    <RootLayout title="Terms of Service" description="Read the terms and conditions that govern your use of gbMeals services.">
 
     <div className="overflow-x-hidden bg-white">
       <Navbar />
@@ -158,7 +162,6 @@ export default function page() {
       </div>
       <CopyRight/>
     </div>
-    </RootLayout>
   );
 }
 

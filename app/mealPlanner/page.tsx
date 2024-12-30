@@ -27,11 +27,17 @@ import Faq from "../components/faq/Faq";
 import Cta from "../components/cta/Cta";
 import Footer from "../components/footer/Footer";
 import CopyRight from "../components/copyRight/copyRight";
-import RootLayout from "../layout";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Try Free for 30-Days - gbMeals',
+  description: 'Experience gbMeals for free with a 30-day trial to access premium features.',
+};
+
+
 
 export default function page() {
   return (
-    <RootLayout title="Try Free for 30-Days" description="Experience gbMeals for free with a 30-day trial to access premium features.">
 
     <>
     
@@ -145,6 +151,5 @@ export default function page() {
     <CopyRight/>
 
     </>
-    </RootLayout>
   );
 }

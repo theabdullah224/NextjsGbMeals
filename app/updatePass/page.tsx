@@ -1,12 +1,18 @@
 import React from 'react'
 import UpdatePass from './UpdatePass'
-import RootLayout from '../layout'
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Update Password - gbMeals',
+  description: 'Change your password to keep your gbMeals account secure.',
+};
+
+
+
 function page() {
   return (
-    <RootLayout title="Update Password" description='Change your password to keep your gbMeals account secure.'>
 
    <UpdatePass/>
-    </RootLayout>
   )
 }
 

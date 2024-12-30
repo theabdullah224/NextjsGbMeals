@@ -1,12 +1,17 @@
 import React from 'react'
 import CookiesSetting from './Cookies&Settings'
-import RootLayout from '../layout'
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cookies Management - gbMeals',
+  description: 'Control your cookie preferences and ensure privacy while browsing gbMeals.',
+};
+
 function page() {
   return (
-    <RootLayout title="Manage Cookies Settings" description='Control your cookie preferences and ensure privacy while browsing gbMeals.'>
 
       <CookiesSetting/>
-    </RootLayout>
     
   )
 }

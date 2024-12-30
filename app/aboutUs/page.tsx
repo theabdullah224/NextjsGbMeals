@@ -6,7 +6,15 @@ import Footer from "../components/footer/Footer";
 import CopyRight from "../components/copyRight/copyRight";
 
 import Tab from "./tab/Tab";
-import RootLayout from "../layout";
+
+
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us - gbMeals',
+  description: 'Learn about gbMeals, our mission, and how we help you manage your health through personalized meal plans and expert advice.',
+};
 
 
 const page: React.FC = () => {
@@ -15,7 +23,7 @@ const page: React.FC = () => {
 
 
   return (
-    <RootLayout title="More About Us"   description="Learn about gbMeals">
+   
 
     <div className="!w-full overflow-x-hidden">
       <Navbar />
@@ -28,7 +36,7 @@ const page: React.FC = () => {
       <Footer />
       <CopyRight />
     </div>
-    </RootLayout>
+  
   );
 };
 

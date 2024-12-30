@@ -1,12 +1,17 @@
 import React from 'react'
 import Plans from './Plans'
-import RootLayout from '../layout'
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Signup - gbMeals',
+  description: 'Sign up for gbMeals to begin your journey to better health with personalized meal plans.',
+};
+
 function page() {
   return (
-    <RootLayout title="Join gbMeals" description='Sign up for gbMeals to begin your journey to better health with personalized meal plans.'>
 
     <Plans/>
-    </RootLayout>
   )
 }
 
