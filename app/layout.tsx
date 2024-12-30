@@ -21,7 +21,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "gbMeals",
+  title: "gbMeals - Get Control Your Health",
   description: "Get Control Your Health",
 };
 
