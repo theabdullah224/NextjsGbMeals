@@ -24,9 +24,9 @@ const Tab: React.FC = () => {
       <div className="colortab">
         <div className="tableft">
           <div className="tabheadingscontent">
-            <h3 className="fancys text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1">
+            <h1 className="fancys text-2xl border-b-8 border-S-Orange leading-none font-bold text-Text1">
               Our Story
-            </h3>
+            </h1>
             <button
              aria-label="Health"
            

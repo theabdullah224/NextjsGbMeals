@@ -12,7 +12,7 @@ function Form() {
   return (
     <div className="relative h-fit flex flex-col items-center pt-4 max-w-full overflow-x-hidden">
       {/* Heading for the form section */}
-      <h3 className="inline-block text-2xl border-b-8 text-Text1 border-S-Orange leading-none font-bold mb-[3vh]">Choose Plan</h3>
+      <h1 className="inline-block text-2xl border-b-8 text-Text1 border-S-Orange leading-none font-bold mb-[3vh]">Choose Plan</h1>
       <h2 className="text-center text-Text2 mb-2 text-4xl 2xl:text-5xl font-bold">Choose Your Plan Type</h2>
 
      
