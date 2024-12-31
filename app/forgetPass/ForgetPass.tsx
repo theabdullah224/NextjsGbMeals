@@ -79,7 +79,7 @@ export default function page (){
         }}
       >
         {loading ? (
-          <Image src={Loader} alt="Loading..." className="animate-spin" />
+          <Image src={Loader} alt="Loading..." className="" />
         ) : (
           <>
             <div className="flex flex-wrap mt-4 gap-2 flex-col items-start">
@@ -95,7 +95,7 @@ export default function page (){
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 sm:w-[32rem] placeholder-white text-white"
+                className="border-2 border-white py-2 px-2 bg-transparent rounded-lg p-2 w-full sm:w-[32rem] placeholder-white text-white"
                 placeholder="Email Address"
               />
               {error && <p className="text-red-500 mt-2">{error}</p>} {/* Error message display */}
@@ -103,7 +103,7 @@ export default function page (){
                 <button
                 aria-label="submit"
                   onClick={handleSubmit}
-                  className="py-2 px-12 w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-base"
+                  className="py-2 px-12 sm:w-[200px] box-border select-none rounded-lg flex items-center justify-center bg-transparent text-P-white border-2 border-white hover:cursor-pointer text-white font-roboto font-medium text-base"
                 >
                   Submit
                 </button>
