@@ -10,7 +10,7 @@ import User from '../models/UserModel';
 import { connectMongoDB } from '@/app/lib/dbConnection';
 import { sendStripeEmail } from '@/app/lib/sendStripeEmail';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.WEBHOOKENDPOINTSECRET!, {
   // @ts-ignore
   apiVersion: '2024-06-20',
 });
