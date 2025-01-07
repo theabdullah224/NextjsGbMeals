@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-const FB_PIXEL_ID = process.env.FB_PIXEL_ID
+const FB_PIXEL_ID =1124990829202934 
 
 export default function MetaPixel() {
   const pathname = usePathname()
