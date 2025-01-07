@@ -15,6 +15,7 @@ export async function updateExpiredPlans() {
     // Update users whose `currentPeriodEnd` matches today's date (ignoring time)
     const result = await UserModel.updateMany(
       {
+        status: "active",
         $expr: {
           $eq: [
             { $dateToString: { format: "%Y-%m-%d", date: "$currentPeriodEnd" } }, // Extract date in "YYYY-MM-DD"

@@ -9,6 +9,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { startMealPlanScheduler } from "./lib/mealPlanScheduler";
 import Script from 'next/script';
 import { generateWeeklyMealPlans } from "./lib/weeklyMealPlanGenerator";
+import MetaPixel from './components/MetaPixel'
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -67,6 +68,7 @@ export default async function RootLayout({
       <body
         className={`bg-white ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <MetaPixel />
         {children}
         <GoogleAnalytics gaId="G-43L99VSCR0" />
         {/* <SessionExpiryManager /> */}

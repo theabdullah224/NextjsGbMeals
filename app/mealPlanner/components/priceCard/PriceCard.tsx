@@ -97,6 +97,10 @@ const PriceCard: React.FC = () => {
   // Handle the subscription purchase
   const buyFunction = async (planType: string): Promise<void> => {
 
+    window.fbq('track', 'Purchase', {
+      value: planType,
+     
+    });
     
     try {
       const res = await fetch('/api/create-checkout-session', {
